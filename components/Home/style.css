@@ -1,0 +1,53 @@
+/**
+ * Created by PhpStorm.
+ * User: Peter
+ * Date: 2/27/19
+ * Time: 5:46 PM
+ */
+.banner-homepage .banner-item img {
+    min-height: 180px;
+}
+.product-list-content {
+    display: flex;
+    overflow: auto;
+}
+.product-item {
+    margin: 5px;
+}
+.product-img {
+    width: 120px;
+    height: 120px;
+    border: 1px solid #eeeeee;
+}
+.product-img img {
+    width: 100%;
+    min-width: 100px;
+    height: 100%;
+    object-fit: contain;
+}
+.product-info {
+    margin-top: 10px;
+}
+.default-productlist-name {
+    font-size: 20px;
+}
+.home-productlist {
+    margin-top: 10px;
+}
+.default-productlist-tapita {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+#categories_home .category-content{
+    display: -ms-flexbox;
+    display: flex;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+}
+.category-content .category-item-container {
+    margin: 0 5px;
+    text-align: center;
+}
+.category-content .category-item .category-des {
+    margin: 10px 0;
+}

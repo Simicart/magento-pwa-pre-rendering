@@ -1,0 +1,19 @@
+/**
+ * Created by PhpStorm.
+ * User: Peter
+ * Date: 3/1/19
+ * Time: 4:21 PM
+ */
+div#app-loading {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0px;
+    display: -ms-flexbox;
+    display: flex;
+    background: #ffffff;
+    z-index: 100000;
+    opacity: 0.7;
+    -ms-flex-align: center;
+    align-items: center;
+}
