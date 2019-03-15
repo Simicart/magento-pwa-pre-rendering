@@ -14,7 +14,7 @@ let config = {
             '/': { page: '/' }
         }
     },
-    target: 'serverless'
+    // target: 'serverless'
 }
 config = withCSS(config)
 module.exports = config;
