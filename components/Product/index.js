@@ -11,9 +11,9 @@
  * Time: 10:36 AM
  */
 import React from 'react'
-import Layout from '../Layout'
+import Layout from '../../src/Layout/Layout'
 import fetch from "isomorphic-unfetch";
-import {Loading} from "../Loading";
+import {Loading} from "../../src/BaseComponent/Loading";
 class Product extends React.Component {
 
     state = {
@@ -75,6 +75,7 @@ class Product extends React.Component {
             header['title'] = data.name
             header['description'] = data.description
         }
+        // console.log(cache.get('merchant_config'))
         return (
             <Layout header={header}>
                 {this.renderContent(data)}

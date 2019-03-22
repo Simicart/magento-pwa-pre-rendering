@@ -3,32 +3,18 @@ const next = require('next')
 
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({dev})
-const handle = app.getRequestHandler()
-
+// const handle = app.getRequestHandler()
+// const cache = require('memory-cache')
+const routes = require('./router')
+const handler = routes.getRequestHandler(app,({req, res, route, query}) => {
+    console.log(routes)
+    app.render(req, res, route.page, query)
+  })
 app.prepare()
     .then(() => {
         const server = express()
-
-        server.get('/product/:id', (req, res) => {
-            const actualPage = '/product'
-            const queryParams = {id: req.params.id}
-            app.render(req, res, actualPage, queryParams)
-        })
-
-        server.get('/products/:cat', (req, res) => {
-            const actualPage = '/products'
-            const queryParams = {cat: req.params.cat}
-            app.render(req, res, actualPage, queryParams)
-        })
-
-        server.get('/*', (req, res) => {
-            return handle(req, res)
-        })
-
-        server.listen(3100, (err) => {
-            if (err) throw err
-            console.log('> Ready on http://localhost:3100')
-        })
+        
+        server.use(handler).listen(3100)
     })
     .catch((ex) => {
         console.error(ex.stack)

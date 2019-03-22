@@ -1,5 +1,5 @@
 import React from 'react'
-import Home from 'components/Home'
+import UrlMatch from '../src/App/Tapita/UrlMatch'
 
-export default Home
+export default UrlMatch
 

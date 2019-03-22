@@ -5,15 +5,18 @@
  * Time: 5:56 PM
  */
 import React from 'react'
-import Link from 'next/link'
+// import Link from 'next/link'
+import {Link} from 'simiLink'
+import Identify from '../../../Helper/Identify';
 class ProductList extends React.Component{
 
     renderListProduct = data => {
         let products = data.products.map(item => {
             let img = item.images[0].url;
+            Identify.setUrlMatchApi(item.url_path,'product_detail',{id : item.entity_id});
             return(
                 <div className="product-item" key={item.entity_id}>
-                    <Link href={`/product?id=${item.entity_id}`} as={`/product/${item.entity_id}`} prefetch>
+                    <Link route={'home'} params={{url:item.url_path}}>
                         <a>
                             <div>
                                 <div className="product-img">

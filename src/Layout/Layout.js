@@ -1,8 +1,8 @@
 import Head from "./head";
 import React from "react";
-import AppBar from '../components/Header/AppBar'
-import NoSSR from "react-no-ssr";
-import {Loading} from "./Loading";
+import {Tapita} from '../App/Tapita'
+import {Loading} from "../BaseComponent/Loading";
+import './global.css'
 /**
  * Created by PhpStorm.
  * User: Peter
@@ -13,12 +13,9 @@ const Layout = props => {
     return (
         <div>
             <Head {...props.header} />
-            <div className="app-header">
-                <AppBar/>
-            </div>
-            <div className="app-body" style={{marginTop:55,paddingTop:10}}>
+            <Tapita server_render={props.server_render}>
                 {props.children}
-            </div>
+            </Tapita>
             <div className="app-loading" style={{display:'none'}} id="app-loading">
                 <Loading/>
             </div>
