@@ -7,7 +7,6 @@ const app = next({dev})
 // const cache = require('memory-cache')
 const routes = require('./router')
 const handler = routes.getRequestHandler(app,({req, res, route, query}) => {
-    console.log(routes)
     app.render(req, res, route.page, query)
   })
 app.prepare()

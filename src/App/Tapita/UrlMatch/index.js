@@ -4,26 +4,28 @@ import Home from '../Home'
 import Model from '../../../Model';
 
 const ApiModel = new Model();
+let home_api = null;
+let product_api = null;
 class UrlMatch extends React.Component{
 
     static async getInitialProps(ctx){
         let query = ctx.query
         let component = 'home'
-        let data = null;
         if(query.url){
             let obj = Identify.getUrlMatchApi(query.url)
             if(obj){
                 component = obj.type
                 if(component === 'product_detail'){
                     let api = `products/${obj.params.id}`
-                    data = await ApiModel.connect(api)
-                    return {component,data}
+                    product_api = await ApiModel.connect(api)
+                    return {component,data:product_api}
                 }
             }
         }else{
             let api = 'homes';
-            data = await ApiModel.connect(api)
-            return {component,data}
+            if(!home_api)
+                home_api = await ApiModel.connect(api)
+            return {component,data : home_api}
         }
     }
 
