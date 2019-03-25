@@ -1,7 +1,7 @@
 import React from 'react'
 import ObjectHelper from "../../Helper/ObjectHelper";
 import Identify from '../../Helper/Identify';
-import {SMCONFIGS,ColorConfig,Simicart_Api} from '../../../static/config'
+import {SMCONFIGS,ColorConfig} from '../../../static/config'
 class SimiComponent extends React.Component{
     constructor(props){
         super(props)
@@ -10,7 +10,6 @@ class SimiComponent extends React.Component{
         this.state = {data:null,loaded:false}
         this.SMCONFIGS = SMCONFIGS
         this.ColorConfig = ColorConfig
-        this.SimicartConfig = Simicart_Api
     }
 
     isClient(){

@@ -20,9 +20,10 @@ const theme = createMuiTheme({
   overrides: {
     MuiButton: {
         root: {
-            fontSize: '1rem',
+            fontSize: '14px',
             backgroundColor: Identify.getColorConfig().button_background,
-            color:Identify.getColorConfig().button_text_color
+            color:Identify.getColorConfig().button_text_color,
+            textTransform : 'unset'
         },
         label : {
             color: Identify.getColorConfig().button_text_color

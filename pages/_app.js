@@ -30,10 +30,10 @@ export default class MyApp extends App {
         let pageProps = {}
         let storeview = null;
         if(Identify.checkMerchantConfig()){
-            console.log('cache api')
+            console.log('cache storeview api')
             storeview = Identify.getMerchantConfig();
         }else{
-            console.log('call api')
+            console.log('call storeview api')
             let storeviewAPI = 'storeviews/default';
             let appSettings = Identify.getAppSettings();
             let params = {pwa : 1};

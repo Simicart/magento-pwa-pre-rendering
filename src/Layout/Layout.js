@@ -13,7 +13,7 @@ const Layout = props => {
     return (
         <div>
             <Head {...props.header} />
-            <Tapita server_render={props.server_render}>
+            <Tapita server_render={props.ssr}>
                 {props.children}
             </Tapita>
             <div className="app-loading" style={{display:'none'}} id="app-loading">
