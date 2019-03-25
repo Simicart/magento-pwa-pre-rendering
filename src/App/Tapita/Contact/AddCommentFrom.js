@@ -62,7 +62,7 @@ class AddCommentFrom extends Base {
         return Identify.validateEmail(email);
     };
 
-    validateForm = () => {
+    validateForm = () => {       
         let mainClass = this;
         let formCheck = true;
         $('#contact-form').find('.required').each(function () {
