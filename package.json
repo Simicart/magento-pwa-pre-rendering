@@ -1,5 +1,5 @@
 {
-    "name": "SIMI-PWA-SSR1",
+    "name": "SIMI-PWA-SSR",
     "scripts": {
         "dev": "node server.js",
         "build": "next build",
@@ -26,7 +26,8 @@
         "react-dom": "16.8.3",
         "react-jss": "^8.6.1",
         "react-no-ssr": "^1.1.0",
-        "react-responsive-carousel": "^3.1.47"
+        "react-responsive-carousel": "^3.1.47",
+        "slick-carousel": "^1.8.1"
     },
     "devDependencies": {
         "babel-eslint": "^9.0.0",

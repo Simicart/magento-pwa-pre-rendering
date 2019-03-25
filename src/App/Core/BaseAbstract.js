@@ -9,7 +9,7 @@ class SimiComponent extends React.Component{
         this.parent = this.props.parent;
         this.state = {data:null,loaded:false}
         this.SMCONFIGS = SMCONFIGS
-        this.ColorConfig = ColorConfig
+        this.configColor = ColorConfig
     }
 
     isClient(){

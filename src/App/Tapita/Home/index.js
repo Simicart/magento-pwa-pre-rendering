@@ -1,19 +1,13 @@
 
 import React from "react";
 import HomeAbstract from '../../Core/Home/HomeAbstract';
-import Banner from "./Banner";
+import Banner from "../../Core/Home/Banner";
 import Category from "./Category";
 import ProductList from './ProductList';
 import './style.css';
-import Button from '@material-ui/core/Button'
-import Model from '../../../Model'
+import DefaultTheme from './Default'
 class Home extends HomeAbstract{
     
-    constructor(props){
-        super(props)
-        this.HomeModel = new Model({obj:this})
-    }
-
     renderHomeContent() {
         if(this.props.home){
             return (
@@ -30,8 +24,14 @@ class Home extends HomeAbstract{
         
     }
 
+    renderTheme(){
+        this.layout = 1;
+        if(this.layout === 1){
+            return <DefaultTheme/>
+        }
+    }
+
     render(){
-        this.metaHeader.title = 'Tapita Home'
         return super.render()
     }
 }
