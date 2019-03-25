@@ -1,2 +1,1 @@
-# magento-pwa-pre-rendering
-SimiCart PWA with Pre-rendering 
+## Magento PWA with Pre-rendering - Why not?

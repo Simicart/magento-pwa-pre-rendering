@@ -16,7 +16,7 @@ const tapitaRoute = {
     },
     cms : {
         name : 'cms',
-        page : 'tapita/cms',
+        page : 'tapita/Cms',
         pattern : '/cms/:id?'
     },
     cart : {

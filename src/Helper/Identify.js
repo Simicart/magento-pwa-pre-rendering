@@ -1,7 +1,7 @@
 import md5 from 'js-md5';
 import * as Constants from './Constants'
 import serverCache from 'memory-cache'
-import {Simicart_Api} from '../../static/config'
+import {ColorConfig,Simicart_Api} from '../../static/config'
 class Identify {
     static SESSION_STOREAGE = 1;
     static LOCAL_STOREAGE = 2;
@@ -277,6 +277,10 @@ class Identify {
             return data[url]
         }
         return false
+    }
+
+    static getColorConfig(){
+        return ColorConfig
     }
 }
 
