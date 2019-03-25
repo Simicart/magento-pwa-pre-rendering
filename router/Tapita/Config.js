@@ -28,6 +28,11 @@ const tapitaRoute = {
         name : 'checkout',
         page : 'tapita/checkout',
         pattern : '/checkout/onepage'
+    },
+    contact : {
+        name : 'contact',
+        page : 'tapita/contact',
+        pattern : '/contact'
     }
 }
 module.exports = tapitaRoute
