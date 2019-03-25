@@ -6,7 +6,7 @@ let config = {
         config.node = {
             fs: 'empty'
         }
-        config.resolve.alias['components'] = path.join(__dirname, 'components')
+        config.resolve.alias['simiLink'] = path.join(__dirname, 'router/index.js')
         return config
     },
     exportPathMap: function () {

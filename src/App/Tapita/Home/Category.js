@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import Identify from './../../Helper/Identify';
+import Identify from '../../../Helper/Identify';
 class Category extends React.Component{
 
     render() {
