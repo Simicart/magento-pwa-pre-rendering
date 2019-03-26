@@ -6,7 +6,6 @@ import "./contact.css"
 
 const $ = window.$;
 
-const contactModal = new Model({obj:this});
 class AddCommentFrom extends Base {
 
     constructor(props) {
@@ -14,12 +13,12 @@ class AddCommentFrom extends Base {
         this.state = {
             text: '',
         }
+        this.contactModal = new Model({obj:this});
+
     }
 
     sendContact = (jQuery) => {
-        contactModal.advancedConnect('POST', 'contacts', {}, jQuery)
-                    .then(data => this.setData(data))
-                    .catch(err => this.setData(err));
+        this.contactModal.advancedConnect('POST', 'contacts', {}, jQuery)
     }
 
     handleSubmitFrom = () => {
