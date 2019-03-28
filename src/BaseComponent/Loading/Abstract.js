@@ -6,7 +6,7 @@ class Abstract extends React.PureComponent {
         super(props)
         let style = {
             fontSize:30,
-            fill : '#5580ff',
+            fill : Identify.getColorConfig().loading_color,
             width: 65,
             height : 65
         };

@@ -39,9 +39,10 @@ class IronImage extends Component {
         }
     }
 
-    renderImg(){}
-
     render() {
+        if(!Identify.isClient()){
+            return <img {...this.props}/>
+        }
         this.ironImageHd = new Image();
         this.ironImageHd.src = this.props.src;
 
@@ -52,7 +53,7 @@ class IronImage extends Component {
             height : this.props.height
         }
         let img = this.state.loaded ?
-            <img width={this.props.width} height={this.props.height} src={this.props.src} alt={this.props.alt} style={this.props.style}/> : null;
+            <img {...this.props}/> : null;
 
         return (
             <div className="iron-image-container" style={{...style,background : '#fff'}} id={this.id}>

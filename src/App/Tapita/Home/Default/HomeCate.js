@@ -82,24 +82,17 @@ class TapitaHomeCat extends Abstract {
     }
     
     renderCategoryItem = (item) =>{
-        const w = 230
+        const w = this.state.isPhone?130:230;
         return (
             <Link route="product_list">
                 <a>
                     <div className="category-item" style={{maxWidth: w}}>
                         <div className="category-image" style={{borderColor: this.configColor.image_border_color, margin:"0 auto", width:w, height:w,overflow : 'hidden'}}>
-                            {Identify.isClient() ? 
-                                <Img 
-                                    alt={item.simicategory_name} 
-                                    width={w}
-                                    height={w}
-                                    src={this.state.isPhone?item.simicategory_filename:item.simicategory_filename_tablet}/>
-                                 : <img 
-                                    alt={item.simicategory_name} 
-                                    width={w}
-                                    height={w}
-                                    src={this.state.isPhone?item.simicategory_filename:item.simicategory_filename_tablet}/>
-                            }
+                            <Img
+                                alt={item.simicategory_name}
+                                width={w}
+                                height={w}
+                                src={this.state.isPhone?item.simicategory_filename:item.simicategory_filename_tablet}/>
                             
                         </div>
                         <div className="category-des" style={{color: this.configColor.content_color}}>
@@ -125,9 +118,9 @@ class TapitaHomeCat extends Abstract {
         });
 
         //render on phone
-        // if (this.state.isPhone) {
-        //     return this.renderCategoriesGrid(data)    
-        // }
+        if (this.state.isPhone) {
+            return this.renderCategoriesGrid(data)
+        }
 
         //carousel on desktop
         return this.renderCategoriesCarousel(data)

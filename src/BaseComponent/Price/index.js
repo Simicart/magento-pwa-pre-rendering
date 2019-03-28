@@ -1,7 +1,6 @@
 import React from 'react';
 import ViewComponent from '../ViewComponent';
 import Identify from '../../Helper/Identify';
-import {configColor} from '../../Config';
 import PropTypes from 'prop-types';
 import BundlePrice from './Bundle';
 import Simple from './Simple';
@@ -9,10 +8,10 @@ import Grouped from './Grouped';
 import './style.css';
 const style = {
     pirce: {
-        color: configColor.price_color,
+        color: Identify.getColorConfig().price_color,
     },
     specialPrice: {
-        color: configColor.special_price_color
+        color: Identify.getColorConfig().special_price_color
     }
 };
 
@@ -102,7 +101,7 @@ class Price extends ViewComponent {
         }
         else {
             ////simple, configurable ....
-            return <Simple prices={this.prices} parent={this} size={this.props.size ? this.props.size : window.innerWidth<768 ? 20 : 28}/>
+            return <Simple prices={this.prices} parent={this} size={this.props.size ? this.props.size : Identify.isClient() && window.innerWidth<768 ? 20 : 28}/>
         }
     }
 

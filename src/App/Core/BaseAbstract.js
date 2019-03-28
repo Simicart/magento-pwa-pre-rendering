@@ -7,7 +7,7 @@ class SimiComponent extends React.Component{
         super(props)
         this._mounted = true;
         this.parent = this.props.parent;
-        this.state = {data:null,loaded:false}
+        this.state = {data:null,loaded:false,isPhone : Identify.isMobile()}
         this.SMCONFIGS = SMCONFIGS
         this.configColor = ColorConfig
     }

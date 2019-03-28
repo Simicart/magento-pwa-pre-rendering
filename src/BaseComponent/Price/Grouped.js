@@ -1,7 +1,7 @@
 import React from 'react';
 import Abstract from './Abstract';
-import {configColor} from '../../Config';
 import Identify from '../../Helper/Identify';
+const configColor = Identify.getColorConfig()
 class Grouped extends Abstract {
 
     renderViewTablet = ()=>{

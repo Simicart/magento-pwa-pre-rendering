@@ -1,5 +1,13 @@
 {
     "name": "SIMI-PWA-SSR",
+    "version": "1.0.0",
+    "description": "Simi PWA Server Side Rendering",
+    "repository": {
+        "type": "git",
+        "url": "git+https://codynguyen1@github.com/Simicart/magento-pwa-pre-rendering.git"
+    },
+    "author": "Peter",
+    "license": "ISC",
     "scripts": {
         "dev": "node server.js",
         "build": "next build",
@@ -7,7 +15,16 @@
         "export": "next export"
     },
     "dependencies": {
+        "@babel/plugin-proposal-class-properties": "^7.4.0",
+        "@babel/plugin-proposal-object-rest-spread": "^7.4.0",
+        "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+        "@babel/plugin-transform-arrow-functions": "^7.2.0",
+        "@babel/plugin-transform-runtime": "^7.4.0",
+        "@babel/preset-env": "^7.4.2",
+        "@babel/preset-flow": "^7.0.0",
+        "@babel/preset-react": "^7.0.0",
         "@material-ui/core": "^3.9.2",
+        "@material-ui/icons": "^3.0.2",
         "@zeit/next-css": "^1.0.1",
         "encoding": "^0.1.12",
         "express": "^4.16.4",
@@ -22,12 +39,16 @@
         "next-router": "^1.3.6",
         "next-routes": "^1.4.2",
         "next-server": "^8.0.3",
+        "node-device-detector": "^1.1.4",
         "react": "16.8.3",
         "react-dom": "16.8.3",
         "react-jss": "^8.6.1",
+        "react-lazyload": "^2.5.0",
         "react-no-ssr": "^1.1.0",
         "react-responsive-carousel": "^3.1.47",
-        "slick-carousel": "^1.8.1"
+        "slick-carousel": "^1.8.1",
+        "unstated-x": "^0.1.1",
+        "window-size": "^1.1.1"
     },
     "devDependencies": {
         "babel-eslint": "^9.0.0",

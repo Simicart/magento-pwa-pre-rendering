@@ -5,6 +5,7 @@ import TapitaHomeCat from './HomeCate'
 import {Link} from 'simiLink'
 import Identify from '../../../../Helper/Identify';
 import Url from '../../../../Helper/Url';
+import Horizontal from '../../Products/Horizontal'
 class Default extends Base {
     
     renderViewAllButton = (productList, url, isTop = true) => {
@@ -43,7 +44,7 @@ class Default extends Base {
                             </div>
                             {
                             item.product_array &&
-                                <div />
+                                <Horizontal static={true} product_home_data={item.product_array} />
                             }
                             {this.state.isPhone && this.renderViewAllButton(item, slug, false)}
                         </div>

@@ -24,7 +24,7 @@ if (jsonSimiCart !== null) {
 class HomeAbstract extends BaseAbstract{
 
     static async getInitialProps(ctx) {
-        console.log(ctx)
+        // console.log(ctx)
         let params = {
             image_height: Constants.HEIGHT_IMAGE_PHONE,
             image_width: Constants.HEIGHT_IMAGE_PHONE

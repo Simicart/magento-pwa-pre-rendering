@@ -1,8 +1,8 @@
 import React from 'react'
 import {Carousel} from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import Base from '../../../../../../magento-pwa1/src/BaseComponent/ViewComponent';
-import Identify from '../../../../../../magento-pwa1/src/Helper/Identify'
+import Base from '../../../../BaseComponent/ViewComponent';
+import Identify from '../../../../Helper/Identify'
 
 class CarouselProduct extends Base{
 
@@ -11,11 +11,11 @@ class CarouselProduct extends Base{
         this.SlideToShow = 3;
         this.state = {
             ...this.state,
-            ...{ width : window.innerWidth }
         }
     }
 
     componentDidMount(){
+        this.setState({width : window.innerWidth})
         let obj = this;
         const $ = window.$;
         $(window).resize(function () {

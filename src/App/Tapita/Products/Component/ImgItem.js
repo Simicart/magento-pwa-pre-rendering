@@ -5,8 +5,9 @@
  * Time: 9:33 AM
  */
 import React from 'react'
-import Img from '../../../../../../magento-pwa1/src/BaseComponent/Img'
-import Loading from "../../../../../../magento-pwa1/src/BaseComponent/Loading/LoadingImg";
+import Img from '../../../../BaseComponent/Img'
+import Loading from "../../../../BaseComponent/Loading/LoadingImg";
+import Identify from "../../../../Helper/Identify";
 class ImgItem extends Img{
 
     componentDidUpdate(){
@@ -57,6 +58,9 @@ class ImgItem extends Img{
     }
 
     render() {
+        if(!Identify.isClient()){
+            return <img src={this.props.src} alt={this.props.alt} style={{...this.props.style,minWidth:'100%',minHeight:'auto'}}/>
+        }
         this.ironImageHd = new Image();
         this.ironImageHd.src = this.props.src;
         let img = this.state.loaded ?

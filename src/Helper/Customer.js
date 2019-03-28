@@ -1,4 +1,4 @@
-import Identify from '../../../magento-pwa1/src/Helper/Identify'
+import Identify from './Identify'
 
 class Customer {
 

@@ -6,8 +6,7 @@ import CarouselProduct from "./Carousel";
 import {WIDTH_IMAGE, HEIGHT_IMAGE, LIMIT, OFFSET} from '../../../../Helper/Constants';
 import Model from '../../../../Model'
 import './horizontal.css';
-import {GridItemHoc} from "./HoC";
-
+import GridItem from '../Component/Griditem'
 
 
 class Horizontal extends Abstract {
@@ -18,38 +17,6 @@ class Horizontal extends Abstract {
             this.state = {...this.state, ...{loaded: true, data: null}};
         } else {
             this.state = {...this.state, ...{loaded: false, data: null}};
-        }
-        this.cateId = -1;
-        if (this.props.cat_id) {
-            this.cateId = this.props.cat_id;
-        }
-
-        this.related_id = 0;
-        if (this.props.related_id) {
-            this.related_id = this.props.related_id;
-        }
-
-        this.parentObject = this.props.obj;
-        
-        this.showTitle = this.props.showTitle || false;
-        this.titleClassName = this.props.titleClassName || '';
-        this.title = this.props.title || '';
-    }
-
-    componentDidMount() {
-        if (this.related_id !== 0) {
-            if (!this.productModelCollection)
-                this.productModelCollection = new Model({obj: this});
-            if (!this.state.loaded) {
-                let jQuery = {image_height: HEIGHT_IMAGE, image_width: WIDTH_IMAGE, limit: LIMIT, offset: OFFSET};
-                if (this.cateId !== -1) {
-                    jQuery['filter[cat_id]'] = this.cateId;
-                }
-                if (this.related_id !== 0) {
-                    jQuery['filter[related_to_id]'] = this.related_id;
-                }
-                this.productModelCollection.getCollection(jQuery);
-            }
         }
     }
     
@@ -110,7 +77,7 @@ class Horizontal extends Abstract {
             <div 
             key={`horizontal-tablet-item-${item.entity_id}`} 
             style={{width: w, display: 'inline-block', minWidth:160}}>
-                <GridItemHoc
+                <GridItem
                     item={item} 
                     lazyImage={this.state.isPhone}
                 />

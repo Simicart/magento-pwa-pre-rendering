@@ -7,18 +7,21 @@
 import React from 'react';
 import Abstract from './Abstract';
 import Identify from '../../Helper/Identify';
-import {configColor} from '../../Config';
-const $ = window.$;
+const configColor = Identify.getColorConfig()
 class BundlePrice extends Abstract {
 
     showConfiguredPrice =(element,price,label = null)=>{
-      $(function () {
-          if(price) {
-              $(element).show();
-              $(element).children('.price').html(Identify.formatPrice(price));
-              $(element).children('.label-price').html(label);
-          }
-      })
+        if(Identify.isClient()){
+            const $ = window.$;
+            $(function () {
+                if(price) {
+                    $(element).show();
+                    $(element).children('.price').html(Identify.formatPrice(price));
+                    $(element).children('.label-price').html(label);
+                }
+            })
+        }
+
     };
 
     renderViewTablet=()=>{
