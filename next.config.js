@@ -8,12 +8,7 @@ let config = {
         }
         config.resolve.alias['simiLink'] = path.join(__dirname, 'router/index.js')
         return config
-    },
-    exportPathMap: function () {
-        return {
-            '/': { page: '/' }
-        }
-    },
+    }
     // target: 'serverless'
 }
 config = withCSS(config)

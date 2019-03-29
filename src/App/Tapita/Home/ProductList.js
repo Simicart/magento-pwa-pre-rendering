@@ -16,7 +16,7 @@ class ProductList extends React.Component{
             Identify.setUrlMatchApi(item.url_path,'product_detail',{id : item.entity_id});
             return(
                 <div className="product-item" key={item.entity_id}>
-                    <Link route={'home'} params={{url:item.url_path}}>
+                    <Link route={'url_match'} params={{url:item.url_path}}>
                         <a>
                             <div>
                                 <div className="product-img">

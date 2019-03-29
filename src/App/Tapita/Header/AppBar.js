@@ -5,13 +5,13 @@
  * Time: 4:22 PM
  */
 import React from 'react'
-import Link from 'next/link'
+import {Link} from 'simiLink'
 import './style.css'
 class AppBar extends React.Component{
     renderLogo = ()=>{
         return (
             <div id="app-logo">
-                <Link href="/">
+                <Link route={'home'}>
                 <img style={{display: 'inline-block'}}
                      alt={'App Logo'}
                      src={"https://theme.zdassets.com/theme_assets/835315/46b5860567f3d9e07649c775676d979ab45b5b85.png"}/>

@@ -282,6 +282,34 @@ class Identify {
     static getColorConfig(){
         return ColorConfig
     }
+
+    static setIsMobile(isMobile = true){
+        if (this.isClient()){
+            this.storeDataToStoreage(this.SESSION_STOREAGE,'isMobile',isMobile)
+        } else {
+            serverCache.put('isMobile',isMobile)
+        }
+    }
+
+    static isMobile(){
+        if(this.isClient()){
+            return this.getDataFromStoreage(this.SESSION_STOREAGE,'isMobile')
+        }else {
+            // console.log(serverCache.get('isMobile'))
+            return serverCache.get('isMobile')
+        }
+    }
+
+    static showToastMessage(message) {
+        const $ = window.$
+        console.log(message)
+        $('#error-message').text(message);
+        $('.message-global').show();
+        setTimeout(function () {
+            $('#error-message').text("");
+            $('.message-global').hide();
+        }, 4000)
+    }
 }
 
 export default Identify;

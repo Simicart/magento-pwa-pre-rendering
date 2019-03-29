@@ -1,38 +1,38 @@
 const tapitaRoute = {
     home : {
         name : 'home',
-        page : 'index',
-        pattern : '/:url?'
+        page : 'Tapita/Home',
+        pattern : '/'
     },
     product_detail : {
         name : 'product_detail',
-        page : 'tapita/product',
+        page : 'Tapita/Product',
         pattern : '/product/:id?'
     },
     product_list : {
         name : 'product_list',
-        page : 'tapita/products',
+        page : 'Tapita/Products',
         pattern : '/products'
     },
     cms : {
         name : 'cms',
-        page : 'tapita/Cms',
+        page : 'Tapita/Cms',
         pattern : '/cms/:id?'
     },
     cart : {
         name : 'cart',
-        page : 'tapita/cart',
+        page : 'Tapita/Cart',
         pattern : '/checkout/cart'
     },
     checkout : {
         name : 'checkout',
-        page : 'tapita/checkout',
+        page : 'Tapita/Checkout',
         pattern : '/checkout/onepage'
     },
-    contact : {
-        name : 'contact',
-        page : 'tapita/contact',
-        pattern : '/contact'
+    url_match : {
+        name : 'url_match',
+        page : 'Tapita/UrlMatch',
+        pattern : '/:url?'
     }
 }
 module.exports = tapitaRoute
