@@ -11,7 +11,7 @@
  * Time: 10:36 AM
  */
 import React from 'react'
-import Layout from '../../src/Layout/Layout'
+import Index from '../../src/Layout/index'
 import fetch from "isomorphic-unfetch";
 import {Loading} from "../../src/BaseComponent/Loading";
 class Product extends React.Component {
@@ -77,9 +77,9 @@ class Product extends React.Component {
         }
         // console.log(cache.get('merchant_config'))
         return (
-            <Layout header={header}>
+            <Index header={header}>
                 {this.renderContent(data)}
-            </Layout>
+            </Index>
         );
     }
 }

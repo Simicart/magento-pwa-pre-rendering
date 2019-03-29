@@ -60,37 +60,32 @@ class MatrixRows extends Abstract {
                         return false;
 
                     const url_path = (item.url_path && item.url_path!=='/') ?
-                        item.url_path :
-                        `/products?cat=${item.category_id}`
+                        '/'+item.url_path :
+                        `/category/${item.category_id}`
 
-                    const location = {
-                        pathname: url_path,
-                        state: {
-                            cate_id: item.category_id,
-                            hasChild: item.has_children,
-                            name: item.cat_name,
-                        }
-                    };
+                    Identify.setUrlMatchApi(url_path,'category',{id:item.category_id})
 
                     const textTitle = this.is_show_home_title ?
                         (<div className="matrix-row-item-text">{item.cat_name.toUpperCase()}</div>) : '';
 
                     row.push(
-                        <div key={Identify.makeid()} onClick={()=>this.analyticsTracking(item)}>
-                            {/*<Link to={location}>*/}
-                            <div style={{
-                                width: item_width,
-                                height: item_height,
-                                marginRight: '1px',
-                                position: 'relative',
-                                backgroundImage: `url("${image_url}")`,
-                                backgroundSize: 'cover',
-                                backgroundRepeat: 'no-repeat',
-                                backgroundPosition: '50% 50%',
-                            }}>
-                                {textTitle}
-                            </div>
-                            {/*</Link>*/}
+                        <div key={Identify.makeid()} >
+                            <Link route={url_path}>
+                                <a>
+                                    <div style={{
+                                        width: item_width,
+                                        height: item_height,
+                                        marginRight: '1px',
+                                        position: 'relative',
+                                        backgroundImage: `url("${image_url}")`,
+                                        backgroundSize: 'cover',
+                                        backgroundRepeat: 'no-repeat',
+                                        backgroundPosition: '50% 50%',
+                                    }}>
+                                        {textTitle}
+                                    </div>
+                                </a>
+                            </Link>
                         </div>
                     );
                 } else {
@@ -101,29 +96,28 @@ class MatrixRows extends Abstract {
                     if (!image_url || image_url === '')
                         return false;
 
-                    const slug = Url.convertToSlug(item.list_title);
-                    const location = {
-                        pathname: `product-lists/${slug}`,
-                        state: {product_list_id: item.item_id, hashChild: false, product_list_title: item.list_title}
-                    }
+                    const url_path = '/'+Url.convertToSlug(item.list_title);
+                    Identify.setUrlMatchApi(url_path,'simi-product-lists',{id:item.item_id})
                     const textTitle = this.is_show_home_title ?
                         (<div className="matrix-row-item-text">{item.list_title.toUpperCase()}</div>) : '';
                     row.push(
-                        <div key={Identify.makeid()} onClick={()=>this.analyticsTracking(item)}>
-                            {/*<Link to={location}>*/}
-                            <div style={{
-                                width: item_width,
-                                height: item_height,
-                                marginRight: '1px',
-                                position: 'relative',
-                                backgroundImage: `url("${image_url}")`,
-                                backgroundSize: 'cover',
-                                backgroundRepeat: 'no-repeat',
-                                backgroundPosition: '50% 50%',
-                            }}>
-                                {textTitle}
-                            </div>
-                            {/*</Link>*/}
+                        <div key={Identify.makeid()}>
+                            <Link route={url_path}>
+                                <a>
+                                    <div style={{
+                                        width: item_width,
+                                        height: item_height,
+                                        marginRight: '1px',
+                                        position: 'relative',
+                                        backgroundImage: `url("${image_url}")`,
+                                        backgroundSize: 'cover',
+                                        backgroundRepeat: 'no-repeat',
+                                        backgroundPosition: '50% 50%',
+                                    }}>
+                                        {textTitle}
+                                    </div>
+                                </a>
+                            </Link>
                         </div>
                     );
                 }
@@ -145,7 +139,7 @@ class MatrixRows extends Abstract {
         //     return (<Loading className="loading"/>);
         // }
         const categories = homeData.homecategories.homecategories;
-        const products = homeData.homeproductlists.homeproductlists;
+        const products = [];
         const total = categories.concat(products);
 
         return (

@@ -32,7 +32,7 @@ const tapitaRoute = {
     url_match : {
         name : 'url_match',
         page : 'Tapita/UrlMatch',
-        pattern : '/:url?'
+        pattern : '/(.*)'
     }
 }
 module.exports = tapitaRoute

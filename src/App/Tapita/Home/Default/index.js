@@ -34,7 +34,7 @@ class Default extends Base {
     renderProductList = (data) => {
         if(data && data.homeproductlists instanceof Array && data.homeproductlists.length > 0){
             const products = data.homeproductlists.map(function(item){
-                    const slug = Url.convertToSlug(item.list_title);
+                    const slug = '/'+Url.convertToSlug(item.list_title);
                     Identify.setUrlMatchApi(slug,'simi-product-lists',{id:item.item_id})
                     return (
                         <div key={item.productlist_id} className="default-productlist-tapita">

@@ -3,16 +3,27 @@ import React from "react";
 import HomeAbstract from '../../Core/Home/HomeAbstract';
 import DefaultTheme from './Default'
 import MatrixTheme from './Matrix'
+import ZaraTheme from './Zara'
+import Layout from '../../../Layout/Tapita'
 import './style.css';
 class Home extends HomeAbstract{
 
     renderTheme(){
-        this.layout = 2;
         if(this.layout === 1){
             return <DefaultTheme/>
         }else if(this.layout === 2){
             return <MatrixTheme/>
+        }else{
+            return <ZaraTheme/>
         }
+    }
+
+    renderLayout(component){
+        return(
+            <Layout header={this.metaHeader} server_render={true}>
+                {component}
+            </Layout>
+        )
     }
 
     render(){
