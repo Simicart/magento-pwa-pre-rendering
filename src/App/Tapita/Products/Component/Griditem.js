@@ -6,13 +6,10 @@ import CustomerHelper from '../../../../Helper/Customer';
 import ObjectHelper from '../../../../Helper/ObjectHelper';
 import './item.css';
 import Price from '../../../../BaseComponent/Price';
-import {Link} from 'simiLink';
+import {Link,Router} from 'simiLink';
 import Rate from '../../../../BaseComponent/Rate';
-import Button from '../../../../BaseComponent/Button/index';
-import HearthOutline from '../../../../BaseComponent/Icon/Heart-shape-outline';
-import HearthFilled from '../../../../BaseComponent/Icon/Heart-shape-filled';
-import PropTypes from 'prop-types';
 import Img from './ImgItem'
+import {ItemActionHoC} from "../HoC";
 
 const configColor = Identify.getColorConfig()
 class Griditem extends Abstract {
@@ -31,25 +28,8 @@ class Griditem extends Abstract {
             return (JSON.stringify(this.item) !== JSON.stringify(nextProps.item) || this.wishlistActived === true);
     }
 
-    render() {
-        if (!this.item)
-            return '';
-        const item = this.item;
-        let url_path = item.request_path ? item.request_path : (item.url_key ? item.url_key : item.url_path);
-        if (url_path && !url_path.includes('.html'))
-            url_path += '.html';
-        if (!url_path)
-            url_path = 'product/' + item.entity_id;
-        if(this.item.type_id === "simigiftvoucher") url_path = url_path+'?giftcard='+this.item.entity_id;
-        this.location = {
-            pathname: "/" + url_path,
-            state: {
-                product_id: item.entity_id,
-                item_data: item,
-                giftcard : this.item.type_id === 'simigiftvoucher'
-            },
-        };
-        let sale_off = <div></div>;
+    renderImg(item){
+        let sale_off = <div/>;
         if (item.app_prices.has_special_price !== null && item.app_prices.has_special_price === 1) {
             if (item.app_prices.show_ex_in_price !== null && item.app_prices.show_ex_in_price === 1) {
                 let number_sale = 100 - (item.app_prices.price_including_tax.price / item.app_prices.regular_price) * 100;
@@ -61,31 +41,9 @@ class Griditem extends Abstract {
                 sale_off = <div className="sale-label" style={{color: configColor.button_background}}>{number_sale}% OFF</div>;
             }
         }
-        // let appreview = '';
-        // if (item.app_reviews && item.app_reviews.rate) {
-        let appreview = null;
-        if(item.app_reviews instanceof Object && item.app_reviews.hasOwnProperty('rate')){
-             appreview = this.props.IsListGiftCard ? <div/> : <div className="review-rate">
-                <Rate rate={item.app_reviews.rate}/>
-                <span className="review-count">
-                    ({item.app_reviews.number} {(item.app_reviews.number)?Identify.__('Reviews'):Identify.__('Review')})
-                </span>
-            </div>;
-        }
-
-        // }
-        // else if (!this.state.isPhone) {
-        //     appreview = (<div className="review-rate"><Rate rate={0}/>
-        //         <span className="review-count">
-        //             (0 {Identify.__('Review')})
-        //         </span></div>);
-        // }
-
-        let image = (
+        return (
             <div className="tapita-product-image"
-                 style={{borderColor: this.configColor.image_border_color,
-                     // backgroundImage: `url("${item.images[0].url}")`
-                 }}>
+                 style={{borderColor: this.configColor.image_border_color}}>
                 <div style={{position:'absolute',top:0,bottom:0,width: '100%'}}>
                     {Identify.isClient() ?
                         <Img src={item.images[0].url} alt={item.name}/> : <img src={item.images[0].url} alt={item.name}/>}
@@ -94,24 +52,55 @@ class Griditem extends Abstract {
                 {sale_off}
             </div>
         )
-        // image = <div>
-        //     <Img src={item.images[0].url} alt={item.name}/>
-        // </div>
+    }
+
+    renderReview(item){
+        if(item.app_reviews instanceof Object && item.app_reviews.hasOwnProperty('rate')){
+            return (
+                <div className="review-rate">
+                    <Rate rate={item.app_reviews.rate}/>
+                    <span className="review-count">
+                        ({item.app_reviews.number} {(item.app_reviews.number)?Identify.__('Reviews'):Identify.__('Review')})
+                    </span>
+                </div>
+            )
+        }
+    }
+
+    render() {
+        if (!this.item)
+            return '';
+        const item = this.item;
+        let url_path = item.request_path ? item.request_path : (item.url_key ? item.url_key : item.url_path);
+        if (url_path && !url_path.includes('.html'))
+            url_path += '.html';
+        if (!url_path)
+            url_path = 'product/' + item.entity_id;
+
+        url_path = '/'+url_path
+        Identify.setUrlMatchApi(url_path,'product_detail',{id:item.entity_id})
+        let appreview = this.renderReview(item)
+        let image = this.renderImg(item)
         return (
             <div className="product-item tapita-product-grid-item">
-                {/*<Link to={this.location}>*/}
-                    {this.props.lazyImage?
-                        (<LazyLoad placeholder={<div className="tapita-product-image"/>}>
-                            {image}
-                        </LazyLoad>):
-                        image
-                    }
-                {/*</Link>*/}
+                <Link route={url_path}>
+                    <a>
+                        {this.props.lazyImage?
+                            (<LazyLoad placeholder={<div className="tapita-product-image"/>}>
+                                {image}
+                            </LazyLoad>):
+                            image
+                        }
+                    </a>
+
+                </Link>
                 <div className="tablet-product-des">
-                    <div className="prices-layout" id={`price-${item.entity_id}`} onClick={()=>this.handleLink(this.location)}>
+                    <div className="prices-layout" id={`price-${item.entity_id}`} onClick={()=>Router.pushRoute(url_path)}>
                         <Price config={1} prices={item.app_prices} type={item.type_id}/>
                     </div>
+                    <div className="product-name small" onClick={()=>Router.pushRoute(url_path)}>{item.name}</div>
                     {appreview}
+                    <ItemActionHoC item={item} url_path={url_path}/>
                 </div>
             </div>
         );

@@ -40,7 +40,7 @@ class Button extends ViewComponent {
             </div>;
         }
         return(
-            <ButtonUI className={`btn-component ${this.className}`} color="primary" style={style} onClick={this.props.onClick}>
+            <ButtonUI className={`btn-component ${this.className}`} style={style} onClick={this.props.onClick}>
                 {btn}
                 <div ref={(div) => {this.btnLoading = div}} className="btn-loading" style={{position:'absolute',display:'none'}}>
                     <Loading loadingStyle={{fill:Identify.getColorConfig().button_text_color, fontSize: 24}} divStyle={{marginTop : 0}}/>

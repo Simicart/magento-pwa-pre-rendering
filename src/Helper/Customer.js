@@ -1,6 +1,6 @@
 import Identify from './Identify'
 
-class Customer {
+class CustomerHelper {
 
     static getCustomerData() {
         if (this.isLogin()) {
@@ -54,4 +54,4 @@ class Customer {
     }
 }
 
-export default Customer;
+export default CustomerHelper;

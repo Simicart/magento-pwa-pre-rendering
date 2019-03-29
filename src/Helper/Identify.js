@@ -299,6 +299,17 @@ class Identify {
             return serverCache.get('isMobile')
         }
     }
+
+    static showToastMessage(message) {
+        const $ = window.$
+        console.log(message)
+        $('#error-message').text(message);
+        $('.message-global').show();
+        setTimeout(function () {
+            $('#error-message').text("");
+            $('.message-global').hide();
+        }, 4000)
+    }
 }
 
 export default Identify;

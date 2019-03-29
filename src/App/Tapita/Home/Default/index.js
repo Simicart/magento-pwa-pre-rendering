@@ -44,7 +44,7 @@ class Default extends Base {
                             </div>
                             {
                             item.product_array &&
-                                <Horizontal static={true} product_home_data={item.product_array} />
+                                <Horizontal static={true} homepage={true} product_home_data={item.product_array} />
                             }
                             {this.state.isPhone && this.renderViewAllButton(item, slug, false)}
                         </div>

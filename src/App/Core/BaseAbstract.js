@@ -52,5 +52,6 @@ class SimiComponent extends React.Component{
     setLoaded(loaded){
         this.setState({loaded})
     }
+
 }
 export default SimiComponent
