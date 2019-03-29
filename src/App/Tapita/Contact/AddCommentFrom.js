@@ -46,13 +46,13 @@ class AddCommentFrom extends Base {
                 text += error.message + ' ';
             }
             if (text !== "") {
-                alert(text)
+                Identify.showToastMessage(text)
             }
         } else {
             let message = Identify.__('Success');
             if (parseInt(data.success, 10) === 1) {
                 message = data.message;
-                alert(message)
+                Identify.showToastMessage(message)
             }
         }
     };
@@ -140,8 +140,8 @@ class AddCommentFrom extends Base {
                     <div className="action-submit-contact">
                         <div className="btn-contact" id="btn-contact" onClick={() => this.handleSubmitFrom()}
                             style={{
-                                color: this.ColorConfig.button_text_color,
-                                background: this.ColorConfig.button_background
+                                color: this.configColor.button_text_color,
+                                background: this.configColor.button_background
                             }}>{Identify.__('Submit')}</div>
                     </div>
                 </div>

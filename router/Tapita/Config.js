@@ -29,6 +29,11 @@ const tapitaRoute = {
         page : 'Tapita/Checkout',
         pattern : '/checkout/onepage'
     },
+    contact : {
+        name : 'contact',
+        page : 'Tapita/Contact',
+        pattern : '/contacts'
+    },
     url_match : {
         name : 'url_match',
         page : 'Tapita/UrlMatch',

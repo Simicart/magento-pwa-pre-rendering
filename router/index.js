@@ -8,5 +8,6 @@ module.exports = routes()
 .add(routerConfig.cms)
 .add(routerConfig.cart)
 .add(routerConfig.checkout)
+.add(routerConfig.contact)
 .add(routerConfig.url_match)
 
