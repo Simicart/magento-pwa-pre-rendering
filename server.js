@@ -9,6 +9,8 @@ const routes = require('./router')
 const server = express()
 const fetch = require('node-fetch')
 const serverCache = require('memory-cache')
+
+
 const handler = routes.getRequestHandler(app,({req, res, route, query}) => {
     app.render(req, res, route.page, query)
   })

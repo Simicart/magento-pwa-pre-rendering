@@ -25,11 +25,12 @@ class Banner extends React.Component{
             autoPlay: true,
             showArrows: false,
             showThumbs: false,
-            showIndicators: (bannerCount && bannerCount !== 1)?true:false,
+            showIndicators: bannerCount && bannerCount !== 1,
             showStatus: false,
             infiniteLoop: true,
             rtl: false,
             lazyLoad: true,
+            dynamicHeight : true
         };
         let banner = data.homebanners.map((item,key)=>{
             return (

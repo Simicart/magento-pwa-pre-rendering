@@ -38,7 +38,7 @@ class Model  {
         Connection.restData();
         Connection.setGetData(urlParam);
         Connection.setBodyData(bodyData);
-        let data =  Connection.connect(api, type);
+        let data = await Connection.connect(api, type);
         if(this.obj){
             this.setData(data)
             return true;

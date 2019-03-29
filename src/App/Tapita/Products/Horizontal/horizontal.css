@@ -1,0 +1,47 @@
+.product-horizotal {
+    margin: 0;
+    display: flex;
+    margin-top: 1px;
+    height: auto;
+    /*border-bottom: 1px solid #e6e6e6;*/
+    padding-bottom: 15px;
+    display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6 */
+    display: -moz-box; /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox; /* TWEENER - IE 10 */
+    display: -webkit-flex; /* NEW - Chrome */
+}
+
+.product-horizotal .carousel .control-prev.control-arrow:before {
+    border-right: 8px solid #444444 !important;
+}
+.product-horizotal .carousel .control-next.control-arrow:before {
+    border-left: 8px solid #444444 !important;;
+}
+.product-horizotal .carousel.carousel-slider .control-arrow:hover {
+    background: #fff;
+}
+
+.default-home-productlist-carousel .carousel-slider .axis-horizontal {
+    width: unset;
+    margin: 0 auto;
+    max-width: 95%;
+}
+
+.default-home-productlist-carousel .slider-wrapper.axis-horizontal .slider .slide {
+    background: none !important;
+}
+.related-title {
+    font-size: 22px;
+    font-weight: bold;
+    line-height: 26px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+@media (max-width: 767px) {
+    .product-horizotal {
+        margin: 0 !important;
+        overflow-x: scroll;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+    }
+}

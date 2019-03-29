@@ -1,0 +1,22 @@
+.tablet-product-des .product-prices .bundle-from,
+.product-grid .product-prices .bundle-from {
+    align-items: unset !important;
+}
+.tablet-product-des .prices-layout .from-label{
+    font-size: 20px !important;
+}
+
+@media (max-width: 767px){
+    .tablet-product-des .prices-layout .from-label{
+        font-size: 14px !important;
+    }
+}
+span.price.old {
+    color: #757575 !important;
+    text-decoration: line-through;
+    font-size: 14px;
+}
+span.sale_off {
+    color: #989898;
+    font-size: 12px;
+}
