@@ -10,7 +10,7 @@ body {
 }
 .app-header {
     position: fixed;
-    z-index: 99999;
+    z-index: 999;
     top: 0;
     width: 100%;
     -webkit-box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.02), 0px 4px 5px 0px rgba(0, 0, 0, 0.02), 0px 1px 10px 0px rgba(0, 0, 0, 0.02);
@@ -36,6 +36,186 @@ body {
 }
 #app-logo img {
     max-height: 35px;
+}
+span.right-icon-item {
+    display: inline-block;
+}
+.app-bar-item {
+    z-index: 2;
+}
+.left-menu-tapita .tab-label {
+    font-size: 26px;
+}
+
+.cms-menu-text {
+    font-size: 20px;
+    margin-left: 20px;
+    display: inline-block;
+}
+
+.root-menu {
+    font-size: 22px;
+}
+.menu-cate-name-item {
+    font-size: 20px;
+    line-height: 30px;
+    margin-left: 20px;
+    font-family: 'Montserrat', sans-serif;
+    overflow: hidden;
+}
+
+.store-item {
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+}
+.store-item .store-name {
+    margin-left: 20px;
+}
+.store-item .selected {
+    width: 25px;
+    height: 30px;
+    padding-top:4px;
+}
+.store-item .not-selected {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid;
+    display: inline-block;
+}
+.item-price span.price {
+    font-size: 20px;
+}
+span.right-icon-item {
+    margin-right: 35px;
+    display: inline-block;
+}
+span.right-icon-item button {
+    padding: 0 !important;
+}
+@media (min-width: 768px) and (max-width: 1023px){
+    span.right-icon-item {
+        margin-right: 20px;
+        display: inline-block;
+    }
+}
+#search-bar {
+    display: flex;
+    align-items: center;
+    padding-left: 60px;
+    padding-right: 60px;
+    justify-content: center;
+    position: relative;
+}
+
+#search-bar svg {
+    width: 17px !important;
+    height: 17px !important;
+}
+
+
+#search-bar .search-field {
+    height: 30px;
+    background-color: #f2f2f2;
+    width: 80%;
+    min-width: 600px;
+    border-radius: 4px;
+    display: flex;
+}
+#search-bar .search-field input{
+    width: 94%;
+    background-color: transparent;
+    padding: 2px 15px;
+    border: none;
+}
+
+
+#search-bar .search-field .search-field-icon {
+    flex-grow: 1;
+    padding: 0;
+    display: inline-block;
+    border: none;
+    height: 30px;
+    width: 30px;
+    margin-top: 0;
+}
+
+.menu-bottom-item .menu-item span{
+    white-space: nowrap;
+    font-size: 11px;
+    margin-top: 3px;
+}
+#app-logo:hover {
+    cursor: pointer;
+}
+#app-logo img {
+    max-height: 35px;
+}
+.app-bar-item {
+    z-index: 2;
+}
+.app-bar-item > div {
+    display: inline-block;
+    padding: 0;
+}
+.app-bar-item .app-bar-back {
+    display: none;
+}
+.right-icon {
+    position: relative;
+}
+.app-bar-item button {
+    min-width: 35px !important;
+    min-height: 35px !important;
+}
+
+.settings .list-item .store-item {
+    border: none;
+    display: flex;
+    font-size: 18px;
+    width: 300px;
+    padding-bottom: 0;
+    padding-left: 40px;
+    align-items: center;
+    margin: 0;
+}
+@media (max-width: 767px){
+    .left-menu-tapita .tab-label {
+        font-size: 20px;
+    }
+    .root-menu {
+        font-size: 18px;
+    }
+    .cms-menu-text {
+        font-size:18px;
+    }
+    .store-item {
+        font-size: 16px;
+    }
+    .menu-cate-name-item {
+        font-size: 18px;
+        line-height: 26px;
+    }
+    .app-searchbox {
+        margin-top: 0 !important;
+    }
+    .item-action .clear svg{
+        width: 20px !important;
+        height: 20px !important;
+    }
+    .app-bar-phone .app-bar-item .right-icon-item {
+        display: none;
+    }
+    .product-phone .app-bar-phone .app-bar-item {
+        display: block;
+    }
+    .left-menu-content-item{
+        margin-left: 20px !important;
+    }
+    .sign-link-action {
+        font-size: 15px !important;
+    }
 }
 @media (max-width: 768px){
     #app-bar {

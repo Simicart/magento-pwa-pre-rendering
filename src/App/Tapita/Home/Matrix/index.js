@@ -8,6 +8,7 @@ import React from 'react';
 import Abstract from '../../../Core/BaseAbstract';
 import {HomeContext} from "../../../Core/Home/HomeAbstract";
 import Rows from './Rows'
+import ProductList from './ProductList'
 class MatrixTapita extends Abstract {
 
     render() {
@@ -16,7 +17,7 @@ class MatrixTapita extends Abstract {
                 {data =>
                     <div>
                         <Rows data={data} hide_product_list={1}/>
-                        {/*<ProductList data={data.home.homeproductlists}/>*/}
+                        <ProductList data={data.homeproductlists}/>
                     </div>
                 }
             </HomeContext.Consumer>

@@ -298,3 +298,6 @@ Matrix Home
         padding-bottom: 6px;
     }
 }
+.banner-item img {
+    object-fit: fill;
+}

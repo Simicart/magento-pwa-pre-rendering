@@ -3,7 +3,7 @@ import Model from '../../../Model'
 class HomeModel extends Model {
 
     getHomeLite(params = {}){
-        return this.connect('homes',params)
+        return this.connect('homes/lite',params)
     }
 
     getHomeFull(params = {}){

@@ -29,15 +29,15 @@ const tapitaRoute = {
         page : 'Tapita/Checkout',
         pattern : '/checkout/onepage'
     },
-    contact : {
-        name : 'contact',
-        page : 'Tapita/Contact',
-        pattern : '/contacts'
+    customer_login :{
+        name : 'customer_login',
+        page : 'Tapita/Login',
+        pattern : '/customer/account/login'
     },
     url_match : {
         name : 'url_match',
         page : 'Tapita/UrlMatch',
-        pattern : '/:url?'
+        pattern : '/(.*)'
     }
 }
 module.exports = tapitaRoute

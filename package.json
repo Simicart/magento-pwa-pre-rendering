@@ -42,10 +42,13 @@
         "node-device-detector": "^1.1.4",
         "react": "16.8.3",
         "react-dom": "16.8.3",
+        "react-html-parser": "^2.0.2",
+        "react-image-lightbox": "^5.1.0",
         "react-jss": "^8.6.1",
         "react-lazyload": "^2.5.0",
         "react-no-ssr": "^1.1.0",
         "react-responsive-carousel": "^3.1.47",
+        "react-swipeable-views": "^0.13.1",
         "slick-carousel": "^1.8.1",
         "unstated-x": "^0.1.1",
         "window-size": "^1.1.1"
