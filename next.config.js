@@ -8,6 +8,14 @@ let config = {
         }
         config.resolve.alias['simiLink'] = path.join(__dirname, 'router/index.js')
         return config
+    },
+    postcssLoaderOptions: {
+        parser: true,
+        config: {
+            ctx: {
+                theme: JSON.stringify(process.env.REACT_APP_THEME)
+            }
+        }
     }
     // target: 'serverless'
 }

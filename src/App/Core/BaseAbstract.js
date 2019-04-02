@@ -2,6 +2,7 @@ import React from 'react'
 import ObjectHelper from "../../Helper/ObjectHelper";
 import Identify from '../../Helper/Identify';
 import {SMCONFIGS,ColorConfig} from '../../../static/config'
+import {Router} from 'simiLink'
 class SimiComponent extends React.Component{
     constructor(props){
         super(props)
@@ -10,6 +11,7 @@ class SimiComponent extends React.Component{
         this.state = {data:null,loaded:false,isPhone : Identify.isMobile()}
         this.SMCONFIGS = SMCONFIGS
         this.configColor = ColorConfig
+        this.data = this.props.data
     }
 
     isClient(){
@@ -53,5 +55,10 @@ class SimiComponent extends React.Component{
         this.setState({loaded})
     }
 
+    pushLink(route){
+        if(route){
+            Router.pushRoute(route)
+        }
+    }
 }
 export default SimiComponent

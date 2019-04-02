@@ -27,14 +27,12 @@ class CustomerHelper {
         Identify.clearQuote();
     }
 
-    static setLogin(email, password='', simi_hash='', name = '') {
-        sessionStorage.setItem('email', email);
-        sessionStorage.setItem('password', password);
-        sessionStorage.setItem('simi_hash', simi_hash);
-        sessionStorage.setItem('customer', name);
-        sessionStorage.removeItem('cache_email');
-        sessionStorage.removeItem('cache_password');
-        this.showMenuAccount();
+    static setLogin(data) {
+        sessionStorage.setItem('email', data.email);
+        sessionStorage.setItem('password', data.password);
+        sessionStorage.setItem('simi_hash', data.simi_hash);
+        Identify.storeDataToStoreage(Identify.SESSION_STOREAGE,'customer_data',data);
+        // this.showMenuAccount();
     }
 
     static showMenuAccount() {

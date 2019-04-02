@@ -1,7 +1,6 @@
 import React from 'react'
 import BaseAbstract from '../BaseAbstract'
 import Model from './HomeModel'
-import Layout from '../../../Layout/Layout'
 import * as Constants from '../../../Helper/Constants'
 import Identify from '../../../Helper/Identify';
 import Banner from './Banner'
@@ -34,7 +33,7 @@ class HomeAbstract extends BaseAbstract{
             data = await HomeModel.getHomeFull(params)
         }else{
             params['get_child_cat'] = 1
-            data = await HomeModel.getHomeLite(false,params)
+            data = await HomeModel.getHomeLite(params)
         }
         return {...data}
     }
@@ -56,19 +55,29 @@ class HomeAbstract extends BaseAbstract{
         return <Banner data={this.props.home.homebanners}/>
     }
 
+    renderLayout(component){
+        return(
+            <div>
+                {component}
+            </div>
+        )
+    }
+
+    componentDidMount(){
+        Identify.showMsgLogin()
+    }
+
     render(){
-        return (
-            <Layout header={this.metaHeader} server_render={true}>
-                <HomeContext.Provider value={this.props.home}>
-                    <div className={`homepage ${this.homepage}`}>
-                        {this.renderBanner()}
-                        <div className="theme-content">
-                            {this.renderTheme()}
-                        </div>
+        return this.renderLayout(
+            <HomeContext.Provider value={this.props.home}>
+                <div className={`homepage ${this.homepage}`}>
+                    {this.renderBanner()}
+                    <div className="theme-content">
+                        {this.renderTheme()}
                     </div>
-                </HomeContext.Provider>
-            </Layout>
-        );
+                </div>
+            </HomeContext.Provider>
+        )
     }
 }
 export const HomeContext = React.createContext();

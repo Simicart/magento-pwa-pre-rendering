@@ -80,6 +80,12 @@ class Model  {
         }
         return data
     }
+
+    getProductApi(api,params = {}){
+        params['image_height'] = 1206;
+        params['image_width'] = 750;
+        return this.connect(api,params)
+    }
 }
 
 export default Model;
