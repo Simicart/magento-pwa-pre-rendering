@@ -34,6 +34,11 @@ const tapitaRoute = {
         page : 'Tapita/Login',
         pattern : '/customer/account/login'
     },
+    contact :{
+        name : 'contact',
+        page : 'Tapita/Contact',
+        pattern : '/contacts'
+    },
     url_match : {
         name : 'url_match',
         page : 'Tapita/UrlMatch',
