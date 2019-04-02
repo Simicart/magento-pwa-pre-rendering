@@ -3,6 +3,7 @@ import Identify from '../../../Helper/Identify';
 import Model from '../../../Model';
 import {Page404} from "../../Core/NotFound";
 import Layout from '../../../Layout/Tapita'
+import ProductDetail from '../Product/Detail'
 const ApiModel = new Model();
 let product_api = null;
 class UrlMatch extends React.Component{
@@ -28,7 +29,7 @@ class UrlMatch extends React.Component{
     render(){
         const {component,data} = this.props;
         if(component === 'product_detail'){
-            return <div>Product Detail</div>
+            return <ProductDetail data={data}/>
         }
         return (
             <Layout>

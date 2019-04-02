@@ -54,3 +54,7 @@ span.label-required {
     color : red;
     margin: 0 5px;
 }
+ul {
+    padding: 0;
+    margin: 0;
+}

@@ -310,6 +310,41 @@ class Identify {
             $('.message-global').hide();
         }, 4000)
     }
+
+    static showMsgLogin(){
+        let msg = this.getDataFromStoreage(Identify.SESSION_STOREAGE,'msg_login')
+        if(msg){
+            this.showToastMessage(msg)
+            sessionStorage.removeItem('msg_login')
+        }
+    }
+
+    static getColorTranparent (){
+        const color = {
+            a100: "FF",
+            a95: "F2",
+            a90: "E6",
+            a85: "D9",
+            a80: "CC",
+            a75: "BF",
+            a70: "B3",
+            a65: "A6",
+            a60: "99",
+            a55: "8C",
+            a50: "80",
+            a45: "73",
+            a40: "66",
+            a35: "59",
+            a30: "4D",
+            a25: "40",
+            a20: "33",
+            a15: "26",
+            a10: "1A",
+            a5: "0D",
+            a0: "00"
+        };
+        return color
+    }
 }
 
 export default Identify;

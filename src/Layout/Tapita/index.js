@@ -7,6 +7,7 @@
 import React from 'react'
 import Layout from '../index'
 import {Tapita} from "../../App/Tapita";
+import PropTypes from 'prop-types';
 
 class TapitaLayout extends Layout{
 
@@ -21,5 +22,9 @@ class TapitaLayout extends Layout{
     render() {
         return super.render()
     }
+}
+TapitaLayout.propsTypes = {
+    server_render : PropTypes.bool,
+    header : PropTypes.object
 }
 export default TapitaLayout

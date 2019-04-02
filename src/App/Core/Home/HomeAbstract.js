@@ -63,6 +63,10 @@ class HomeAbstract extends BaseAbstract{
         )
     }
 
+    componentDidMount(){
+        Identify.showMsgLogin()
+    }
+
     render(){
         return this.renderLayout(
             <HomeContext.Provider value={this.props.home}>
