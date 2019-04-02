@@ -21,5 +21,25 @@ class CartModel extends Model{
         return this.advancedConnect('POST', 'quoteitems', urlParams, jQuery);
     }
 
+    getCart(){
+        let data = this.getSavedData();
+        let urlParams = {
+            pwa : 1,
+            quote_id: data.quote_id
+        }
+
+        return this.connect('quoteitems',urlParams);
+    }
+
+    getSavedData = ()=> {
+        if (Identify.getDataFromStoreage(Identify.SESSION_STOREAGE, 'quote_id')) {
+            return {'quote_id': Identify.getDataFromStoreage(Identify.SESSION_STOREAGE, 'quote_id')};
+        }
+        if (localStorage.getItem('quote_id')) {
+            return {'quote_id': localStorage.getItem('quote_id')};
+        }
+        return {}
+    }
+
 }
 export default CartModel
