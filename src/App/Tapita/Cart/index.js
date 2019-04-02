@@ -112,12 +112,14 @@ class CartTapita extends Cart {
             // const $ = window.$
             // $('.cart-number').text(0);
             return (
+                <Layout>
                 <div className="cart-page-static cart-page-tapita">
                     {loading}
                     <div className="empty-cart">
                         {Identify.__('You have no items in your shopping cart')}
                     </div>
-                </div>);
+                </div>
+                </Layout>);
         } else {
             // const $ = window.$  
             // $('.cart-number').text(this.state.simiData.cart_total);
