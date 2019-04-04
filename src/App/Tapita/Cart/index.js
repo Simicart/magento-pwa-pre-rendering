@@ -7,10 +7,11 @@ import Identify from '../../../Helper/Identify';
 import SidebarItem from './CartComponent/SidebarItem';
 import ArrowDown from '@material-ui/icons/KeyboardArrowDown';
 import Layout from '../../../Layout/Tapita'
+import Total from '../../../BaseComponent/Total'
 
 class CartTapita extends Cart {
     static getDerivedStateFromProps(nextProps, prevState) {
-        if (nextProps.cart_data !== prevState.data) {
+        if (nextProps.cart_data !== prevState.simiData) {
             return { data: nextProps.cart_data }
         }
         return null;
@@ -87,6 +88,11 @@ class CartTapita extends Cart {
         return <ul className="cart-list">{obj}</ul>;
     }
 
+    renderTotalView=()=> {
+        console.log(this.state.simiData)
+        return <Total data={this.state.simiData.total}/>
+    }
+
     renderCheckoutButton() {
         return (
             <div id="go-checkout-tablet" onClick={(e) => this.handleGoCheckout()} style={{
@@ -130,8 +136,8 @@ class CartTapita extends Cart {
                         <div className="cart-title"><b>{Identify.__('SHOPPING CART')}</b></div>
                         {this.renderItems()}
                         {this.renderCouponView()}
-                        {/* {layout.tapita_cart_abstract.after_render_couponcode_view(this)}
-                    {this.renderTotalView(this.state.data)} */}
+                        {/* {layout.tapita_cart_abstract.after_render_couponcode_view(this)} */}
+                        {this.renderTotalView(this.state.data)}
                         {this.renderCheckoutButton()}
                     </div>
                 </Layout>
