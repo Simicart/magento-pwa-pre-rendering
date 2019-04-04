@@ -1,0 +1,530 @@
+.app-content .cart-page-tapita ul {
+    list-style: none;
+    padding: 0px;
+    padding-left: 12px;
+    border-bottom: 1px solid #dedede;
+    margin-bottom: 0px;
+}
+
+.app-content .cart-page-tapita ul li {
+    display: flex;
+}
+
+.tapita-cart-page-loading {
+    height: 20px;
+    width: 100%;
+    height: auto;
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+
+.cart-page-tapita .img-cart img {
+    width: 100%;
+    height: 100%;
+    object-fit: scale-down;
+}
+
+.cart-page-tapita .item-close {
+    cursor: pointer;
+    margin-right: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    order: 2;
+    margin-left: auto;
+}
+
+.cart-page-tapita input.option-field {
+    border: 1px solid #dedede;
+    text-align: center;
+    width: 50px;
+    margin-left: 20px;
+    border-radius: 5px;
+}
+
+.cart-page-tapita .item-qty, .item-name {
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.cart-page-tapita #split-button-dropup, .cart-page-tapita div#go-checkout {
+    position: fixed;
+    background-color: #101010;
+    z-index: 1000;
+    text-align: center;
+    color: #fff;
+    height: 50px;
+    margin: 0 auto;
+    padding-top: 14px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.cart-page-tapita #split-button-dropup {
+    padding-top: 5px;
+    width: 100%;
+    background-image: none;
+    border-radius: 0px;
+}
+
+.cart-page-tapita #split-button-dropup .caret {
+    display: none;
+}
+
+.cart-page-tapita .cart-total span.label {
+    color: #000;
+    font-size: 14px;
+    text-align: right;
+    width: 100%;
+}
+
+.cart-page-tapita .cart-total span.price {
+    text-align: right;
+    width: 50%;
+}
+
+.cart-page-tapita .cart-total {
+    text-align: right;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.cart-page-tapita .coupon-code {
+    padding: 15px;
+    display: flex;
+    border-bottom: 1px solid #dedede;
+}
+
+.cart-page-tapita .coupon-code-area {
+    width: 60%
+}
+
+.cart-page-tapita .coupon-code-area input {
+    border: 1px solid #dedede;
+    width: 100%;
+    height: 40px;
+    padding-left: 10px;
+    background-color: #dedede;
+}
+
+.cart-page-tapita div#submit-coupon{
+    width: 31%;
+    margin-left: 30px;
+    text-align: center;
+    padding-top: 9px;
+}
+
+.cart-page-tapita select.option-select {
+    border: 1px solid #dedede;
+    margin-left: 52px;
+    padding: 4px;
+    text-align: center;
+}
+
+.cart-page-tapita .empty-cart {
+    text-align: center;
+    margin-top: 100px;
+}
+
+.cart-page-tapita .modal-header {
+    border: none;
+    padding: 15px;
+}
+
+.cart-page-tapita .modal-body {
+    padding: 15px;
+}
+
+.cart-page-tapita .modal-footer {
+    border: none
+}
+
+.cart-page-tapita ul.dropdown-menu {
+    position: fixed;
+    width: 80%;
+    bottom: 20px !important;
+    left: 0px;
+    right: 0px;
+    z-index: 999999;
+    margin: 0px 44px;
+    padding: 15px 0px;
+}
+
+.cart-page-tapita ul.dropdown-menu li {
+    font-size: 18px;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 0px;
+    padding-top: 15px;
+}
+
+.cart-page-tapita ul.dropdown-menu li a {
+    text-align: center;
+    width: 100%;
+}
+
+.cart-page-tapita ul.dropdown-menu .divider {
+    overflow: hidden;
+    border-bottom: 1px solid #e5e5e5;
+    margin-top: 9px;
+    margin-bottom: 0px;
+    background: none;
+}
+
+.cart-page-tapita .subtotal div, .cart-page-tapita .tax div, 
+.cart-page-tapita .grand_total div, .cart-page-tapita .custom div,
+.cart-page-tapita.custom div, .cart-page-tapita .shipping div, 
+.cart-page-tapita .discount div {
+    display: flex;
+}
+
+.cart-page-tapita ul.cart-list li {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    display: flex;
+}
+
+.cart-page-static {
+    margin: 10px auto;
+    max-width: 1200px;
+}
+
+.cart-page-static .cart-title {
+    font-weight: 800;
+    font-size: 21px;
+    margin-bottom: 10px;
+}
+
+@media (max-width: 767px) {
+    .cart-page-static .cart-title {
+        font-size: 20px;
+        margin-bottom: 20px;
+        margin-left: 20px;
+    }
+
+}
+
+.cart-page-static .cart-list {
+    padding-bottom: 15px;
+    padding-left: 0;
+    margin-left: 15px;
+    margin-right: 15px;
+    border: none;
+}
+
+.cart-page-static .cart-list li {
+    position: relative;
+    border-bottom: 1px solid #2d2d2d;
+    padding: 15px;
+}
+
+.cart-page-tapita #coupon-display-handler-tablet {
+    display: flex;
+    font-size: 20px;
+    padding: 10px 0 10px 0;
+    margin: 25px 15px 5px 15px;
+    border-bottom: 1px solid black;
+}
+
+@media (max-width: 767px) {
+    .cart-page-tapita #coupon-display-handler-tablet {
+        font-size: 16px;
+        line-height: 22 px;
+    }
+}
+.cart-page-static .coupon-code {
+    display: block;
+}
+.cart-page-static .coupon-code-title {
+    width: 100%;
+    display: table;
+    font-weight: 800;
+    font-size: 20px;
+    margin-bottom: 12px;
+}
+
+@media (max-width: 767px) {
+    .cart-page-static .coupon-code-title {
+        font-size: 14px;
+    }
+}
+.cart-page-tapita .coupon-code-area-tablet {
+    min-width: 300px;
+    margin: 0 5px;
+}
+
+@media (max-width: 767px){
+    .cart-page-tapita .coupon-code-area-tablet {
+        min-width: 200px;
+    }
+}
+
+.cart-page-tapita .coupon-code-area-tablet input {
+    border: 1px solid #dedede;
+    width: 100%;
+    height: 40px;
+    padding: 0 10px;
+    background-color: #dedede;
+    border-radius: 3px;
+    font-size: 16px;
+}
+
+@media (max-width: 767px){
+    .cart-page-tapita .coupon-code-area-tablet input {
+        font-size: 14px;
+    }
+}
+.cart-page-tapita div#submit-coupon-tablet {
+    flex-grow: 1;
+    text-align: center;
+    padding-top: 9px;
+    margin-left: auto;
+    font-size: 19px;
+    font-weight: 600;
+}
+
+.cart-page-static #submit-coupon-tablet {
+    display: inline-block;
+    padding: 7px;
+    height: 40px;
+    font-size: 18px;
+    font-weight: 800;
+    border-radius: 3px;
+}
+
+@media (max-width: 767px) {
+    .cart-page-static #submit-coupon-tablet {
+        font-size: 16px;
+        line-height: 25px;
+    }
+}
+
+.cart-page-tapita #coupon-form  {
+    transition: visibility 0s, opacity 0.5s linear;
+}
+
+.cart-page-static .cart-total span.price {
+    font-size: 20px;
+    max-width: 160px;
+    font-weight: 800;
+}
+@media (max-width: 767px) {
+    .cart-page-static .cart-total span.price {
+        font-size: 15px;
+    }
+}
+.cart-page-static .cart-total span.label {
+    font-size: 20px;
+}
+
+@media (max-width: 767px) {
+    .cart-page-static .cart-total span.label {
+        font-size: 15px;
+    }
+}
+
+.cart-page-static .dropup.btn-group {
+    width: 100%;
+    display: flex;
+}
+
+@media (min-width: 768px) {
+    .cart-page-tapita .modal-content {
+        padding: 15px;
+    }
+}
+
+.cart-sidebar .empty-cart {
+    font-size: 21px;
+}
+
+@media (max-width: 767px){
+    #cart-sidebar .content-sidebar.in{
+        width: 100% !important;
+    }
+}
+
+
+.close-cart-sidebar {
+    justify-content: flex-end;
+    display: flex;
+    margin: 0 30px;
+}
+
+@media (max-width: 767px) {
+    .close-cart-sidebar {
+        margin: 0 5px;
+    }
+}
+.cart-page-sidebar {
+    margin: 10px auto;
+    max-width: 1200px;
+}
+
+.cart-page-sidebar .cart-title {
+    font-weight: 800;
+    font-size: 21px;
+    margin: 10px 45px 0 45px;
+}
+@media (max-width: 767px) {
+    .cart-page-sidebar .cart-title {
+        font-weight: 800;
+        font-size: 16px;
+        margin: 0 15px 15px 15px;
+    }
+}
+
+.cart-page-sidebar .cart-page-sidebar-container {
+    max-height: 80vh;
+    overflow: auto;
+    margin: 0 45px 15px 45px;
+}
+@media (max-width: 767px) {
+    .cart-page-sidebar .cart-page-sidebar-container {
+        margin: 0 10px 15px 10px;
+    }
+}
+
+.cart-page-sidebar .cart-list {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.cart-page-sidebar .item-name {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.cart-page-sidebar .item-options {
+    font-size: 17px;
+}
+
+@media (max-width: 767px){
+    .cart-page-sidebar .item-options {
+        font-size: 13px;
+    }
+}
+
+.cart-sidebar-item .item-subtotal {
+    padding: 0;
+    text-align: end;
+}
+
+@media (max-width: 767px) {
+    .cart-sidebar-item .item-subtotal {
+        font-size: 12px;
+    }
+}
+
+.cart-page-sidebar .coupon-code {
+    display: block;
+}
+.cart-page-sidebar .coupon-code-title {
+    width: 100%;
+    display: table;
+    font-weight: 600;
+    font-size: 17px;
+    margin-bottom: 12px;
+}
+
+@media (max-width: 767px) {
+    .cart-page-sidebar .coupon-code-title {
+        font-size: 14px;
+    }
+}
+
+.cart-page-sidebar #submit-coupon-tablet {
+    display: inline-block;
+    padding: 7px;
+    height: 40px;
+    font-size: 18px;
+    font-weight: 800;
+    border-radius: 3px;
+}
+
+@media (max-width: 767px) {
+    .cart-page-sidebar #submit-coupon-tablet {
+        font-size: 16px;
+    }
+}
+
+.cart-page-sidebar .cart-total > div > div{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.cart-page-sidebar .cart-total span.price {
+    font-size: 20px;
+    max-width: 160px;
+    font-weight: 600;
+    text-align: end;
+}
+
+@media (max-width: 767px) {
+    .cart-page-sidebar .cart-total span.price {
+        font-size: 15px;
+    } 
+}
+.cart-page-sidebar .cart-total span.label {
+    font-size: 20px;
+    direction: ltr;
+    padding-left: 0;
+    font-weight: 600;
+    text-align: start;
+}
+
+@media (max-width: 767px) {
+    .cart-page-sidebar .cart-total span.label {
+        font-size: 15px;
+    }
+}
+.cart-page-sidebar .dropup.btn-group {
+    width: 100%;
+    display: flex;
+}
+
+.cart-page-tapita #go-checkout-tablet {
+    font-weight: 600;
+    margin: 0 60px;
+    padding: 15px;
+    font-size: 21px;
+    border-radius: 3px;
+    text-align: center;
+    cursor: pointer;
+}
+
+@media (max-width: 767px) {
+    .cart-page-tapita #go-checkout-tablet {
+        font-size: 16px;
+        margin: 0 20px 80px 20px;
+    }
+    .cart-page-tapita .cart-total {
+        margin-bottom: 20px;
+    }
+}
+
+#go-checkout-tablet-sidebar {
+    cursor: pointer;
+    font-weight: 600;
+    padding: 15px;
+    font-size: 21px;
+    border-radius: 3px;
+    text-align: center;
+    position: fixed;
+    width: 90%;
+    bottom: 20px;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+@media (max-width: 767px) {
+    #go-checkout-tablet-sidebar {
+        font-size: 16px;
+    }
+}
+.cart-page-tapita .cart-total span.label {
+    white-space: normal;
+}
