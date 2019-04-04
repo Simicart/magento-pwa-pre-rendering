@@ -14,6 +14,7 @@ class CustomerHelper {
             return true;
         }
         return false;
+        
     }
 
     static logout() {
