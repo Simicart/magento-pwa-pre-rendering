@@ -16,8 +16,9 @@ class AppStateContainer extends Container {
 
     updateCart = (data) => {
         this.setStateSync({cart_data : data})
+        console.log(data)
         if(data){
-            Identify.storeDataToStoreage(Identify.SESSION_STOREAGE,'quote_id',parseInt(id, 10))
+            Identify.storeDataToStoreage(Identify.SESSION_STOREAGE,'quote_id',parseInt(data.quote_id, 10))
         }
     }
 
