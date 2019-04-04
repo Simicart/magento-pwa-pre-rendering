@@ -15,6 +15,7 @@ class Model  {
     async connect(api, params ={}){
         // SimiMixpanel.track();
         api = this.fullUrl + api;
+        console.log(api)
         Connection.restData();
         Connection.setGetData(params);
         let data = await Connection.connect(api);
@@ -69,11 +70,12 @@ class Model  {
         }
     }
 
-    async connectWithUrl(api, params ={}){
+    async connectWithUrl( api,type = 'GET', urlParam = {}, bodyData = {}){
         // SimiMixpanel.track();
         Connection.restData();
-        Connection.setGetData(params);
-        let data = await Connection.connect(api);
+        Connection.setGetData(urlParam);
+        Connection.setBodyData(bodyData);
+        let data = await Connection.connect(api,type);
         if(this.obj){
             this.setData(data)
             return true;

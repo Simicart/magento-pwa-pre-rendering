@@ -9,6 +9,7 @@ import {AppState} from "../../../Observer/AppState";
 import {SubscribeOne} from 'unstated-x'
 import CartQty from './RightBar/CartQty'
 import BottomMenu from './Component/BottomMenu'
+import dynamic from 'next/dynamic'
 
 export const CartQtyHoC = props => (
     <SubscribeOne to={AppState} bind={['cart_data']}>
@@ -21,3 +22,8 @@ export const BottomMenuHoC = props => (
         {app => <BottomMenu cart_data={app.state.cart_data} {...props}/>}
     </SubscribeOne>
 )
+
+export const CateTreeHoC = dynamic({
+    loader : () => import(/* webpackChunkName : "CateTree" */'./LeftMenu/CateTree'),
+    ssr : false
+})

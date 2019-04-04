@@ -6,6 +6,7 @@ import BundlePrice from './Bundle';
 import Simple from './Simple';
 import Grouped from './Grouped';
 import './style.css';
+import NoSSR from 'react-no-ssr'
 const style = {
     pirce: {
         color: Identify.getColorConfig().price_color,
@@ -107,7 +108,9 @@ class Price extends ViewComponent {
 
     render() {
         return (
-            <div className={`price-${this.type}`}>{this.renderView()}</div>
+            <NoSSR onSSR={`loading...`}>
+                <div className={`price-${this.type}`}>{this.renderView()}</div>
+            </NoSSR>
         );
     }
 }

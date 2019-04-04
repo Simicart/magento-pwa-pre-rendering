@@ -73,6 +73,7 @@ export default class MyApp extends App {
 
     componentDidMount(){
         const {storeview,isMobile} = this.props;
+
         Identify.initAppSettings(storeview)
         Identify.setMerchantConfig(storeview)
         Identify.setIsMobile(isMobile)
@@ -84,7 +85,7 @@ export default class MyApp extends App {
     }
 
     render () {
-        const { Component, pageProps,isMobile } = this.props
+        const { Component, pageProps,storeview } = this.props
         return (
             <Container>
                  {/*Wrap unstate-x*/}
@@ -104,7 +105,7 @@ export default class MyApp extends App {
                             <CssBaseline />
                             {/* Pass pageContext to the _document though the renderPage enhancer
                                 to render collected styles on server-side. */}
-                            <Component pageContext={this.pageContext} {...pageProps} />
+                            <Component pageContext={this.pageContext} merchant_config={storeview} {...pageProps} />
                         </MuiThemeProvider>
                     </JssProvider>
                 </Provider>

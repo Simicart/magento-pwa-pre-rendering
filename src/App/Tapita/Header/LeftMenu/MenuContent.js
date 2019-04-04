@@ -12,8 +12,8 @@ import CustomerHelper from '../../../../Helper/Customer';
 import List from '@material-ui/core/List';
 import ListItem from '../../../../BaseComponent/MuiListItem/Text';
 import ListItemNested from '../../../../BaseComponent/MuiListItem/Nested';
-// import Storeview from './Storeview'
-// import Currency from './Currency'
+import Storeview from './Storeview'
+import Currency from './Currency'
 import {withStyles} from '@material-ui/core/styles'
 // import {layout} from "../../../../Observer/layout";
 import Slide from "@material-ui/core/Slide";
@@ -60,8 +60,8 @@ class LeftMenuTabContent extends Abstract {
                             className={this.props.classes.listItemStyle}
                             primarytext={<span className="cms-menu-text root-menu">{Identify.__('Settings')}</span>}
                         >
-                            {/*<Storeview parent={this} key={Identify.makeid()} className={this.props.classes.listItemStyle}/>*/}
-                            {/*<Currency parent={this} key={Identify.makeid()} className={this.props.classes.listItemStyle}/>*/}
+                            <Storeview parent={this} key={Identify.makeid()} className={this.props.classes.listItemStyle}/>
+                            <Currency parent={this} key={Identify.makeid()} className={this.props.classes.listItemStyle}/>
                         </ListItemNested>
                     </div>
                 )

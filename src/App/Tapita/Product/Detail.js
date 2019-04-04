@@ -30,7 +30,7 @@ class Detail extends Abstract{
     }
 
     render() {
-        this.data = this.props.data.product
+        this.data = this.props.data.product || {}
         let meta_header = {
             title : this.data.meta_title ? this.data.meta_title : this.data.name,
             description : this.data.meta_description ? this.data.meta_description : this.data.name

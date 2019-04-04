@@ -9,6 +9,8 @@ const routes = require('./router')
 const server = express()
 const fetch = require('node-fetch')
 const serverCache = require('memory-cache')
+const bodyParser = require('body-parser')
+
 
 
 const handler = routes.getRequestHandler(app,({req, res, route, query}) => {
@@ -16,10 +18,12 @@ const handler = routes.getRequestHandler(app,({req, res, route, query}) => {
   })
 app.prepare()
     .then(() => {
-        server.get('/storeview/:id?',async (req, res) => {
+        server.use(bodyParser.urlencoded({ extended: false }));
+        server.use(bodyParser.json());
+        server.post('/change-storeview',async (req, res) => {
             console.log(serverCache.keys())
-            let data = await getStoreView(req.params.id)
-            serverCache.put('merchant_config_test',data.storeview)
+            let data = await changeStoreView(req.body.api)
+            serverCache.put('merchant_config',data)
             res.json({...data})
         })
         server.use(handler).listen(3100)
@@ -29,7 +33,12 @@ app.prepare()
         process.exit(1)
     })
 
-async function getStoreView(id = 'default'){
-    let data = await (await fetch('https://cody.pwa-commerce.com/simiconnector/rest/v2/storeviews/'+id)).json()
-    return data
+async function changeStoreView(api){
+    try {
+        let data = await (await fetch(api)).json()
+        return data
+    }catch (e) {
+        return {error : e}
+    }
+
 }

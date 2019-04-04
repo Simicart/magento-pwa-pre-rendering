@@ -12,6 +12,8 @@ import Tab from '@material-ui/core/Tab';
 import Identify from '../../../../Helper/Identify';
 import SwipeableViews from 'react-swipeable-views';
 import MenuContent from './MenuContent'
+import {CateTreeHoC} from "../HoC";
+
 const configColor = Identify.getColorConfig()
 const colorTranparent = Identify.getColorTranparent()
 class LeftMenu extends Abstract{
@@ -74,6 +76,7 @@ class LeftMenu extends Abstract{
                     {...rtl}
                 >
                     <div>
+                        <CateTreeHoC parent={this} show={this.state.tabIndex === 0}/>
                     </div>
                     <div >
                         <MenuContent parent={this}
