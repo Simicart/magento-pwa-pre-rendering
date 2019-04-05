@@ -56,5 +56,17 @@ class CartModel extends Model{
         return {}
     }
 
+    updateCoupon(value) {
+        let data = this.getSavedData();
+        let urlParams = {
+            quote_id: data.quote_id
+        }
+        let json = {};
+        let key = 'coupon_code';
+        json[key] = value;
+        this.isLoaded = false;
+        this.advancedConnect('PUT', 'quoteitems', urlParams, json);
+    }
+
 }
 export default CartModel

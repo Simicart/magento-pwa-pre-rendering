@@ -25,8 +25,24 @@ class CartAbstract extends Base{
     }
 
     processData(data){
+        if(data.message){
+            this.showErrorMessage(data.message);
+        }
         Identify.ApiDataStorage('quoteitems','update', data);
         this.props.updateCart(data)
+    }
+
+    showErrorMessage(message){
+        let text = "";
+        if (message) {
+            let errors = message;
+            for (let i in errors) {
+                let error = errors[i];
+                text += error + ' ';
+            }
+        }
+
+        if(text) Identify.showToastMessage(text);
     }
 
     handleEditCart = (e, key, deleted = 0) =>{
@@ -64,6 +80,11 @@ class CartAbstract extends Base{
     updateCart(key,value){
         Identify.showLoading();
         this.cartModelCollection.updateCart(key,value)
+    }
+
+    handleCoupon(coupon_code) {
+        Identify.showLoading()
+        this.cartModelCollection.updateCoupon(coupon_code);
     }
 }
 export default CartAbstract

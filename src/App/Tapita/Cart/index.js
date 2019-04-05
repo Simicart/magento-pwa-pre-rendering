@@ -12,6 +12,10 @@ import { SubscribeOne } from 'unstated-x';
 import { AppState } from '../../../Observer/AppState';
 
 class CartTapita extends Cart {
+    state = {
+        coupon_code: ''
+    }
+
     static getDerivedStateFromProps(nextProps, prevState) {
         if (nextProps.cart_data !== prevState.simiData) {
             return { simiData: nextProps.cart_data }
@@ -19,22 +23,27 @@ class CartTapita extends Cart {
         return null;
     }
 
-    renderCouponView(data) {
+    onChange = (e) => {
+        let coupon_value = e.target.value;
+        this.setState({coupon_code: coupon_value})
+    }
+
+    renderCouponView() {
         let value = "";
-        // if (data.total.coupon_code) {
-        //     value = data.total.coupon_code;
-        // }
 
         let couponForm = (
             <div className="coupon-code" id="cart-coupon-form"
                 style={{ display: "none" }}>
                 <div className="coupon-code-title">{Identify.__('Enter a coupon code')}</div>
                 <div style={{ display: 'flex' }}>
-                    <div className="coupon-code-area-tablet"><input type="text"
-                        placeholder={Identify.__('Enter a coupon code')}
-                        defaultValue={value} />
+                    <div className="coupon-code-area-tablet">
+                        <input type="text"
+                            placeholder={Identify.__('Enter a coupon code')}
+                            defaultValue={value} 
+                            onChange={this.onChange}
+                        />
                     </div>
-                    <div id="submit-coupon-tablet" onClick={(e) => this.handleCoupon(e)} style={{
+                    <div id="submit-coupon-tablet" onClick={() => this.handleCoupon(this.state.coupon_code)} style={{
                         backgroundColor: this.configColor.button_background,
                         color: this.configColor.button_text_color
                     }}>{Identify.__('Apply')}</div>
@@ -82,17 +91,17 @@ class CartTapita extends Cart {
         for (let i in quoteItems) {
             let item = quoteItems[i];
             let element = <SidebarItem key={Identify.makeid()}
-                item={item} 
-                handleEditCart={this.handleEditCart}/>
+                item={item}
+                handleEditCart={this.handleEditCart} />
             //  moveToWishlist={this.moveToWishlist}/>;
             obj.push(element);
         }
         return <ul className="cart-list">{obj}</ul>;
     }
 
-    renderTotalView=()=> {
+    renderTotalView = () => {
         console.log(this.state.simiData)
-        return <Total data={this.state.simiData.total}/>
+        return <Total data={this.state.simiData.total} />
     }
 
     renderCheckoutButton() {
@@ -121,12 +130,12 @@ class CartTapita extends Cart {
             // $('.cart-number').text(0);
             return (
                 <Layout>
-                <div className="cart-page-static cart-page-tapita">
-                    {loading}
-                    <div className="empty-cart">
-                        {Identify.__('You have no items in your shopping cart')}
+                    <div className="cart-page-static cart-page-tapita">
+                        {loading}
+                        <div className="empty-cart">
+                            {Identify.__('You have no items in your shopping cart')}
+                        </div>
                     </div>
-                </div>
                 </Layout>);
         } else {
             // const $ = window.$  
@@ -151,8 +160,8 @@ class CartTapita extends Cart {
 const CartPage = props => (
     <SubscribeOne to={AppState} bind={['cart_data']}>
         {app => <CartTapita cart_data={app.state.cart_data}
-                             updateCart={(data) => app.updateCart(data)}
-                             {...props}/>}
+            updateCart={(data) => app.updateCart(data)}
+            {...props} />}
     </SubscribeOne>
 )
 export default CartPage;
