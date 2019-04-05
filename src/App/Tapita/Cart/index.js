@@ -80,8 +80,8 @@ class CartTapita extends Cart {
         for (let i in quoteItems) {
             let item = quoteItems[i];
             let element = <SidebarItem key={Identify.makeid()}
-                item={item} />
-            //  handleEditCart={this.handleEditCart}
+                item={item} 
+                handleEditCart={this.handleEditCart}/>
             //  moveToWishlist={this.moveToWishlist}/>;
             obj.push(element);
         }
