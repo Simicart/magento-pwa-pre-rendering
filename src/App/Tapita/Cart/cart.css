@@ -280,10 +280,10 @@
 .cart-page-tapita div#submit-coupon-tablet {
     flex-grow: 1;
     text-align: center;
-    padding-top: 9px;
+    padding-top: 6px;
     margin-left: auto;
-    font-size: 19px;
-    font-weight: 600;
+    font-size: 21px;
+    font-weight: 800;
 }
 
 .cart-page-static #submit-coupon-tablet {

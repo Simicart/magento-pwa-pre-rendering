@@ -120,7 +120,9 @@ class SidebarItem extends BaseAbstract {
                 </div>
                 <div className="cart-sidebar-item-action">
                     {moveToWishlist}
-                    <div className="item-delete" onClick={(e) => this.props.handleEditCart(e, item.item_id, 1)}>
+                    <div className="item-delete" onClick={(e) => {
+                        this.props.handleEditCart(e, item.item_id, 1)
+                    }}>
                         <Deleteicon
                             style={{width: '22px', height: '22px'}} />
                     </div>

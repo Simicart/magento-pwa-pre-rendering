@@ -33,6 +33,21 @@ class CartModel extends Model{
         return this.connect('quoteitems',urlParams);
     }
 
+    updateCart(key,value, type = 1){
+        let data = this.getSavedData();
+        let json = {};
+        json[key] = value;
+        let urlParams = {
+            quote_id: data.quote_id
+        }
+        if(type === 1){
+            this.isLoaded = false
+        } else {
+            Identify.showLoading();
+        }
+        return this.advancedConnect('PUT','quoteitems',urlParams,json)
+    }
+
     getSavedData = ()=> {
         if (Identify.getDataFromStoreage(Identify.SESSION_STOREAGE, 'quote_id')) {
             return {'quote_id': Identify.getDataFromStoreage(Identify.SESSION_STOREAGE, 'quote_id')};
@@ -41,6 +56,18 @@ class CartModel extends Model{
             return {'quote_id': localStorage.getItem('quote_id')};
         }
         return {}
+    }
+
+    updateCoupon(value) {
+        let data = this.getSavedData();
+        let urlParams = {
+            quote_id: data.quote_id
+        }
+        let json = {};
+        let key = 'coupon_code';
+        json[key] = value;
+        this.isLoaded = false;
+        this.advancedConnect('PUT', 'quoteitems', urlParams, json);
     }
 
 }
