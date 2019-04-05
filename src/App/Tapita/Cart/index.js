@@ -8,11 +8,13 @@ import SidebarItem from './CartComponent/SidebarItem';
 import ArrowDown from '@material-ui/icons/KeyboardArrowDown';
 import Layout from '../../../Layout/Tapita'
 import Total from '../../../BaseComponent/Total'
+import { SubscribeOne } from 'unstated-x';
+import { AppState } from '../../../Observer/AppState';
 
 class CartTapita extends Cart {
     static getDerivedStateFromProps(nextProps, prevState) {
         if (nextProps.cart_data !== prevState.simiData) {
-            return { data: nextProps.cart_data }
+            return { simiData: nextProps.cart_data }
         }
         return null;
     }
@@ -145,4 +147,12 @@ class CartTapita extends Cart {
         }
     }
 }
-export default CartTapita;
+
+const CartPage = props => (
+    <SubscribeOne to={AppState} bind={['cart_data']}>
+        {app => <CartTapita cart_data={app.state.cart_data}
+                             updateCart={(data) => app.updateCart(data)}
+                             {...props}/>}
+    </SubscribeOne>
+)
+export default CartPage;

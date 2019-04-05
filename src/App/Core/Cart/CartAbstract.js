@@ -25,7 +25,8 @@ class CartAbstract extends Base{
     }
 
     processData(data){
-        this.setState({simiData: data})
+        Identify.ApiDataStorage('quoteitems','update', data);
+        this.props.updateCart(data)
     }
 
     handleEditCart = (e, key, deleted = 0) =>{
