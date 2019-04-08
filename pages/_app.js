@@ -64,7 +64,8 @@ export default class MyApp extends App {
         }else{
             const detector = new DeviceDetector;
             detector.detect(ctx.req.headers['user-agent'])
-            isMobile = detector.isMobile()
+            isMobile = detector.deviceData.toString().indexOf('phone') > -1
+
         }
         Identify.setIsMobile(isMobile)
         if (Component.getInitialProps) {

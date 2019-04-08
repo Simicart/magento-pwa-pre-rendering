@@ -29,12 +29,13 @@ class MyAccount extends Abstract {
         this.state.openAccountDialog = false
     }
 
-    handleClick = (event) => {
+    handleOpenMenu = (event) => {
         // This prevents ghost click.
         event.preventDefault();
         if (!CustomerHelper.isLogin()) {
             //this.props.parent.handleMenuItem(layout,'/customer/account/login');
-            this.setState({openAccountDialog: true});
+            // this.setState({openAccountDialog: true});
+            this.pushLink('/customer/account/login')
             return;
         }
         this.setState({
@@ -50,7 +51,7 @@ class MyAccount extends Abstract {
     };
 
     handleClickMenu = (e, link) => {
-        this.handleLink(link)
+        this.pushLink(link)
         this.setState({
             open: false,
         });
@@ -62,25 +63,25 @@ class MyAccount extends Abstract {
                 title : 'My Account',
                 page : 'dashboard',
                 url : '/customer',
-                is_show : true,
+                enable : true,
             },
             order_detail : {
                 title : 'My Orders',
                 page : 'order-detail',
                 url : '/sales/order/history',
-                is_show : true,
+                enable : true,
             },
             edit_address : {
                 title : 'Address Book',
                 page : 'edit-address',
                 url : '/customer/address',
-                is_show : true,
+                enable : true,
             },
             account : {
                 title : 'Account Information',
                 page : 'my-account',
                 url : '/customer/account/edit',
-                is_show : true,
+                enable : true,
             },
 
 
@@ -92,7 +93,7 @@ class MyAccount extends Abstract {
                 logout : {
                     title : 'Log out',
                     url : '/customer/account/logout',
-                    is_show : true,
+                    enable : true,
                 }
             }
         }
@@ -105,7 +106,7 @@ class MyAccount extends Abstract {
         return (
             <div style={{display: 'inline-block'}}>
                 <IconButton className="user-icon"
-                            onClick={(e) => this.pushLink('/customer/account/login')}>
+                            onClick={(e) => this.handleOpenMenu(e)}>
                     <IdentityIcon
                         color={this.state.open ? configColor.button_background : configColor.top_menu_icon_color}/>
                 </IconButton>
@@ -116,7 +117,7 @@ class MyAccount extends Abstract {
                 >
                     {Object.keys(menu).map(key => {
                         let item = menu[key];
-                        return item.is_show ?
+                        return item.enable ?
                             <MenuItem classes={{root:obj.props.classes.menu}}
                                       key={key}
                                       onClick={(e) => obj.handleClickMenu(e, item.url)}>{Identify.__(item.title)}

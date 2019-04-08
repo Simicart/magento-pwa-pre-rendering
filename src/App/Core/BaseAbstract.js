@@ -14,6 +14,7 @@ class SimiComponent extends React.Component{
         this.data = this.props.data
     }
 
+
     isClient(){
         return Identify.isClient()
     }
@@ -60,6 +61,11 @@ class SimiComponent extends React.Component{
         if(route){
             Router.pushRoute(route)
         }
+    }
+
+    replaceLink(route){
+        if(route)
+            Router.replaceRoute(route)
     }
 }
 export default SimiComponent
