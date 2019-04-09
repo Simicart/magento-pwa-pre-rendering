@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 // import AddCommentFrom from './AddCommentFrom';
-import Layout from '../../../Layout/Layout';
+import Layout from '../../../Layout';
 import Info from './Info';
 import Identify from '../../../Helper/Identify';
 import dynamic from "next/dynamic";
