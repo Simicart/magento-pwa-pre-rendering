@@ -19,6 +19,10 @@ class SimiComponent extends React.Component{
         return Identify.isClient()
     }
 
+    componentDidMount(){
+        this.setState({isPhone : window.innerWidth < 768})
+    }
+
     componentWillUnmount() {
         this._mounted = false;
     }
