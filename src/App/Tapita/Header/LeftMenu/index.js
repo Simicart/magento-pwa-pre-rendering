@@ -90,6 +90,10 @@ class LeftMenu extends Abstract{
         );
     };
 
+    handleCloseMenu(){
+        this.Menu.handleCloseSideBar()
+    }
+
     render(){
         let menuStyle = {
             background : this.configColor.menu_background,

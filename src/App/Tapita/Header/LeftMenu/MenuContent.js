@@ -30,11 +30,10 @@ let styles = theme => ({
 
 class LeftMenuTabContent extends Abstract {
 
-    handleMenuItem = (location) => {
-        let browserHistory = this.props.parent.context.router.history;
+    handleMenuItem = (url) => {
         this.props.parent.handleCloseMenu();
-        browserHistory.push(location);
-        if (location && location.pathname) {
+        this.pushLink(url)
+        if (url) {
             // Analytics.analyticsTracking(
             //     {
             //         mixpanel : true,
@@ -74,11 +73,9 @@ class LeftMenuTabContent extends Abstract {
         if (data && data.length > 0) {
             let obj = this;
             let cms = data.map(function (item) {
-                let location = {
-                    pathname: `/cms/${item.cms_id}`
-                };
+                let urlPath =  `/cms/${item.cms_id}`
                 return (
-                    <div key={`cms-menu-item-${item.cms_id}`} onClick={(e) => obj.handleMenuItem(location)}
+                    <div key={`cms-menu-item-${item.cms_id}`} onClick={(e) => obj.handleMenuItem(urlPath)}
                          style={{color: configColor.menu_text_color}}>
                         <ListItem
                             primarytext={<span className="cms-menu-text root-menu">{Identify.__(item.cms_title)}</span>}
@@ -93,11 +90,9 @@ class LeftMenuTabContent extends Abstract {
     };
 
     renderContactUsLink = () => {
-        let location = {
-            pathname: '/contacts'
-        };
+        let url = '/contacts'
         return (
-            <div key="contact-us-menu-item" onClick={() => this.handleMenuItem(location)}>
+            <div key="contact-us-menu-item" onClick={() => this.handleMenuItem(url)}>
                 <ListItem primarytext={<span className="cms-menu-text root-menu">{Identify.__('Contact Us')}</span>}
                           className={this.props.classes.listItemStyle}/>
             </div>
