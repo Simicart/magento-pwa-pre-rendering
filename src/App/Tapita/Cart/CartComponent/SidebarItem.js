@@ -6,6 +6,7 @@ import CustomerHelper from '../../../../Helper/Customer'
 import Divider from '@material-ui/core/Divider'
 import MenuItemUI from '@material-ui/core/MenuItem'
 import Deleteicon from '../../../../BaseComponent/Icon/Trash'
+import ReactHTMLParse from 'react-html-parser'
 import './SidebarItem.css';
 
 class SidebarItem extends BaseAbstract {

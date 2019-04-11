@@ -10,5 +10,6 @@ module.exports = routes()
 .add(routerConfig.checkout)
 .add(routerConfig.customer_login)
 .add(routerConfig.contact)
+.add(routerConfig.customer_dashboard)
 .add(routerConfig.url_match)
 

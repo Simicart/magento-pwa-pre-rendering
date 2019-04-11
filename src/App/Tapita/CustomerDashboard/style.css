@@ -1,0 +1,460 @@
+.my-dashboard {
+    margin-top: 50px;
+}
+
+.menu-dashboard {
+    padding-top: 15px;
+    padding-bottom: 10px;
+    border: 1px solid #eeeeee;
+    webkit-box-shadow: 0px 0px 5px 1px rgba(184, 184, 184, 0.5);
+    -moz-box-shadow: 0px 0px 5px 1px rgba(184, 184, 184, 0.5);
+    box-shadow: 0px 0px 5px 1px rgba(184, 184, 184, 0.5);
+}
+
+.content-dashboard .page-title {
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.section .section-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+    border-bottom: 1px solid #333;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    align-items: baseline;
+}
+
+
+.page-content .section {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.page-content .section .section-content {
+    display: block;
+}
+
+.menu-dashboard-item .menu-title-item {
+    font-weight: 500;
+}
+
+.section-content {
+    margin: 0 15px;
+}
+
+.table-list-order table thead tr th {
+    font-weight: 400;
+    /*padding: 0 15px;*/
+    border: none;
+    vertical-align: top;
+}
+
+.table-list-order table tbody tr td {
+    padding-top: 20px;
+    border: none;
+    font-weight: 400;
+}
+
+.table-list-order table tr {
+    vertical-align: baseline;
+}
+
+.section-account-content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.box-title {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.box-title button {
+    padding: 0 !important;
+}
+
+.section .box {
+    width: 35%;
+}
+
+.box .box-content {
+    font-weight: 400;
+}
+
+.box .box-content p {
+    margin-bottom: 5px;
+    font-weight: 400;
+}
+
+.section-address-item {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.address-item.box {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.box .box-action {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+ul.address-fields {
+    border: unset;
+}
+
+/*.edit-address {*/
+    /*padding-bottom: 55px;*/
+/*}*/
+
+.selected-item{
+    color: rgb(0, 133, 255);
+}
+
+.cbx-default {
+    padding-left: 12px;
+    margin-top: 12px
+}
+
+.default-address-message {
+    height: 40px;
+    width: 100%;
+    background: #faffbd;
+    margin: 12px 0;
+    line-height: 40px;
+    padding: 0 16px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: 300;
+}
+
+.default-billing .checkbox, .default-shipping .checkbox {
+    width: 100%;
+}
+
+.btn-form-action {
+    display: flex;
+    margin-top: 25px;
+    /*padding-left: 12px;*/
+}
+
+.address-form-btn {
+    height: 50px;
+    font-size: 20px;
+    width: calc(50% - 7.5px);
+    text-align: center;
+    font-weight: 600;
+    line-height: 48px;
+    border-radius: 5px;
+    margin: 0 5px;
+}
+
+.address-form-btn.btn-save-address {
+    order: 2;
+    /*margin-left: auto*/
+}
+
+.address-form-btn.btn-cancel {
+    border: 1px solid
+}
+
+.address-form-btn.btn-addnew {
+    width: 220px
+}
+
+.section-order-history table thead, .my-downloadable table thead {
+    border-bottom: 1px solid;
+}
+
+.section-header .section-link {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.my-dashboard .menu-section {
+    margin-top: 30px;
+}
+
+.menu-section .menu-section-title {
+    margin-bottom: 15px;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.section-header .section-title {
+    font-weight: 600;
+    padding: 0;
+    background-color: unset;
+}
+
+.order-detail-wrapper .top-header {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+}
+
+.order-detail-wrapper .top-header span {
+    padding-right: 12px
+}
+
+.order-detail-wrapper .top-header .page-title {
+    font-size: 25px;
+    text-transform: unset;
+}
+
+.order-detail-wrapper .top-header .top-order-status {
+    font-size: 20px;
+    text-transform: uppercase;
+    color: #f69435;
+    font-weight: 500;
+    padding-left: 12px;
+}
+
+.reorder-section {
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+    line-height: 38px;
+    color: #f69435;
+}
+
+.reorder-section span {
+    padding: 0 8px
+}
+
+.order-table {
+    width: 100%
+}
+
+.order-table tr, .order-info-section tr {
+    vertical-align: -webkit-baseline-middle;
+}
+
+.order-table th {
+    padding: 5px;
+}
+
+.order-table .product-prices.small {
+    font-size: inherit
+}
+
+.order-table td {
+    padding: 10px 5px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 25px;
+    max-width: 220px
+}
+
+.price-with-label {
+    display: flex;
+    align-items: baseline
+}
+
+td.product-info {
+    font-weight: 500
+}
+
+.order-totals-section .checkout-total-item {
+    display: flex;
+    justify-content: space-between;
+}
+
+.order-totals-section .checkout-total-item .total-price {
+    margin-left: unset
+}
+
+.total-price .product-prices.small {
+    font-size: 100%
+}
+
+.section.order-totals-section {
+    background: #f2f2f2;
+    padding: 12px 24px;
+    font-weight: 500;
+    line-height: 24px;
+}
+
+.order-info-section .address-item.box {
+    width: 100%;
+}
+
+.order-info-section td {
+    padding-top: 25px;
+    font-size: 14px;
+    font-weight: 400;
+    width: 25%
+}
+
+.sub-header.order-status {
+    font-size: 20px;
+    font-weight: 300;
+    margin-top: 20px;
+}
+
+.tbl-option td {
+    font-size: 12px;
+    font-weight: 400
+}
+
+.tbl-option {
+    -webkit-transition: height .3s linear, padding-top .3s linear, padding-bottom .3s linear, border-top-width .3s linear, border-top-width .3s linear;
+    transition: height .3s linear, padding-top .3s linear, padding-bottom .3s linear, border-top-width .3s linear, border-top-width .3s linear;
+}
+
+.address-fields .form-field-item {
+    list-style-type: none;
+    padding: 10px 0;
+    display: block
+}
+
+.form-field-item label {
+    display: block;
+    padding-bottom: 5px;
+    font-weight: 600
+}
+
+.form-field-item label span {
+    color: red
+}
+
+.form-field-item input, .fake-input-select {
+    width: 100%;
+    border-radius: 5px;
+    border: none;
+    background: #f2f2f2;
+    height: 40px;
+    padding-left: 16px
+}
+
+.order-info-section .item-title {
+    font-size: 16px;
+    font-weight: 600;
+    padding-bottom: 15px;
+}
+
+/*.listview-component{height: 100vh;overflow-y: scroll}*/
+.listview-component .list-view-content {
+    display: block;
+    padding: 0;
+    border: 0;
+}
+
+.list-view-content .list-item {
+    display: block;
+    border-bottom: 1px solid #f2f1f3;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+}
+
+.list-view-content .list-item:hover {
+    background: #f2f2f2
+}
+
+.list-item .item-field {
+    display: flex;
+    justify-content: space-between;
+}
+
+.item-field .item-title {
+    padding-bottom: 20px;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.item-field .value {
+    padding: .2em .6em .3em
+}
+
+.list-item span {
+    font-size: 14px;
+    font-weight: 500
+}
+ul.menu-customer .menu-customer-item {
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    border: 1px solid #ededed;
+    width: 100%;
+    -webkit-box-shadow: 0px 2px 5px 0px rgba(201,201,201,0.53);
+    box-shadow: 0px 2px 5px 0px rgba(201,201,201,0.53);
+    cursor: pointer;
+}
+ul.menu-customer .menu-customer-item .menu-title {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+ul.menu-customer li {
+    margin-bottom: 20px;
+}
+
+@media (max-width: 767px) {
+
+    .item-header.item-field {
+        display: flex;
+        justify-content: space-between;
+    }
+    .section .section-header,.sub-header.order-status{
+        font-size: 18px;
+        flex-wrap: wrap;
+    }
+    .order-totals-section .checkout-total-item {
+        padding: 10px 0;
+    }
+
+    .container.my-dashboard {
+        margin-top: 30px;
+    }
+
+    .section-content {
+        margin: 0
+    }
+
+    .order-detail-wrapper .top-header {
+        display: block;
+    }
+
+    .order-detail-wrapper .top-header .top-order-status {
+        padding-left: 0;
+        margin-top: 5px;
+        font-size: 18px;
+    }
+
+    .content-dashboard .page-title {
+        font-size: 20px !important;
+    }
+
+    .section .box {
+        width: 100%;
+    }
+    .contact-info{margin-right: 15px}
+
+    .address-form-btn.btn-addnew {
+        width: 100%;
+    }
+
+    .address-form-btn {
+        height: 40px;
+        font-size: 16px;
+        line-height: 40px;
+    }
+
+    .change-password {
+        width: 100% !important;
+    }
+    .change-password .btn-text {
+        font-size: 14px !important;
+    }
+    .section-header .section-link {
+        font-size: 14px;
+    }
+}
+

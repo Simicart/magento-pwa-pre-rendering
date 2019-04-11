@@ -59,11 +59,10 @@ class LeftMenuTabCategory extends Abstract {
         });
     }
 
-    openLocation = (location)=>{
-        let browserHistory = this.props.parent.context.router.history;
-        browserHistory.push(location);
-
-        this.props.parent.handleCloseMenu();
+    openLocation = (url)=>{
+        const $ = window.$;
+        this.pushLink(url)
+        $('.left-menu-tapita .overlay-sidebar').click()
     };
 
 
@@ -77,16 +76,12 @@ class LeftMenuTabCategory extends Abstract {
             let categories = data.categorytrees.map(function (item,key) {
                 let check_subcate = item.hasOwnProperty('child_cats') && item.child_cats !== null;
                 let cate_name = <div className="menu-cate-name-item root-menu" >{Identify.__(item.name)}</div>;
-                let location = {
-                    pathname: item.url_path !== undefined ? "/" + item.url_path : "/" + item.request_path || "/products?cat=" + item.entity_id,
-                    state: {
-                        cate_id: item.entity_id,
-                        hasChild: item.has_children,
-                        name: item.name
-                    }
-                };
-                location = !check_subcate ? location : null;
-                return obj.renderMenuItem(key,item,cate_name,location)
+                let urlPath = item.url_path !== undefined ? "/" + item.url_path : "/" + item.request_path || "/products?cat=" + item.entity_id
+                urlPath = !check_subcate ? urlPath : null;
+                Identify.setUrlMatchApi(urlPath,'category',{id: item.entity_id,
+                                        hasChild: check_subcate,
+                                        name: item.name})
+                return obj.renderMenuItem(key,item,cate_name,urlPath)
             }, this);
             return (
                 <div style={{
@@ -104,7 +99,7 @@ class LeftMenuTabCategory extends Abstract {
     };
 
     renderMenuItem = (key,item, cate_name, location) => {
-        if(location instanceof Object && location !== null){
+        if(location !== null){
             return(
                 <ListItem key={key}
                           onClick={()=>this.openLocation(location)}

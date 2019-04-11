@@ -40,7 +40,8 @@ class HomeAbstract extends BaseAbstract{
     constructor(props){
         super(props)
         this.metaHeader = {
-            title : app_name
+            title : app_name,
+            description : 'Progress Web App'
         }
         this.layout = layout;
         this.homepage = 'tapita-homepage'

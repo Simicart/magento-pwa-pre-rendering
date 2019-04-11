@@ -35,6 +35,8 @@ export default class MyApp extends App {
         if(Identify.checkMerchantConfig()){
             console.log('cache storeview api')
             storeview = Identify.getMerchantConfig();
+            Identify.initAppSettings(storeview)
+            Identify.setMerchantConfig(storeview);
         }else{
             console.log('call storeview api')
             let storeviewAPI = 'storeviews/default';
@@ -51,7 +53,7 @@ export default class MyApp extends App {
                 ;
             }
             const ApiModel = new Model()
-            const storeview = await ApiModel.connect(storeviewAPI,params);
+            storeview = await ApiModel.connect(storeviewAPI,params);
             Identify.initAppSettings(storeview)
             Identify.setMerchantConfig(storeview);
         }
@@ -62,7 +64,8 @@ export default class MyApp extends App {
         }else{
             const detector = new DeviceDetector;
             detector.detect(ctx.req.headers['user-agent'])
-            isMobile = detector.isMobile()
+            isMobile = detector.deviceData.toString().indexOf('phone') > -1
+
         }
         Identify.setIsMobile(isMobile)
         if (Component.getInitialProps) {

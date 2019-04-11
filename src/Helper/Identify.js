@@ -356,6 +356,14 @@ class Identify {
         };
         return color
     }
+
+    static connectorVersion(version = '0.1.2') {
+        let merchantConfigs = this.getMerchantConfig();
+        if (merchantConfigs.storeview.base.hasOwnProperty('connector_version')) {
+            return merchantConfigs.storeview.base.connector_version >= version;
+        }
+        return false;
+    }
 }
 
 export default Identify;

@@ -8,14 +8,19 @@ class SimiComponent extends React.Component{
         super(props)
         this._mounted = true;
         this.parent = this.props.parent;
-        this.state = {data:null,loaded:false,isPhone : Identify.isMobile()}
+        this.state = {data:null,loaded:false,isPhone : Identify.isMobile()||true}
         this.SMCONFIGS = SMCONFIGS
         this.configColor = ColorConfig
         this.data = this.props.data
     }
 
+
     isClient(){
         return Identify.isClient()
+    }
+
+    componentDidMount(){
+        this.setState({isPhone : window.innerWidth < 768})
     }
 
     componentWillUnmount() {
@@ -25,6 +30,7 @@ class SimiComponent extends React.Component{
     shouldComponentUpdate(nextProps,nextState){
         return ObjectHelper.shallowCompare(this,nextProps,nextState);
     }
+
 
     setData(data){
         Identify.hideLoading();
@@ -59,6 +65,11 @@ class SimiComponent extends React.Component{
         if(route){
             Router.pushRoute(route)
         }
+    }
+
+    replaceLink(route){
+        if(route)
+            Router.replaceRoute(route)
     }
 }
 export default SimiComponent

@@ -25,9 +25,11 @@ class CartModel extends Model{
         let data = this.getSavedData();
         let urlParams = {
             pwa : 1,
-            quote_id: data.quote_id
         }
+        if(data.quote_id){
+            urlParams['quote_id'] = data.quote_id
 
+        }
         return this.connect('quoteitems',urlParams);
     }
 

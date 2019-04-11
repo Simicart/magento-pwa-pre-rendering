@@ -26,7 +26,7 @@ app.prepare()
             serverCache.put('merchant_config',data)
             res.json({...data})
         })
-        server.use(handler).listen(3100)
+        server.use(handler).listen(8080)
         console.log('Server is running')
     })
     .catch((ex) => {

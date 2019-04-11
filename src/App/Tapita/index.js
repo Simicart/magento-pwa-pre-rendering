@@ -1,7 +1,7 @@
 import React from 'react'
 import AppBar from './Header/AppBar'
 import NoSSR from 'react-no-ssr';
-import LoadingSpiner from '../../BaseComponent/Loading/LoadingSpiner';
+import LoadingImg from '../../BaseComponent/Loading/LoadingImg';
 export const Tapita = props => {
     return(
         <React.Fragment>
@@ -10,7 +10,7 @@ export const Tapita = props => {
             </div>
             <div className="app-body" style={{marginTop:55,paddingTop:10}}>
                 {props.server_render ? props.children : (
-                    <NoSSR onSSR={<LoadingSpiner/>}>
+                    <NoSSR onSSR={<LoadingImg/>}>
                         {props.children}
                     </NoSSR>
                 )}
