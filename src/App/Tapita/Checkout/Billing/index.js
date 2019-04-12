@@ -59,15 +59,15 @@ class BillingAddress extends CheckoutAddress{
             }
         }
         this.CheckoutParent.requestUpdateOrder(json);
-        Analytics.analyticsTracking(
-            {
-                mixpanel : true,
-                ga : false
-            },
-            {
-                action: 'edit_billing_address',
-            }
-        )
+        // Analytics.analyticsTracking(
+        //     {
+        //         mixpanel : true,
+        //         ga : false
+        //     },
+        //     {
+        //         action: 'edit_billing_address',
+        //     }
+        // )
     }
 
     checkAddressSelected = id => {

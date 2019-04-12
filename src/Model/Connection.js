@@ -56,16 +56,17 @@ class Connection {
      * param obj - object that call to Api.
      **/
     async connect(_fullUrl,method = 'GET') {
-
-        if (sessionStorage.getItem('email')) {
-            let email = sessionStorage.getItem('email').replace(/['"]+/g, '');
-            this._dataGet.push(`email=${email}`)
-            if (sessionStorage.getItem('simi_hash')) {
-                let simi_hash = sessionStorage.getItem('simi_hash').replace(/['"]+/g, '');
-                this._dataGet.push(`simi_hash=${simi_hash}`)
-            } else if (sessionStorage.getItem('password')) {
-                let password = sessionStorage.getItem('password').replace(/['"]+/g, '');
-                this._dataGet.push(`password=${password}`)
+        if(typeof(Storage) !== "undefined"){
+            if (sessionStorage.getItem('email')) {
+                let email = sessionStorage.getItem('email').replace(/['"]+/g, '');
+                this._dataGet.push(`email=${email}`)
+                if (sessionStorage.getItem('simi_hash')) {
+                    let simi_hash = sessionStorage.getItem('simi_hash').replace(/['"]+/g, '');
+                    this._dataGet.push(`simi_hash=${simi_hash}`)
+                } else if (sessionStorage.getItem('password')) {
+                    let password = sessionStorage.getItem('password').replace(/['"]+/g, '');
+                    this._dataGet.push(`password=${password}`)
+                }
             }
         }
         this._dataGet = this._dataGet.join('&')

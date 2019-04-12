@@ -1,6 +1,6 @@
 const express = require('express')
 const next = require('next')
-
+const path = require('path')
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({dev})
 // const handle = app.getRequestHandler()
@@ -29,7 +29,7 @@ app.prepare()
         })
 
         server.get('/simi-sw.js',({req, res, route, query})=>{
-            const filePath = join(__dirname, 'build', '/simi-sw.js')
+            const filePath = path.join(__dirname, 'build', '/simi-sw.js')
             app.serveStatic(req, res, filePath)
         })
 

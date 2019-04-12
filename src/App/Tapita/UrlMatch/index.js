@@ -11,7 +11,7 @@ class UrlMatch extends React.Component{
     static async getInitialProps(ctx){
         let query = ctx.query
         let component = 'home'
-        if(query.hasOwnProperty('0')){
+        if(query && query.hasOwnProperty('0')){
             let obj = Identify.getUrlMatchApi('/'+query[0])
             if(obj){
                 component = obj.type
