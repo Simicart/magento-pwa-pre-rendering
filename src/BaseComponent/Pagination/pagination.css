@@ -1,0 +1,12 @@
+.icon-page-number {
+    padding: 0 10px 0 10px;
+}
+.icon-page-number:hover {
+    cursor: pointer;
+}
+
+@media (max-width: 767px) {
+    .icon-page-number {
+        padding: 6px 6px 0 6px;
+    }
+}
