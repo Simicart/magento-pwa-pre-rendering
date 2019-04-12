@@ -30,7 +30,6 @@ class OrderDetail extends PageAbstract {
                 this.isAllowReOrder = parseInt(saleConfigs.sales_reorder_allow, 10) === 1;
             }
         }
-        this.s
         this.isQuoteItemRequest = false;
         this.requestReOrder = false;
         this.requestOrderDetail = true;

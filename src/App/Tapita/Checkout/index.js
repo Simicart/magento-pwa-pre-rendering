@@ -21,6 +21,7 @@ class CheckoutPage extends CheckoutAbstract{
         step : 1
     }
 
+
     callApi(){
         if(this.place_order_paypal){
             this.place_order = true
