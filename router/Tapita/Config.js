@@ -49,6 +49,11 @@ const tapitaRoute = {
         page: 'Tapita/MyOrder',
         pattern: '/sales/order/history'
     },
+    customer_address: {
+        name: 'address',
+        page: 'Tapita/Address',
+        pattern: '/customer/address'
+    },
     order_detail: {
         name: 'order_detail',
         page: 'Tapita/OrderDetail',
