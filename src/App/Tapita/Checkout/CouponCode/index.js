@@ -39,16 +39,16 @@ class CouponCode extends CheckoutSection {
         let params = {coupon_code : couponValue};
         Identify.showLoading();
         this.CheckoutParent.requestUpdateOrder(params)
-        Analytics.analyticsTracking(
-            {
-                mixpanel : true,
-                ga : false
-            }, 
-            {
-                action: 'apply_coupon_code_checkout',
-                value: couponValue,
-            }
-        )
+        // Analytics.analyticsTracking(
+        //     {
+        //         mixpanel : true,
+        //         ga : false
+        //     },
+        //     {
+        //         action: 'apply_coupon_code_checkout',
+        //         value: couponValue,
+        //     }
+        // )
     };
 
     componentDidUpdate(){

@@ -20,7 +20,7 @@ export const Page404 = ()=>{
                 fontSize : '16px'
             }}>{Identify.__('Page not found')}</p>
             <div className="btn-back-to-home">
-                <Link to="/">
+                <Link route={'home'}>
                     <Button
                         text={Identify.__('Back to Home')}
                         textStyle={{
