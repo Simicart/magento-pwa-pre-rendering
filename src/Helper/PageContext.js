@@ -10,7 +10,7 @@ const theme = createMuiTheme({
     primary: {
         contrastText: Identify.getColorConfig().button_text_color,
         main: Identify.getColorConfig().button_background
-    }
+    },
   },
   direction: Identify.isRtl() ? 'rtl' : 'ltr',
   typography: {

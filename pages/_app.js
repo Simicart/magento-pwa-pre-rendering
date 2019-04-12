@@ -83,7 +83,17 @@ export default class MyApp extends App {
         // Remove the server-side injected CSS.
         const jssStyles = document.querySelector('#jss-server-side');
         if (jssStyles && jssStyles.parentNode) {
-        jssStyles.parentNode.removeChild(jssStyles);
+            jssStyles.parentNode.removeChild(jssStyles);
+        }
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker
+                .register('/simi-sw.js')
+                .then(registration => {
+                    console.log('service worker registration successful')
+                })
+                .catch(err => {
+                    console.warn('service worker registration failed', err.message)
+                })
         }
     }
 

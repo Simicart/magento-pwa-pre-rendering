@@ -1,2 +1,2 @@
-import React from 'react'
-export default () => <div>Tapita Checkout</div>
+import {CheckoutTapita} from "../../src/App/Tapita/Checkout/HoC";
+export default CheckoutTapita

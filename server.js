@@ -20,12 +20,19 @@ app.prepare()
     .then(() => {
         server.use(bodyParser.urlencoded({ extended: false }));
         server.use(bodyParser.json());
+
         server.post('/change-storeview',async (req, res) => {
             console.log(serverCache.keys())
             let data = await changeStoreView(req.body.api)
             serverCache.put('merchant_config',data)
             res.json({...data})
         })
+
+        server.get('/simi-sw.js',({req, res, route, query})=>{
+            const filePath = join(__dirname, 'build', '/simi-sw.js')
+            app.serveStatic(req, res, filePath)
+        })
+
         server.use(handler).listen(8080)
         console.log('Server is running')
     })

@@ -7,11 +7,14 @@
  a {
      color: inherit !important
  }
+.app-body {
+    margin-bottom: 50px;
+}
 div#app-loading {
     height: 100%;
     width: 100%;
     position: fixed;
-    top: 0px;
+    top: 0;
     display: -ms-flexbox;
     display: flex;
     background: #ffffff;

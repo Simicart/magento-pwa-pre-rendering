@@ -364,6 +364,26 @@ class Identify {
         }
         return false;
     }
+
+    static hasVirtualItem = (quoteItems = []) => {
+        let hasIt = false
+        for (let i in quoteItems) {
+            let item = quoteItems[i]
+            if(item.is_virtual && parseInt(item.is_virtual, 10) !== 0) {
+                hasIt = true
+                break
+            }
+        }
+        return hasIt
+    }
+
+    static isVirtualCart = (quoteItems = []) => {
+        let cartLength = quoteItems.length;
+        let virtualItems = quoteItems.filter(item => {
+            return item.is_virtual === true || parseInt(item.is_virtual, 10) === 1;
+        });
+        return cartLength === virtualItems.length;
+    }
 }
 
 export default Identify;

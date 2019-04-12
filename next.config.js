@@ -1,9 +1,35 @@
 const path = require('path')
 const withCSS = require('@zeit/next-css')
+const withImages = require('next-images')
 const autoprefixer = require('autoprefixer')
 const withBundleAnalyzer = require('@zeit/next-bundle-analyzer')
+const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
 let config = {
-    webpack: config => {
+    distDir : process.env.NODE_ENV !== 'production' ? '.next' : 'build',
+    generateBuildId: async () => {
+        // For example get the latest git commit hash here
+        return 'simipwa';
+    },
+    webpack: (config,{dev}) => {
+        if(!dev){
+            config.plugins.push(new SWPrecacheWebpackPlugin({
+                cacheId: 'simipwa',
+                filepath: 'build/simi-sw.js',
+                staticFileGlobs: ['static/**/*'],
+                minify: true,
+                staticFileGlobsIgnorePatterns: [/\.next\//],
+                runtimeCaching: [{
+                    handler: 'fastest',
+                    urlPattern: /[.](png|jpg|css)/
+                },
+                {
+                    handler: 'networkFirst',
+                    urlPattern: /^http.*/
+                }],
+                stripPrefix: "build/",
+                mergeStaticsConfig: true
+            }))
+        }
         // Fixes npm packages that depend on `fs` module
         config.node = {
             fs: 'empty'
@@ -49,5 +75,5 @@ let config = {
     }
     // target: 'serverless'
 }
-config = withBundleAnalyzer(withCSS(config))
+config = withBundleAnalyzer(withCSS(withImages(config)))
 module.exports = config;

@@ -19,7 +19,7 @@ import BackIcon from '../../../BaseComponent/Icon/Back'
 import Menu from '../../../BaseComponent/Icon/Menu';
 import Search from '../../../BaseComponent/Icon/Search'
 import SearchBar from './Component/Search'
-
+import WishListIcon from '../../../BaseComponent/Icon/Heart-shape-outline'
 const configColor = Identify.getColorConfig()
 class AppBar extends Abstract{
     renderLogo = ()=>{
