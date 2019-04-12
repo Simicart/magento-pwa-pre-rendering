@@ -18,7 +18,8 @@ import UserIcon from '@material-ui/icons/Person'
 import AddressIcon from '../../../BaseComponent/Icon/AddressBook'
 import OrderIcon from '@material-ui/icons/CardTravel'
 import LogoutIcon from '@material-ui/icons/ExitToApp'
-import {Dashboard} from "./HoC";
+import {Dashboard, MyOrder} from "./HoC";
+import OrderDetail from './Page/OrderDetail';
 
 const styles = {
     icon : {
@@ -29,10 +30,16 @@ const styles = {
 }
 const configColor = Identify.getColorConfig()
 class CustomerDashboard extends Abstract{
-
     constructor(props) {
         super(props);
-        this.state.page = 'dashboard'
+        this.state.page = 'dashboard';
+
+    }
+    static getDerivedStateFromProps(nextProps, prevState) {
+        if (!nextProps.page || nextProps.page === prevState.page) {
+            return null
+        }
+        return {page: nextProps.page}
     }
 
     getMenuConfig = () => {
@@ -89,13 +96,6 @@ class CustomerDashboard extends Abstract{
         return menuConfig
     }
 
-    static getDerivedStateFromProps(nextProps, prevState) {
-        if (!nextProps.page || nextProps.page === prevState.page) {
-            return null
-        }
-        return {page: nextProps.page}
-    }
-
     handleClickMenu = (page, isUrl = true) => {
         if (isUrl) {
             this.pushLink(page)
@@ -146,6 +146,12 @@ class CustomerDashboard extends Abstract{
             case 'dashboard' :
                 content = <Dashboard/>;
                 break;
+            case 'my-order':
+                content = <MyOrder parent={this}/>
+                break;
+            case 'order-detail':
+                content = <OrderDetail parent={this} />
+                break;
             default :
                 content = <Dashboard/>
         }
@@ -158,18 +164,16 @@ class CustomerDashboard extends Abstract{
 
     render() {
         return (
-            <Layout header={{title:Identify.__('Customer Dashboard')}}>
-                <div className="container my-dashboard" style={{marginBottom: 30}}>
-                    <div className="row">
-                        <div className="col-sm-3 hidden-xs">
-                            {this.renderMenu()}
-                        </div>
-                        <div className="col-sm-9 col-xs-12">
-                            {this.renderContent()}
-                        </div>
+            <div className="container my-dashboard" style={{marginBottom: 30}}>
+                <div className="row">
+                    <div className="col-sm-3 hidden-xs">
+                        {this.renderMenu()}
+                    </div>
+                    <div className="col-sm-9 col-xs-12">
+                        {this.renderContent()}
                     </div>
                 </div>
-            </Layout>
+            </div>
         );
     }
 }

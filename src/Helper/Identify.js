@@ -306,7 +306,6 @@ class Identify {
         if(this.isClient()){
             return this.getDataFromStoreage(this.SESSION_STOREAGE,'isMobile')
         }else {
-            // console.log(serverCache.get('isMobile'))
             return serverCache.get('isMobile')
         }
     }
