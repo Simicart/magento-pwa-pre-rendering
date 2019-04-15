@@ -13,5 +13,6 @@ module.exports = routes()
 .add(routerConfig.customer_dashboard)
 .add(routerConfig.customer_order)
 .add(routerConfig.order_detail)
+.add(routerConfig.profile)
 .add(routerConfig.url_match)
 

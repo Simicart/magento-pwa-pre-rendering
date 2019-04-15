@@ -19,3 +19,5 @@ export const Dashboard = props => <Dynamic component={()=>import('./Page/Account
 export const MyOrder = props => <Dynamic component={() => import('./Page/MyOrder')} {...props} />
 
 export const OrderDetail = props => <Dynamic component={() => import('./Page/OrderDetail')} {...props} />
+
+export const Profile = props => <Dynamic component={() => import('./Page/AccountInformation')}{...props}/>
