@@ -21,6 +21,7 @@ import LogoutIcon from '@material-ui/icons/ExitToApp'
 import {Dashboard, MyOrder} from "./HoC";
 import OrderDetail from './Page/OrderDetail';
 import Address from './Page/AddressBook';
+import MyDowloadable from './Page/MyDowloadable';
 
 const styles = {
     icon : {
@@ -158,6 +159,9 @@ class CustomerDashboard extends Abstract{
                 break;
             case 'edit-address':
                 content = <Address parent={this} page="edit-address"/>
+                break;
+            case 'downloadable':
+                content = <MyDowloadable parent={this} />
                 break;
             default :
                 content = <Dashboard/>

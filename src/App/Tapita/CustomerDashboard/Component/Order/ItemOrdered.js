@@ -14,7 +14,7 @@ class ItemOrdered extends Abstract {
         this.configs = Identify.getMerchantConfig() || {};
     }
 
-    toggleOptionView = () => {
+    toggleOptionView = (item_id) => {
         const $ = window.$; 
         let currentItem = $('#btn-'+item_id);
         let iconElement = currentItem.find('svg');
