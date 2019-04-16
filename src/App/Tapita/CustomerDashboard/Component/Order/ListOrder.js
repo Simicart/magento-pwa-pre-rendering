@@ -48,6 +48,10 @@ class ListOrder extends Abstract {
         });
     }
 
+    componentWillUnmount() {
+        this.unmount = true;
+    }
+
     loadMoreData = () => {
         if(this.props.order_history.orders !== undefined
             && this.props.order_history.orders.length > 0    

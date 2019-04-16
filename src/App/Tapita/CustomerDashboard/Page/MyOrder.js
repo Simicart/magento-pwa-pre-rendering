@@ -12,7 +12,7 @@ class MyOrder extends PageAbstract {
     constructor(props) {
         super(props);
         this.OrderModel = new OrderModel({ obj: this});
-        this.CartModel = new CartModel({ obj: this});
+        this.CartModel = new CartModel({ obj: this });
         this.state.isPhone = window.innerWidth < 768;
         this.configs = Identify.getMerchantConfig() || {};
         this.isAllowReOrder = false;

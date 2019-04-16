@@ -11,6 +11,15 @@ class AddressModel extends Model{
         return this.advancedConnect('DELETE', api, {}, {});
     };
 
+    addNewAddress = (data) => {
+        return this.advancedConnect('POST', 'addresses', {}, data);
+    }
+
+    updateAddress = (addressId, data) => {
+        data['entity_id'] = addressId;
+        return this.advancedConnect('PUT', 'addresses', {}, data);
+    }
+
     getAddressesCollection = (limit = 100, offset = 0) => {
         let api = 'addresses';
         let data = {

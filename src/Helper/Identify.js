@@ -37,6 +37,11 @@ class Identify {
         console.log('This Browser dont supported storeage');
     }
 
+    static clearQuote() {
+        sessionStorage.removeItem('quote_id');
+        sessionStorage.removeItem('cart_number');
+        sessionStorage.removeItem('quoteitems');
+    }
 
     static getDataFromStoreage(type, key) {
         if (typeof(Storage) !== "undefined") {
