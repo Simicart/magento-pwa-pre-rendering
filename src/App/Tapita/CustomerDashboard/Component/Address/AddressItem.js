@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import Abstract from '../../../../Core/BaseAbstract';
-import AddressModel from '../../../../Core/Address/AddressModel';
+import AddressModel from '../../../../Core/Address/Model';
 import {confirmAlert} from 'react-confirm-alert';
 import Identify from '../../../../../Helper/Identify';
 import EditIcon from '../../../../../BaseComponent/Icon/Edit';
 import PropTypes from 'prop-types';
 
 class AddressItem extends Abstract{
-
     constructor(props) {
         super(props);
         this.parent = props.parent;
@@ -33,7 +32,8 @@ class AddressItem extends Abstract{
     }
 
     handleEditAddress = () => {
-        this.pushLink('/customer/address/edit-address', {address: this.addressData})
+        Identify.storeDataToStoreage(Identify.SESSION_STOREAGE, 'address_item', this.addressData);
+        this.pushLink('/customer/address/edit-address')
     }
 
     handleDeleteAddress = (addressId) => {
@@ -58,7 +58,7 @@ class AddressItem extends Abstract{
             Identify.showToastMessage(Identify.__('This address has been removed'))
         } else {
             Identify.showLoading();
-            this.AddressModel.getAddressCollection()
+            this.AddressModel.getAddressesCollection()
             this.updateCollection = true;
         }
     }

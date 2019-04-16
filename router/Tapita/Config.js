@@ -54,6 +54,11 @@ const tapitaRoute = {
         page: 'Tapita/Address',
         pattern: '/customer/address'
     },
+    customer_edit_address: {
+        name: 'edit_address',
+        page: 'Tapita/EditAddress',
+        pattern: '/customer/address/edit-address'
+    },
     order_detail: {
         name: 'order_detail',
         page: 'Tapita/OrderDetail',
