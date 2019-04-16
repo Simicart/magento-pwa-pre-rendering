@@ -7,7 +7,7 @@
 import React from 'react'
 import dynamic from 'next/dynamic'
 import Loading from '../Loading/LoadingImg'
-export const LazyComponent = props => {
+export const Dynamic = props => {
     const Component = dynamic({
         loader : props.component,
         loading : ()=><Loading/>,

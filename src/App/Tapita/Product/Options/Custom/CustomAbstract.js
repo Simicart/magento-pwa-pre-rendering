@@ -6,14 +6,14 @@ import Radio from '../Type/Radio';
 import Select from '../Type/Select';
 import TextField from '../Type/Text';
 import FileSelect from '../Type/File';
-import {LazyComponent} from "../../../../../BaseComponent/Async";
+import {Dynamic} from "../../../../../BaseComponent/Async";
 
 const $ = window.$;
 const DatePicker = (props)=>{
-    return <LazyComponent component={()=>import('../Type/Date')} {...props}/>
+    return <Dynamic component={()=>import('../Type/Date')} {...props}/>
 }
 const TimePicker = (props)=>{
-    return <LazyComponent component={()=>import('../Type/Time')} {...props}/>
+    return <Dynamic component={()=>import('../Type/Time')} {...props}/>
 }
 class CustomAbstract extends OptionAbstract {
 

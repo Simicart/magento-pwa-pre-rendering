@@ -5,17 +5,17 @@
  * Time: 1:41 PM
  */
 import React from 'react'
-import {LazyComponent} from "../../../BaseComponent/Async";
+import {Dynamic} from "../../../BaseComponent/Async";
 
-export const ProductOptions = props => <LazyComponent component={()=>import('./Options')} {...props}/>
+export const ProductOptions = props => <Dynamic component={()=>import('./Options')} {...props}/>
 
-export const CustomOptions = props => <LazyComponent component={()=>import('./Options/Custom/CustomTablet')} {...props}/>
+export const CustomOptions = props => <Dynamic component={()=>import('./Options/Custom/CustomTablet')} {...props}/>
 
-export const BundleOptions = props => <LazyComponent component={()=>import('./Options/Bundle/BundleTablet')} {...props}/>
+export const BundleOptions = props => <Dynamic component={()=>import('./Options/Bundle/BundleTablet')} {...props}/>
 
-export const ConfigurableOptions = props => <LazyComponent component={()=>import('./Options/Configurable/ConfigurableTablet')} {...props}/>
+export const ConfigurableOptions = props => <Dynamic component={()=>import('./Options/Configurable/ConfigurableTablet')} {...props}/>
 
-export const DownloadOptions = props => <LazyComponent component={()=>import('./Options/Downloadable/DownloadableTablet')} {...props}/>
+export const DownloadOptions = props => <Dynamic component={()=>import('./Options/Downloadable/DownloadableTablet')} {...props}/>
 
-export const GroupedOptions = (props)=> <LazyComponent component={()=>import('./Options/Grouped/GroupedTablet')} {...props}/>
+export const GroupedOptions = (props)=> <Dynamic component={()=>import('./Options/Grouped/GroupedTablet')} {...props}/>
 

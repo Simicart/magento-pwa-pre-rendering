@@ -11,7 +11,7 @@ import CheckoutAddress from '../../../Core/Checkout/CheckoutAddress'
 import Panel from '../../../../BaseComponent/Panel'
 import LoadingImg from '../../../../BaseComponent/Loading/LoadingImg'
 import Radio from '@material-ui/core/Radio'
-import {LazyComponent} from "../../../../BaseComponent/Async";
+import {Dynamic} from "../../../../BaseComponent/Async";
 const configColor = Identify.getColorConfig()
 class BillingAddress extends CheckoutAddress{
 
@@ -109,7 +109,7 @@ class BillingAddress extends CheckoutAddress{
                 )}
                 {!CustomerHelper.isLogin() && (
                     <div className="new-billing-address">
-                        <LazyComponent component={()=>import(/* webpackChunkName: "CheckoutAddressForm"*/'../Address/AddressForm')}
+                        <Dynamic component={()=>import(/* webpackChunkName: "CheckoutAddressForm"*/'../Address/AddressForm')}
                                        parent={this}
                                        className={`billing-address-form`}
                                        id={this.idFormAddress}
