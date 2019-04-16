@@ -64,6 +64,11 @@ const tapitaRoute = {
         page: 'Tapita/Downloadable',
         pattern: '/downloadable/customer/products'
     },
+    customer_newsletter: {
+        name: 'newsletter',
+        page: 'Tapita/Newsletter',
+        pattern: '/newsletter/manager'
+    },
     order_detail: {
         name: 'order_detail',
         page: 'Tapita/OrderDetail',

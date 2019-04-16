@@ -22,6 +22,7 @@ import { Dashboard, MyOrder, Profile } from "./HoC";
 import OrderDetail from './Page/OrderDetail';
 import Address from './Page/AddressBook';
 import MyDowloadable from './Page/MyDowloadable';
+import Newsletter from './Page/Newsletter';
 
 const styles = {
     icon: {
@@ -162,6 +163,9 @@ class CustomerDashboard extends Abstract {
                 break;
             case 'downloadable':
                 content = <MyDowloadable parent={this} />
+                break;
+            case 'newsletter':
+                content = <Newsletter parent={this} />
                 break;
             default :
                 content = <Dashboard/>
