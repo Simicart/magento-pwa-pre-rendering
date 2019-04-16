@@ -2,7 +2,8 @@ import React from 'react';
 import OptionAbstract from '../Abstract';
 import Identify from '../../../../../Helper/Identify';
 import LabelAttribute from '../Type/Label';
-import {configColor} from "../../../../../Config";
+
+const configColor = Identify.getColorConfig()
 const $ = window.$;
 class ConfigurableAbstract extends OptionAbstract {
 

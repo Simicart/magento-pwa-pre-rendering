@@ -5,8 +5,7 @@ import SelectField from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import { withStyles } from '@material-ui/core/styles';
 import FormControl from '@material-ui/core/FormControl';
-import {configColor} from "../../../../../Config/index";
-
+const configColor = Identify.getColorConfig()
 const styles = {
     formControl : {
         color : configColor.button_background

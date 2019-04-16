@@ -19,6 +19,7 @@ const Head = props => (
     <link rel="mask-icon" href="/static/favicon-mask.svg" color="#49B882" />
     <link rel="icon" href="/static/favicon.ico" />
     <link rel="manifest" href="/static/manifest.json" />
+    <link async rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.css" />
     <link rel="stylesheet" href="/static/css/bootstrap.css"/>
       <meta property="og:url" content={props.url || defaultOGURL} />
     <meta property="og:title" content={props.title || ''} />

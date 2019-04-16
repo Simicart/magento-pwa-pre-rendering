@@ -10,7 +10,7 @@ import Identify from "../../../../Helper/Identify";
 
 class ProductPath extends Abstract{
     render(){
-        this.product = this.props.data.product
+        this.product = this.props.data.product || {}
         return (
             <div className="row top-header">
                 <div className="col-sm-12">

@@ -59,7 +59,8 @@ let config = {
         }
     },
     cssLoaderOptions : {
-        importLoaders : 1
+        importLoaders : 1,
+        localIdentName: "[local]___[hash:base64:5]"
     },
     analyzeServer: ['server', 'both'].includes(process.env.BUNDLE_ANALYZE),
     analyzeBrowser: ['browser', 'both'].includes(process.env.BUNDLE_ANALYZE),

@@ -1,7 +1,8 @@
 import React from 'react';
-import View from '../../../../../BaseComponent/ViewComponent';
-import {configColor} from "../../../../../Config";
+import View from '../../../../Core/BaseAbstract';
+import Identify from "../../../../../Helper/Identify";
 const $ = window.$;
+const configColor = Identify.getColorConfig()
 class Abstract extends View {
     constructor(props){
         super(props);

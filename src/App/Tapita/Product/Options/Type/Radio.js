@@ -5,7 +5,7 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Identify from "../../../../../Helper/Identify";
 import { withStyles } from '@material-ui/core/styles';
-import {configColor} from "../../../../../Config/index";
+const configColor = Identify.getColorConfig()
 const styles = {
     root: {
         color:'#333',
@@ -25,7 +25,7 @@ class RadioField extends Abstract {
         this.showTier = false;
         if(this.type_id === 'bundle'){
             let defaultItem = defaultValue !== 0 ? this.props.data.selections[defaultValue] : {};
-            this.showTier = defaultItem.tierPrice && defaultItem.tierPrice.length > 0;
+            this.showTier = defaultItem.tierPrice && Array.isArray(defaultItem.tierPrice) && defaultItem.tierPrice.length > 0;
         }
 
     }

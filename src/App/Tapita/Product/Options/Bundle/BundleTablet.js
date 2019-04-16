@@ -2,7 +2,7 @@ import React from 'react';
 import BundleAbstract from './BundleAbstract';
 import Button from '../../../../../BaseComponent/Button';
 import Identify from "../../../../../Helper/Identify";
-import {configColor} from "../../../../../Config";
+const configColor = Identify.getColorConfig()
 const $ = window.$;
 class BundleTablet extends BundleAbstract {
 
@@ -35,7 +35,7 @@ class BundleTablet extends BundleAbstract {
                     }}
                     textStyle={{
                         textAlign: 'center',
-                        fontSize: '18px',
+                        fontSize: '16px',
                         fontWeight: "600"
                     }}
                     text={Identify.__('Customize & Add to Cart')}
@@ -67,15 +67,15 @@ class BundleTablet extends BundleAbstract {
                     <div className="customize-price-bundle" style={{marginTop : 15}}>
                         <div className="product-name">{Identify.__('Your Customization')}</div>
                         <div className="configured_price_ex" style={{display: 'none'}}>
-                            <span className="price" style={price_style}></span>
-                            <span className="label-price small"></span>
+                            <span className="price" style={price_style}/>
+                            <span className="label-price small"/>
                         </div>
                         <div className="configured_price_in" style={{display: 'none'}}>
-                            <span className="price" style={price_style}></span>
-                            <span className="label-price small"></span>
+                            <span className="price" style={price_style}/>
+                            <span className="label-price small"/>
                         </div>
                         <div className="configured_label" style={{display: 'none'}}>
-                            <span className="price" style={price_style}></span>
+                            <span className="price" style={price_style}/>
                         </div>
                     </div>
                 </div>

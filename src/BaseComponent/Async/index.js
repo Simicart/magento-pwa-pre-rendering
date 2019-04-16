@@ -11,7 +11,7 @@ export const LazyComponent = props => {
     const Component = dynamic({
         loader : props.component,
         loading : ()=><Loading/>,
-        ssr : false
+        ssr : false,
     })
     return <Component {...props}/>
 }

@@ -383,6 +383,37 @@ class Identify {
         });
         return cartLength === virtualItems.length;
     }
+
+    static magentoPlatform() {
+        let merchantConfig = this.getMerchantConfig();
+        let platform = 1;
+        if (merchantConfig !== null) {
+            if (merchantConfig.storeview.base && merchantConfig.storeview.base.magento_version) {
+                platform = parseInt(merchantConfig.storeview.base.magento_version, 10);
+            }
+        }
+        return platform;
+    }
+
+    static smoothScrollToView = (querySelector, duration = 350) => {
+        const $ = window.$
+        if(querySelector && querySelector.offset() instanceof Object){
+            let offsetTop = querySelector.offset().top;
+
+            let elementHeight = querySelector.height();
+            let windowHeight = $(window).height();
+            let offset = offsetTop;
+
+            if (elementHeight < windowHeight) {
+                offset = offsetTop - ((windowHeight / 2) - (elementHeight / 2));
+            }
+
+            $('html, body').animate({
+                scrollTop: offset
+            }, duration);
+        }
+
+    }
 }
 
 export default Identify;
