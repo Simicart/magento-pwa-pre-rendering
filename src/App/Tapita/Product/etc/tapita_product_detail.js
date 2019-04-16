@@ -12,6 +12,8 @@ import ProductName from '../Component/ProductName'
 import ReviewCount from '../Component/ReviewCount'
 import ProductPrice from '../Component/ProductPrice'
 import ProductAction from '../Component/ProductAction'
+import {ProductOptions} from "../HoC";
+
 export const layoutConfig =  {
     top_section : {
         product_path : {
@@ -43,13 +45,8 @@ export const layoutConfig =  {
             enable : true,
             sort_order : 20,
         },
-        product_price : {
-            component : ProductPrice,
-            enable : true,
-            sort_order : 30
-        },
-        product_action : {
-            component : ProductAction,
+        product_options : {
+            component :   ProductOptions,
             enable : true,
             sort_order : 40
         }

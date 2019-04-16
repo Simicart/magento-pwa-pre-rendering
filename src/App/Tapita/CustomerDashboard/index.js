@@ -18,20 +18,20 @@ import UserIcon from '@material-ui/icons/Person'
 import AddressIcon from '../../../BaseComponent/Icon/AddressBook'
 import OrderIcon from '@material-ui/icons/CardTravel'
 import LogoutIcon from '@material-ui/icons/ExitToApp'
-import {Dashboard, MyOrder} from "./HoC";
+import { Dashboard, MyOrder, Profile } from "./HoC";
 import OrderDetail from './Page/OrderDetail';
 import Address from './Page/AddressBook';
 import MyDowloadable from './Page/MyDowloadable';
 
 const styles = {
-    icon : {
-        width : 30,
-        height : 30,
-        fill : '#717171'
+    icon: {
+        width: 30,
+        height: 30,
+        fill: '#717171'
     }
 }
 const configColor = Identify.getColorConfig()
-class CustomerDashboard extends Abstract{
+class CustomerDashboard extends Abstract {
     constructor(props) {
         super(props);
         this.state.page = 'dashboard';
@@ -41,58 +41,58 @@ class CustomerDashboard extends Abstract{
         if (!nextProps.page || nextProps.page === prevState.page) {
             return null
         }
-        return {page: nextProps.page}
+        return { page: nextProps.page }
     }
 
     getMenuConfig = () => {
         let menuConfig = {
-            dashboard : {
-                title : 'Account Dashboard',
-                page : 'dashboard',
-                url : '/customer/dashboard',
-                enable : true,
-                icon : <DashboardIcon style={styles.icon}/>
+            dashboard: {
+                title: 'Account Dashboard',
+                page: 'dashboard',
+                url: '/customer/dashboard',
+                enable: true,
+                icon: <DashboardIcon style={styles.icon} />
             },
-            account : {
-                title : 'Account Information',
-                page : 'my-account',
-                url : '/customer/account/edit',
-                enable : true,
-                icon : <UserIcon style={styles.icon}/>
+            account: {
+                title: 'Account Information',
+                page: 'my-account',
+                url: '/customer/account/edit',
+                enable: true,
+                icon: <UserIcon style={styles.icon} />
             },
-            address : {
-                title : 'Address Book',
-                page : 'address edit-address',
-                url : '/customer/address',
-                enable : true,
-                icon : <AddressIcon style={styles.icon}/>
+            address: {
+                title: 'Address Book',
+                page: 'address edit-address',
+                url: '/customer/address',
+                enable: true,
+                icon: <AddressIcon style={styles.icon} />
             },
-            order_detail : {
-                title : 'My Orders',
-                page : 'my-order order-detail',
-                url : '/sales/order/history',
-                enable : true,
-                icon : <OrderIcon style={styles.icon}/>
+            order_detail: {
+                title: 'My Orders',
+                page: 'my-order order-detail',
+                url: '/sales/order/history',
+                enable: true,
+                icon: <OrderIcon style={styles.icon} />
             },
-            my_downloadable : {
-                title : 'My Downloadable Products',
-                page : 'my-downloadable',
-                url : '/downloadable/customer/products',
-                enable : Identify.connectorVersion(),
-                icon : <DownloadIcon style={styles.icon}/>
+            my_downloadable: {
+                title: 'My Downloadable Products',
+                page: 'my-downloadable',
+                url: '/downloadable/customer/products',
+                enable: Identify.connectorVersion(),
+                icon: <DownloadIcon style={styles.icon} />
             },
-            newsletter : {
-                title : 'Newsletter Subscriptions',
-                page : 'newsletter',
-                url : '/newsletter/manager',
-                enable : true,
-                icon : <EmailIcon style={styles.icon}/>
+            newsletter: {
+                title: 'Newsletter Subscriptions',
+                page: 'newsletter',
+                url: '/newsletter/manager',
+                enable: true,
+                icon: <EmailIcon style={styles.icon} />
             },
-            logout : {
-                title : 'Log out',
-                url : '/customer/account/logout',
-                enable : true,
-                icon : <LogoutIcon style={styles.icon}/>
+            logout: {
+                title: 'Log out',
+                url: '/customer/account/logout',
+                enable: true,
+                icon: <LogoutIcon style={styles.icon} />
             }
         }
         return menuConfig
@@ -103,7 +103,7 @@ class CustomerDashboard extends Abstract{
             this.pushLink(page)
             return
         }
-        this.setState({page})
+        this.setState({ page })
     };
 
     renderMenu = () => {
@@ -115,7 +115,7 @@ class CustomerDashboard extends Abstract{
         };
         const menuConfig = this.getMenuConfig()
         const page = this.state.page;
-        let menu = Object.keys(menuConfig).map((id,key)=>{
+        let menu = Object.keys(menuConfig).map((id, key) => {
             let item = menuConfig[id];
             let pageMenu = new String(item.page)
             return item.enable ?
@@ -127,11 +127,11 @@ class CustomerDashboard extends Abstract{
                     style={menuStyle}
                 >
                     <span className={`menu-title-item ${item.page}`}
-                          style={{fontSize: '16px',color: pageMenu.indexOf(page) > -1 ? configColor.button_background : '#333'}}>
+                        style={{ fontSize: '16px', color: pageMenu.indexOf(page) > -1 ? configColor.button_background : '#333' }}>
                         {Identify.__(item.title)}
                     </span>
                 </ListItem> : null
-        },this)
+        }, this)
         return (
             <div className="menu-dashboard">
                 <List>
@@ -141,15 +141,15 @@ class CustomerDashboard extends Abstract{
         )
     };
 
-    renderContent(){
-        const {page} = this.state;
-        let content = <div/>
+    renderContent() {
+        const { page } = this.state;
+        let content = <div />
         switch (page) {
-            case 'dashboard' :
-                content = <Dashboard/>;
+            case 'dashboard':
+                content = <Dashboard />;
                 break;
             case 'my-order':
-                content = <MyOrder parent={this}/>
+                content = <MyOrder parent={this} />
                 break;
             case 'order-detail':
                 content = <OrderDetail parent={this} />
@@ -175,7 +175,7 @@ class CustomerDashboard extends Abstract{
 
     render() {
         return (
-            <div className="container my-dashboard" style={{marginBottom: 30}}>
+            <div className="container my-dashboard" style={{ marginBottom: 30 }}>
                 <div className="row">
                     <div className="col-sm-3 hidden-xs">
                         {this.renderMenu()}

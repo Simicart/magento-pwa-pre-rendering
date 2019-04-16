@@ -1,10 +1,6 @@
 import React from 'react';
 import Abstract from './Abstract';
-import TimePicker from 'material-ui/TimePicker';
 import Identify from "../../../../../Helper/Identify";
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-const muiTheme = getMuiTheme({});
 class Time extends Abstract {
     state = {
         time : null,
@@ -46,21 +42,22 @@ class Time extends Abstract {
     };
 
     renderTimePicker = () => {
-        return (
-            <MuiThemeProvider muiTheme={muiTheme}>
-                <TimePicker
-                    format="ampm"
-                    hintText={Identify.__('Select time') + ": --:-- --"}
-                    value={this.state.time}
-                    onChange={this.handleChangeTimePicker}
-                    textFieldStyle={{
-                        fontFamily : 'Montserrat, sans-serif',
-                        color : 'rgba(0, 0, 0, 0.87)'
-                    }}
-                />
-            </MuiThemeProvider>
-
-        )
+        return null
+        // return (
+        //     <MuiThemeProvider muiTheme={muiTheme}>
+        //         <TimePicker
+        //             format="ampm"
+        //             hintText={Identify.__('Select time') + ": --:-- --"}
+        //             value={this.state.time}
+        //             onChange={this.handleChangeTimePicker}
+        //             textFieldStyle={{
+        //                 fontFamily : 'Montserrat, sans-serif',
+        //                 color : 'rgba(0, 0, 0, 0.87)'
+        //             }}
+        //         />
+        //     </MuiThemeProvider>
+        //
+        // )
     }
 
     render(){

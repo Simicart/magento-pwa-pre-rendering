@@ -1,9 +1,9 @@
 import React from 'react';
-import View from '../../../../BaseComponent/ViewComponent';
-import ProductAddToCart from '../Component/ProductAddToCart';
+import View from '../../../Core/BaseAbstract';
+import ProductAddToCart from '../Component/ProductAction';
 import {Qty} from '../../../../BaseComponent/Input/index';
 import Identify from "../../../../Helper/Identify";
-import {configColor} from "../../../../Config";
+const configColor = Identify.getColorConfig()
 const $ = window.$;
 class Abstract extends View {
     constructor(props) {
@@ -23,7 +23,7 @@ class Abstract extends View {
     };
 
     renderProductAddToCart = (hiddenQty = false,QtyClass = '',className='btn-cart') => {
-        return <div className={className}><ProductAddToCart parent={this} inputClass={QtyClass} hidden={hiddenQty} data={this.parentObj.props.product} /></div>
+        return <div className={className}><ProductAddToCart parent={this} inputClass={QtyClass} hidden={hiddenQty} data={this.parentObj.data} /></div>
     };
 
     renderOptionInputQty = (key,qty = 1,style={}) => {

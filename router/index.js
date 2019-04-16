@@ -16,5 +16,6 @@ module.exports = routes()
 .add(routerConfig.customer_edit_address)
 .add(routerConfig.customer_downloadable)
 .add(routerConfig.order_detail)
+.add(routerConfig.profile)
 .add(routerConfig.url_match)
 

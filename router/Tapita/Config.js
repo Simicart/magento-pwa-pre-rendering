@@ -69,6 +69,11 @@ const tapitaRoute = {
         page: 'Tapita/OrderDetail',
         pattern: '/sales/order/order-detail/:orderId?'
     },
+    profile: {
+        name: 'my_account',
+        page: 'Tapita/Profile',
+        pattern: '/customer/account/edit'
+    },
     url_match : {
         name : 'url_match',
         page : 'Tapita/UrlMatch',

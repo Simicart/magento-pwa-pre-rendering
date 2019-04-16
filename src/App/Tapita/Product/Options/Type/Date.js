@@ -1,10 +1,6 @@
 import React from 'react';
 import Abstract from './Abstract';
-import DatePicker from 'material-ui/DatePicker';
 import Identify from "../../../../../Helper/Identify";
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-const muiTheme = getMuiTheme({});
 class DateField extends Abstract {
 
     constructor(props){
@@ -58,24 +54,25 @@ class DateField extends Abstract {
 
     renderDate = ()=> {
         let text = Identify.isRtl() ? 'yyyy/mm/dd' : 'dd/mm/yyyy';
-        return (
-            <MuiThemeProvider muiTheme={muiTheme}>
-                <DatePicker
-                    className="date-picker"
-                    hintText={<div className="flex"><span>{Identify.__('Select date')}</span> <span>: {text}</span></div>}
-                    value={this.state.date}
-                    minDate={new Date()}
-                    mode={window.innerWidth < 768 ? 'portrait' : "landscape"}
-                    onChange={this.handleChange}
-                    formatDate={this.formatDate}
-                    textFieldStyle={{
-                        fontFamily : 'Montserrat, sans-serif',
-                        color : 'rgba(0, 0, 0, 0.87)'
-                    }}
-                />
-            </MuiThemeProvider>
-
-        )
+        return null
+        // return (
+        //     <MuiThemeProvider muiTheme={muiTheme}>
+        //         <DatePicker
+        //             className="date-picker"
+        //             hintText={<div className="flex"><span>{Identify.__('Select date')}</span> <span>: {text}</span></div>}
+        //             value={this.state.date}
+        //             minDate={new Date()}
+        //             mode={window.innerWidth < 768 ? 'portrait' : "landscape"}
+        //             onChange={this.handleChange}
+        //             formatDate={this.formatDate}
+        //             textFieldStyle={{
+        //                 fontFamily : 'Montserrat, sans-serif',
+        //                 color : 'rgba(0, 0, 0, 0.87)'
+        //             }}
+        //         />
+        //     </MuiThemeProvider>
+        //
+        // )
     }
 
     render(){

@@ -28,11 +28,12 @@ app.prepare()
             res.json({...data})
         })
 
-        server.get('/simi-sw.js',({req, res, route, query})=>{
-            const filePath = path.join(__dirname, 'build', '/simi-sw.js')
-            app.serveStatic(req, res, filePath)
-        })
-
+        if(!dev){
+            server.get('/simi-sw.js',({req, res, route, query})=>{
+                const filePath = path.resolve('./simi-sw.js')
+                app.serveStatic(req, res, filePath)
+            })
+        }
         server.use(handler).listen(8080)
         console.log('Server is running')
     })

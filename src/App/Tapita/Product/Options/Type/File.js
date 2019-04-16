@@ -1,7 +1,6 @@
 import React from 'react';
 import Abstract from './Abstract';
 import Identify from '../../../../../Helper/Identify';
-import {showFogLoading, hideFogLoading} from '../../../../../BaseComponent/Loading/GlobalLoading'
 const $ = window.$;
 
 class File extends Abstract {
@@ -11,7 +10,7 @@ class File extends Abstract {
         //get base url
         this.config = window.SMCONFIGS;
         this.merchantConfig = Identify.getMerchantConfig();
-        this.baseUrl = this.config.merchant_url;
+        this.baseUrl = this.SMCONFIGS.merchant_url;
         if (this.merchantConfig !== null) {
             if (parseInt(this.merchantConfig.storeview.base.use_store, 10) === 1) {
                 this.baseUrl = this.merchantConfig.storeview.base.base_url || this.config.merchant_url;

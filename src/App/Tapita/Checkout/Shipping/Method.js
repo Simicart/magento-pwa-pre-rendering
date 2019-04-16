@@ -18,7 +18,7 @@ class ShippingMethod extends React.Component {
                 id={data.s_method_code}
                 className="shipping-method-item">
                 <div key={Identify.makeid()} className="icon-selected-shipping">
-                    <Radio checked={data.s_method_selected}/>
+                    <Radio checked={data.s_method_selected} color="primary"/>
                 </div>
                 <div className="method-item-content">
                     <div>

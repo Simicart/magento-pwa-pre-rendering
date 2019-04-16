@@ -49,7 +49,7 @@ class ShippingAddress extends CheckoutAddress{
         }
         const currentShipping = this.CheckoutParent.getStateOrder('shipping_address') || {};
         data = data && data.hasOwnProperty('addresses') ? data.addresses : [];
-        let addressComponent = data.length > 0 ? this.renderListAddress(data) : <LazyComponent component={()=>import(/* webpackChunkName: "CheckoutAddressForm"*/'./AddressForm')}
+        let addressComponent = data.length > 0 ? this.renderListAddress(data) : <Dynamic component={()=>import(/* webpackChunkName: "CheckoutAddressForm"*/'./AddressForm')}
                                                                                                parent={this}
                                                                                                className={`shipping-address-form`}
                                                                                                id={this.idFormAddress}
