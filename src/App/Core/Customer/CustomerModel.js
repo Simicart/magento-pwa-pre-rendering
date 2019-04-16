@@ -37,8 +37,8 @@ class CustomerModel extends Model{
         return this.connect('downloadableproducts', jQuery);
     }
 
-    editCustomer =(params)=>{
-        return this.advancedConnect('PUT','customers',{},params);
+    editCustomer =(query,params)=>{
+        return this.advancedConnect('PUT','customers',query,params);
     }
 
     getProfile =()=>{

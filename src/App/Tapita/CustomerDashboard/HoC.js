@@ -19,3 +19,5 @@ export const Dashboard = props => <LazyComponent component={()=>import('./Page/A
 export const MyOrder = props => <LazyComponent component={() => import('./Page/MyOrder')} {...props} />
 
 export const OrderDetail = props => <LazyComponent component={() => import('./Page/OrderDetail')} {...props} />
+
+export const Profile = props => <Dynamic component={() => import('./Page/AccountInformation')}{...props}/>
