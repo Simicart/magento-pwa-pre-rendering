@@ -155,19 +155,3 @@ ul.contact-fields {
         width: 100%;
     }
 }
-
-#error-message, #success-message, #warning-message {
-    font-size: 18px;
-    font-weight: lighter;
-}
-
-.error-message {
-    color: red;
-    display: none;
-}
-
-ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-}

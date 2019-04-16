@@ -20,6 +20,7 @@ import OrderIcon from '@material-ui/icons/CardTravel'
 import LogoutIcon from '@material-ui/icons/ExitToApp'
 import { Dashboard, MyOrder, Profile } from "./HoC";
 import OrderDetail from './Page/OrderDetail';
+import Address from './Page/AddressBook';
 
 const styles = {
     icon: {
@@ -152,11 +153,14 @@ class CustomerDashboard extends Abstract {
             case 'order-detail':
                 content = <OrderDetail parent={this} />
                 break;
-            case 'my-account':
-                content = <Profile parent={this}/>
+            case 'address':
+                content = <Address parent={this}/>
                 break;
-            default:
-                content = <Dashboard />
+            case 'edit-address':
+                content = <Address parent={this} page="edit-address"/>
+                break;
+            default :
+                content = <Dashboard/>
         }
         return (
             <div className="content-dashboard">

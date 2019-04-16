@@ -10,6 +10,7 @@ import Identify from "../../../Helper/Identify";
 import CartModelCollection from "./CartModel";
 import {confirmAlert} from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
+import CustomerHelper from "../../../Helper/Customer";
 
 class CartAbstract extends Base{
     constructor(props) {
@@ -85,6 +86,32 @@ class CartAbstract extends Base{
     handleCoupon(coupon_code) {
         Identify.showLoading()
         this.cartModelCollection.updateCoupon(coupon_code);
+    }
+
+    handleGoCheckout = (event) => {
+        let quoteItemsData = this.props.cart_data || {};
+        let forceLogin = false
+        if (!CustomerHelper.isLogin()) {
+            if (parseInt(this.enable_guest_checkout, 10) === 0)
+                forceLogin = true
+            else {
+                let isVirtualCart = false;
+                if (quoteItemsData.quoteitems !== undefined) {
+                    isVirtualCart = Identify.hasVirtualItem(quoteItemsData.quoteitems);
+                }
+                if (isVirtualCart)
+                    forceLogin = true
+            }
+        }
+        if (forceLogin) {
+            let location = {
+                pathname: '/customer/account/login',
+                pushTo: '/checkout/onepage'
+            };
+            this.pushLink('/customer/account/login');
+        } else {
+            this.pushLink('/checkout/onepage');
+        }
     }
 }
 export default CartAbstract

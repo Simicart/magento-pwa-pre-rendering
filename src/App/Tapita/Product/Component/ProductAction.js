@@ -49,10 +49,7 @@ class ProductAddToCart extends Base {
 
     AddToCart =(disable=false,type=1)=>{
         if(disable) return ;
-        let params = {
-            product : this.data.entity_id,
-            qty : 1
-        };
+        let params = this.parent.getParams();
         if(params){
             if(type === 2){
                 // for buy now

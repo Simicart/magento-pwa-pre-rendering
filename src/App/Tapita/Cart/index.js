@@ -100,7 +100,6 @@ class CartTapita extends Cart {
     }
 
     renderTotalView = () => {
-        console.log(this.state.simiData)
         return <Total data={this.state.simiData.total} />
     }
 

@@ -1,0 +1,36 @@
+.autocomplete-search-box {
+    height: 58px;
+    width: 100%;
+    display: flex;
+    padding: 8px;
+    background: #ffffff;
+}
+
+.autocomplete-search-box.fixed {
+    -webkit-box-shadow: 0px 1px 5px 0px rgba(117, 117, 117, 1);
+    -moz-box-shadow: 0px 1px 5px 0px rgba(117, 117, 117, 1);
+    box-shadow: 0px 1px 5px 0px rgba(117, 117, 117, 1);
+    position: fixed;
+    z-index: 10;
+}
+
+#search-ac {
+    height: 42px;
+    width: 100%;
+    border: 1px solid #cacaca;
+    border-radius: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+#search-box {
+    width: 100%;
+    position: relative;
+}
+
+.clear-search {
+    display: none;
+    position: absolute;
+    right: -5px;
+    top: -3px;
+}

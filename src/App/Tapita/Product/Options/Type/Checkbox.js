@@ -3,7 +3,8 @@ import Abstract from "./Abstract";
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { withStyles } from '@material-ui/core/styles';
-import {configColor} from "../../../../../Config/index";
+import Identify from "../../../../../Helper/Identify";
+const configColor = Identify.getColorConfig()
 const styles = {
     root: {
         color:'#333',

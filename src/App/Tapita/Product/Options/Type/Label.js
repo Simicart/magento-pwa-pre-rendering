@@ -1,8 +1,9 @@
 import React from 'react';
 import Abstract from './Abstract';
-import {configColor} from "../../../../../Config";
 import Identify from '../../../../../Helper/Identify';
 import CheckIcon from '@material-ui/icons/Check'
+
+const configColor = Identify.getColorConfig()
 const $ = window.$;
 class Label extends Abstract{
 

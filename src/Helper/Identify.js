@@ -368,6 +368,57 @@ class Identify {
         }
         return false;
     }
+
+    static hasVirtualItem = (quoteItems = []) => {
+        let hasIt = false
+        for (let i in quoteItems) {
+            let item = quoteItems[i]
+            if(item.is_virtual && parseInt(item.is_virtual, 10) !== 0) {
+                hasIt = true
+                break
+            }
+        }
+        return hasIt
+    }
+
+    static isVirtualCart = (quoteItems = []) => {
+        let cartLength = quoteItems.length;
+        let virtualItems = quoteItems.filter(item => {
+            return item.is_virtual === true || parseInt(item.is_virtual, 10) === 1;
+        });
+        return cartLength === virtualItems.length;
+    }
+
+    static magentoPlatform() {
+        let merchantConfig = this.getMerchantConfig();
+        let platform = 1;
+        if (merchantConfig !== null) {
+            if (merchantConfig.storeview.base && merchantConfig.storeview.base.magento_version) {
+                platform = parseInt(merchantConfig.storeview.base.magento_version, 10);
+            }
+        }
+        return platform;
+    }
+
+    static smoothScrollToView = (querySelector, duration = 350) => {
+        const $ = window.$
+        if(querySelector && querySelector.offset() instanceof Object){
+            let offsetTop = querySelector.offset().top;
+
+            let elementHeight = querySelector.height();
+            let windowHeight = $(window).height();
+            let offset = offsetTop;
+
+            if (elementHeight < windowHeight) {
+                offset = offsetTop - ((windowHeight / 2) - (elementHeight / 2));
+            }
+
+            $('html, body').animate({
+                scrollTop: offset
+            }, duration);
+        }
+
+    }
 }
 
 export default Identify;

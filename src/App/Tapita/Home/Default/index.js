@@ -17,7 +17,7 @@ class Default extends Base {
             >
                 <Link
                     route="url_match"
-                    params={{url}}
+                    params={url}
                 >
                     <a>
                         {

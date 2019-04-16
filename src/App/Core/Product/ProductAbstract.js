@@ -15,7 +15,7 @@ class ProductAbstract extends Abstract{
         let api = 'products/' + query.id
         const ProductModel = new Model();
         let data = await ProductModel.getProductApi(api)
-        return {...data}
+        return {data}
     }
 
     shouldComponentUpdate(nextProps,nextState){

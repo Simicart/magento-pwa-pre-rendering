@@ -9,7 +9,6 @@ import Loading from '../../../../BaseComponent/Loading';
 import OrderTotals from '../Component/Order/OrderTotals';
 import { SubscribeOne } from 'unstated-x';
 import { AppState } from '../../../../Observer/AppState';
-import {Router} from 'simiLink'
 import CartModel from '../../../Core/Cart/CartModel';
 
 class OrderDetail extends PageAbstract {
@@ -30,7 +29,6 @@ class OrderDetail extends PageAbstract {
                 this.isAllowReOrder = parseInt(saleConfigs.sales_reorder_allow, 10) === 1;
             }
         }
-        this.s
         this.isQuoteItemRequest = false;
         this.requestReOrder = false;
         this.requestOrderDetail = true;

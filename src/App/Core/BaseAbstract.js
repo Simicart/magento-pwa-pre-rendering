@@ -12,11 +12,13 @@ class SimiComponent extends React.Component{
         this.SMCONFIGS = SMCONFIGS
         this.configColor = ColorConfig
         this.data = this.props.data
+        if(Identify.isClient()){
+            this.state.isPhone = this.setIsPhone()
+        }
     }
 
-
-    isClient(){
-        return Identify.isClient()
+    setIsPhone(){
+        return window.innerWidth < 768
     }
 
     componentDidMount(){

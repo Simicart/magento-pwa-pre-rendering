@@ -1,6 +1,6 @@
 const express = require('express')
 const next = require('next')
-
+const path = require('path')
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({dev})
 // const handle = app.getRequestHandler()
@@ -20,12 +20,20 @@ app.prepare()
     .then(() => {
         server.use(bodyParser.urlencoded({ extended: false }));
         server.use(bodyParser.json());
+
         server.post('/change-storeview',async (req, res) => {
             console.log(serverCache.keys())
             let data = await changeStoreView(req.body.api)
             serverCache.put('merchant_config',data)
             res.json({...data})
         })
+
+        if(!dev){
+            server.get('/simi-sw.js',({req, res, route, query})=>{
+                const filePath = path.resolve('./simi-sw.js')
+                app.serveStatic(req, res, filePath)
+            })
+        }
         server.use(handler).listen(8080)
         console.log('Server is running')
     })

@@ -8,7 +8,7 @@ export const Tapita = props => {
             <div className="app-header">
                 <AppBar/>
             </div>
-            <div className="app-body" style={{marginTop:55,paddingTop:10}}>
+            <div className="app-body" style={{marginTop:55,paddingTop:10, display: 'flow-root'}}>
                 {props.server_render ? props.children : (
                     <NoSSR onSSR={<LoadingImg/>}>
                         {props.children}

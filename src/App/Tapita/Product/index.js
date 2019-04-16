@@ -10,14 +10,16 @@ import Detail from './Detail'
 class Product extends ProductAbstract{
 
     renderProductDetail(data){
-        return <Detail data={data}/>
+        if(data instanceof Object){
+            return <Detail data={data}/>
+        }
     }
 
     render(){
-        const {product} = this.props;
+        const {data} = this.props;
         return (
             <div className='product-detail-page'>
-                {this.renderProductDetail(product)}
+                {this.renderProductDetail(data)}
             </div>
         )
     }
