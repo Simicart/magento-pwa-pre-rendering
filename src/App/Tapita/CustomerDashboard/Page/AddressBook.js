@@ -13,7 +13,6 @@ class AddressBook extends PageAbstract {
         this.state = {
             loaded: false,
             data: null,
-            address: null
         };
         this.parent = this.props.parent;
     }
@@ -110,10 +109,10 @@ class AddressBook extends PageAbstract {
         return content;
     }
     
-    render() {
-        const { data, address } = this.state;
+    render () {
+        const { data } = this.state;
         if(!data && this.props.hasOwnProperty('page') && this.props.page === 'edit-address') {
-            return <AddressFrom parent={this} address={this.address}/>
+            return <AddressFrom parent={this}/>
         }
         return (
             <div className="address-book-page">

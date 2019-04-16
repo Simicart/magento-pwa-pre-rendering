@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import AddressFormAbstract from '../../../../Core/Address/AddressFormAbstract';
+import AddressFormAbstract from '../../../Address/AddressFormAbstract';
 import AddressModel from '../../../../Core/Address/Model';
 import Identify from '../../../../../Helper/Identify';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -171,7 +171,7 @@ class AddressFrom extends AddressFormAbstract {
         );
     }
 
-    render() {
+    render = () => {
         if(!this.address || (!this.address.country_id && !this.address.country_code && !this.address.country_name))
             this.address = this.parent.getDefaultAddress();
         let pageTitle = Identify.__("Add new address");
