@@ -34,6 +34,11 @@ const tapitaRoute = {
         page : 'Tapita/Login',
         pattern : '/customer/account/login'
     },
+    customer_logout: {
+        name: 'customer_logout',
+        page: 'Tapita/Logout',
+        pattern: '/customer/account/logout' 
+    },
     contact :{
         name : 'contact',
         page : 'Tapita/Contact',

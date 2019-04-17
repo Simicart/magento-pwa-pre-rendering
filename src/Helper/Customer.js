@@ -28,16 +28,16 @@ class CustomerHelper {
         Identify.clearQuote();
     }
 
-    static logout() {
-        sessionStorage.removeItem('email');
-        sessionStorage.removeItem('password');
-        sessionStorage.removeItem('cache_email');
-        sessionStorage.removeItem('cache_password');
-        sessionStorage.removeItem('customer_data');
-        sessionStorage.removeItem('list_address');
-        this.showMenuAccount();
-        Identify.clearQuote();
-    }
+    // static logout() {
+    //     sessionStorage.removeItem('email');
+    //     sessionStorage.removeItem('password');
+    //     sessionStorage.removeItem('cache_email');
+    //     sessionStorage.removeItem('cache_password');
+    //     sessionStorage.removeItem('customer_data');
+    //     sessionStorage.removeItem('list_address');
+    //     this.showMenuAccount();
+    //     Identify.clearQuote();
+    // }
 
     static setLogin(data) {
         sessionStorage.setItem('email', data.email);

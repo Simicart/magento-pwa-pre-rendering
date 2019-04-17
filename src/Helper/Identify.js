@@ -334,6 +334,14 @@ class Identify {
         }
     }
 
+    static showMsgLogout() {
+        const msg = this.getDataFromStoreage(Identify.SESSION_STOREAGE, 'msg_logout');
+        if(msg) {
+            this.showToastMessage(msg);
+            sessionStorage.removeItem('msg_logout');
+        }
+    }
+
     static getColorTranparent (){
         const color = {
             a100: "FF",

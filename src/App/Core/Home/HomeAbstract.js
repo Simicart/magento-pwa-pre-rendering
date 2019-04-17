@@ -66,6 +66,7 @@ class HomeAbstract extends BaseAbstract{
 
     componentDidMount(){
         Identify.showMsgLogin()
+        Identify.showMsgLogout()
     }
 
     render(){
