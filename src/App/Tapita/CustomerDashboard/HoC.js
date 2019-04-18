@@ -20,4 +20,10 @@ export const MyOrder = props => <Dynamic component={() => import('./Page/MyOrder
 
 export const OrderDetail = props => <Dynamic component={() => import('./Page/OrderDetail')} {...props} />
 
+export const Address = props => <Dynamic component={() => import('./Page/AddressBook')} {...props} />
+
+export const MyDownloadable = props => <Dynamic component={() => import('./Page/MyDownloadable')} {...props} />
+
+export const Newsletter = props => <Dynamic component={() => import('./Page/Newsletter')} {...props} />
+
 export const Profile = props => <Dynamic component={() => import('./Page/AccountInformation')}{...props}/>

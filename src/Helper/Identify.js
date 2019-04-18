@@ -277,7 +277,6 @@ class Identify {
         }else{
             data = serverCache.get('url_match') || {}
         }
-        console.log(data)
         if(data.hasOwnProperty(url) && data[url]){
             return data[url]
         }
