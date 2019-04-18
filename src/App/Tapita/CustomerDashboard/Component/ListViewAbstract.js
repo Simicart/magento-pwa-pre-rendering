@@ -29,7 +29,6 @@ class ListViewAbstract extends Abstract {
                 self.loadMore &&
                 self.total > self.limit && !self.unmount)
             {
-                console.log('haha');
                 self.loadMoreData()
             }
         });
@@ -39,7 +38,6 @@ class ListViewAbstract extends Abstract {
         this.unmount = true;
     }
     
-
     initLoadData = () => {
         return null;
     };

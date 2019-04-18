@@ -4,8 +4,6 @@ import Identify from "../../../../../Helper/Identify";
 import IconDown from "../../../../../BaseComponent/Icon/Down";
 import Price from "../../../../../BaseComponent/Price";
 
-// const $ = window.$;
-
 class ItemOrdered extends Abstract {
     constructor(props) {
         super(props);

@@ -34,10 +34,15 @@ const tapitaRoute = {
         page: 'Tapita/Login',
         pattern: '/customer/account/login'
     },
-    contact: {
-        name: 'contact',
-        page: 'Tapita/Contact',
-        pattern: '/contacts'
+    customer_logout: {
+        name: 'customer_logout',
+        page: 'Tapita/Logout',
+        pattern: '/customer/account/logout' 
+    },
+    contact :{
+        name : 'contact',
+        page : 'Tapita/Contact',
+        pattern : '/contacts'
     },
     customer_dashboard: {
         name: 'customer_dashboard',
@@ -63,6 +68,11 @@ const tapitaRoute = {
         name: 'downloadable',
         page: 'Tapita/Downloadable',
         pattern: '/downloadable/customer/products'
+    },
+    customer_newsletter: {
+        name: 'newsletter',
+        page: 'Tapita/Newsletter',
+        pattern: '/newsletter/manager'
     },
     order_detail: {
         name: 'order_detail',

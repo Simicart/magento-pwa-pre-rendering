@@ -1,24 +1,17 @@
-import React, { Component } from 'react';
-import {SubscribeOne} from 'unstated-x';
+import React from 'react';
+import { SubscribeOne } from 'unstated-x';
 import OrderModel from '../../../../Core/Order/OrderModel';
-import Abstract from '../../../../Core/BaseAbstract';
+import ListViewAbstract from '../ListViewAbstract';
 import Loading from '../../../../../BaseComponent/Loading';
 import Identify from '../../../../../Helper/Identify';
 import NextIcon from '../../../../../BaseComponent/Icon/Next';
 import { AppState } from '../../../../../Observer/AppState';
 
-const $ = window.$; 
-
-class ListOrder extends Abstract {
+class ListOrder extends ListViewAbstract {
     constructor(props) {
         super(props);
         this.OrderModel = new OrderModel({ obj: this});
         this.state = {loaded: false};
-        this.offset = 0;
-        this.limit = 15;
-        this.total = 0;
-        this.loadMore = true;
-        this.unmount = false;
         if(this.props.order_history instanceof Object 
             && this.props.order_history.hasOwnProperty('orders')
             && this.props.order_history.orders.length > 0
@@ -27,25 +20,8 @@ class ListOrder extends Abstract {
         }
     }
 
-    componentDidMount() {
-        if(!this.checkExistData()) {
-            this.OrderModel.getOrderConllection();
-        }
-
-        const self = this;
-        $(window).scroll(function() {
-            const st = $(this).scrollTop();
-            const lastScrollTop = $(window).height() + st + 50;
-            const documentHeight = $(document).height();
-            if(
-                documentHeight - lastScrollTop <= 10
-                && self.loadMore 
-                && self.total > self.limit
-                && !self.unmount
-            ) {
-                self.loadMoreData();
-            }
-        });
+    initLoadData = () => {
+        this.OrderModel.getOrderConllection();
     }
 
     componentWillUnmount() {
@@ -61,12 +37,12 @@ class ListOrder extends Abstract {
                 totalItems > this.props.order_history.orders.length
                 && !this.props.useForDashboard
             ) {
-                
-                let params = {};
-                params['limit'] = this.limit;
                 this.offset = this.offset + 15;
                 this.showLoadingMore();
-                params['offset'] = this.offset;
+                const params = {
+                    limit: this.limit,
+                    offset: this.offset
+                }
                 this.OrderModel.getOrderConllection(params);
                 this.loadMore = false;
             }
@@ -74,7 +50,7 @@ class ListOrder extends Abstract {
     }
 
     handleViewOrder = (item) => {
-        this.pushLink(`/sales/order/order-detail/${item.increment_id}`, { orderData: item, page: 'order-detail' });
+        this.pushLink(`/sales/order/order-detail/${item.increment_id}`);
     }
 
     processData(data) {
@@ -88,10 +64,10 @@ class ListOrder extends Abstract {
         } else {
             const oldData = this.props.order_history;
             let newData = {
-                'from': data.from,
-                'page_size': data.page_size,
-                'all_ids': [...oldData.all_ids, ...data.all_ids],
-                'orders': [...oldData.orders, ...data.orders]
+                from: data.from,
+                page_size: data.page_size,
+                all_ids: [...oldData.all_ids, ...data.all_ids],
+                orders: [...oldData.orders, ...data.orders]
             };
             this.props.updatedOrder(newData);
             this.loadMore = true;
@@ -109,27 +85,6 @@ class ListOrder extends Abstract {
         }
 
         return false;
-    }
-
-    hideLoadingMore = () => {
-        $(".listview-component .loading-more").hide();
-    }
-
-    showLoadingMore = () => {
-        $(".listview-component .loading-more").show();
-    }
-
-    getDateFormat = (dateData) => {
-        let date = Date.parse(dateData);
-        date = new Date(date);
-        // if (Identify.detectPlatforms() === 1 || Identify.detectPlatforms() === 3) {
-        //     let arr = dateData.split(/[- :]/);
-        //     date = new Date(arr[0], arr[1] - 1, arr[2], arr[3], arr[4], arr[5]);
-        // }
-        let day = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
-        let month = date.getMonth() +   1;
-        month = month < 10 ? "0" + month : month;
-        return month + "/" + day + "/" + date.getFullYear();
     }
 
     renderListItem() {
@@ -224,10 +179,6 @@ class ListOrder extends Abstract {
                 )
             })
         }
-    }
-    
-    renderLoadMore() {
-        return <Loading className="loading-more" divStyle={{display: 'none'}}/>
     }
 
     render() {
