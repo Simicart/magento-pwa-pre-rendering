@@ -2,7 +2,6 @@ import Head from "./Head";
 import React from "react";
 import {Loading} from "../BaseComponent/Loading";
 import Message from './Message'
-import './global.css'
 /**
  * Created by PhpStorm.
  * User: Peter

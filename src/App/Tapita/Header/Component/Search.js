@@ -48,8 +48,9 @@ class SearchBar extends Abstract {
     }
 
     handleHideSearchbar = () => {
-        document.getElementById('app-bar').style.display = 'flex';
-        document.getElementById('search-bar').style.display = 'none';
+        const $ = window.$
+        $('#app-bar').css('display','flex')
+        $('#search-bar').hide();
     }
 
     render() {
