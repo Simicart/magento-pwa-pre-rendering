@@ -35,6 +35,7 @@
         "body-parser": "^1.18.3",
         "encoding": "^0.1.12",
         "express": "^4.16.4",
+        "extract-css-chunks-webpack-plugin": "^4.3.2",
         "fs": "0.0.1-security",
         "isomorphic-fetch": "^2.2.1",
         "isomorphic-unfetch": "^3.0.0",
@@ -79,6 +80,7 @@
         "eslint-plugin-node": "^8.0.1",
         "eslint-plugin-promise": "^4.0.1",
         "eslint-plugin-react": "^7.12.4",
-        "eslint-plugin-standard": "^4.0.0"
+        "eslint-plugin-standard": "^4.0.0",
+        "mini-css-extract-plugin": "^0.6.0"
     }
 }
