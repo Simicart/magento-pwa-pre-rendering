@@ -55,6 +55,11 @@ class AddressBook extends PageAbstract {
         this.pushLink('/customer/address/edit-address');
     }
 
+    updateAddressList = () => {
+        const data = Identify.ApiDataStorage('list_address');
+        this.setState({data});
+    }
+
     renderListAddress (data = this.state.data) {
         let content = <div></div>;
         if(!this.state.loaded || !data) {
