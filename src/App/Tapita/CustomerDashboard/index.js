@@ -18,11 +18,15 @@ import UserIcon from '@material-ui/icons/Person'
 import AddressIcon from '../../../BaseComponent/Icon/AddressBook'
 import OrderIcon from '@material-ui/icons/CardTravel'
 import LogoutIcon from '@material-ui/icons/ExitToApp'
-import { Dashboard, MyOrder, Profile } from "./HoC";
-import OrderDetail from './Page/OrderDetail';
-import Address from './Page/AddressBook';
-import MyDowloadable from './Page/MyDowloadable';
-import Newsletter from './Page/Newsletter';
+import { 
+    Dashboard,
+    MyOrder,
+    Profile,
+    OrderDetail,
+    Address,
+    MyDownloadable,
+    Newsletter
+} from "./HoC";
 
 const styles = {
     icon: {
@@ -162,7 +166,7 @@ class CustomerDashboard extends Abstract {
                 content = <Address parent={this} page="edit-address"/>
                 break;
             case 'downloadable':
-                content = <MyDowloadable parent={this} />
+                content = <MyDownloadable parent={this} />
                 break;
             case 'newsletter':
                 content = <Newsletter parent={this} />

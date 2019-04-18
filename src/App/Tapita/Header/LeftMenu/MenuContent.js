@@ -73,7 +73,9 @@ class LeftMenuTabContent extends Abstract {
         if (data && data.length > 0) {
             let obj = this;
             let cms = data.map(function (item) {
-                let urlPath =  `/cms/${item.cms_id}`
+                const cmsPath = `${item.cms_url ? `/${item.cms_url}` : '' }`;
+                let urlPath =  `${item.cms_url ? `/${item.cms_url}` : `/cms/${item.cms_id}`}`
+                Identify.setUrlMatchApi(cmsPath, 'cms_page', { id: item.cms_id });
                 return (
                     <div key={`cms-menu-item-${item.cms_id}`} onClick={(e) => obj.handleMenuItem(urlPath)}
                          style={{color: configColor.menu_text_color}}>
