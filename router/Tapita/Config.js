@@ -1,48 +1,48 @@
 const tapitaRoute = {
-    home : {
-        name : 'home',
-        page : 'Tapita/Home',
-        pattern : '/'
+    home: {
+        name: 'home',
+        page: 'Tapita/Home',
+        pattern: '/'
     },
-    product_detail : {
-        name : 'product_detail',
-        page : 'Tapita/Product',
-        pattern : '/product/:id?'
+    product_detail: {
+        name: 'product_detail',
+        page: 'Tapita/Product',
+        pattern: '/product/:id?'
     },
-    product_list : {
-        name : 'product_list',
-        page : 'Tapita/Products',
-        pattern : '/products'
+    product_list: {
+        name: 'product_list',
+        page: 'Tapita/Products',
+        pattern: '/products'
     },
-    cms : {
-        name : 'cms',
-        page : 'Tapita/Cms',
-        pattern : '/cms/:id?'
+    cms: {
+        name: 'cms',
+        page: 'Tapita/Cms',
+        pattern: '/cms/:id?'
     },
-    cart : {
-        name : 'cart',
-        page : 'Tapita/Cart',
-        pattern : '/checkout/cart'
+    cart: {
+        name: 'cart',
+        page: 'Tapita/Cart',
+        pattern: '/checkout/cart'
     },
-    checkout : {
-        name : 'checkout',
-        page : 'Tapita/Checkout',
-        pattern : '/checkout/onepage'
+    checkout: {
+        name: 'checkout',
+        page: 'Tapita/Checkout',
+        pattern: '/checkout/onepage'
     },
-    customer_login :{
-        name : 'customer_login',
-        page : 'Tapita/Login',
-        pattern : '/customer/account/login'
+    customer_login: {
+        name: 'customer_login',
+        page: 'Tapita/Login',
+        pattern: '/customer/account/login'
     },
-    contact :{
-        name : 'contact',
-        page : 'Tapita/Contact',
-        pattern : '/contacts'
+    contact: {
+        name: 'contact',
+        page: 'Tapita/Contact',
+        pattern: '/contacts'
     },
-    customer_dashboard : {
-        name : 'customer_dashboard',
-        page : 'Tapita/CustomerDashboard',
-        pattern : '/customer'
+    customer_dashboard: {
+        name: 'customer_dashboard',
+        page: 'Tapita/CustomerDashboard',
+        pattern: '/customer'
     },
     customer_order: {
         name: 'my_order',
@@ -74,10 +74,15 @@ const tapitaRoute = {
         page: 'Tapita/Profile',
         pattern: '/customer/account/edit'
     },
-    url_match : {
-        name : 'url_match',
-        page : 'Tapita/UrlMatch',
-        pattern : '/(.*)'
+    wishlist: {
+        name: 'wish_list',
+        page: 'Tapita/Wishlist',
+        pattern: '/wishlist'
+    },
+    url_match: {
+        name: 'url_match',
+        page: 'Tapita/UrlMatch',
+        pattern: '/(.*)'
     }
 }
 module.exports = tapitaRoute
