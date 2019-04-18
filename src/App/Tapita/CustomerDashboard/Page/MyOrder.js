@@ -39,10 +39,10 @@ class MyOrder extends PageAbstract {
                 this.isQuoteItemRequest = true;
                 this.isReOrderRequest = false;
                 this.CartModel.getCart();
-            } if(this.isQuoteItemRequest) {
-                this.isQuoteItemRequest = false;
-                this.props.updateCart(data);
-            }
+            } 
+        } else if (this.isQuoteItemRequest) {
+            this.isQuoteItemRequest = false;
+            this.props.updateCart(data);
         }
     }
     
