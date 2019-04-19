@@ -5,4 +5,4 @@
  * Time: 8:52 AM
  */
 import { CustomerDashboardHoC } from '../../src/App/Tapita/CustomerDashboard/HoC';
-export default CustomerDashboardHoC
+export default props => <CustomerDashboardHoC {...props} page="dashboard"/>;
