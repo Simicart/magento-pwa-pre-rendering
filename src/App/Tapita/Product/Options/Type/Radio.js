@@ -25,7 +25,7 @@ class RadioField extends Abstract {
         this.showTier = false;
         if(this.type_id === 'bundle'){
             let defaultItem = defaultValue !== 0 ? this.props.data.selections[defaultValue] : {};
-            this.showTier = defaultItem.tierPrice && Array.isArray(defaultItem.tierPrice) && defaultItem.tierPrice.length > 0;
+            this.showTier = defaultItem.hasOwnProperty('tierPrice') && Array.isArray(defaultItem.tierPrice) && defaultItem.tierPrice.length > 0;
         }
 
     }

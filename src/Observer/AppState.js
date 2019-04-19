@@ -8,7 +8,7 @@ import {Container} from 'unstated-x'
 import Identify from "../Helper/Identify";
 class AppStateContainer extends Container {
     state = {
-        cart_data : null,
+        cart_data : Identify.getDataFromStoreage(Identify.SESSION_STOREAGE,'quoteitems') || null,
         wishlist_data : null,
         order_history : null,
         downloadable_data : null,

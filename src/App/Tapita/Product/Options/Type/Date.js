@@ -1,6 +1,37 @@
 import React from 'react';
 import Abstract from './Abstract';
 import Identify from "../../../../../Helper/Identify";
+import { MuiPickersUtilsProvider, DatePicker } from 'material-ui-pickers';
+import DateFnsUtils from '@date-io/date-fns';
+import { MuiThemeProvider} from '@material-ui/core/styles';
+import getPageContext from '../../../../../Helper/PageContext'
+let theme = {
+    ...getPageContext().theme,
+    overrides : {
+        ...getPageContext().theme.overrides,
+        ...{
+            MuiPickersDay: {
+                day: {
+                    fontSize: 14
+                }
+            },
+            MuiTypography: {
+                body1: {
+                    fontSize: 16
+                }
+            },
+            MuiPickersToolbarButton : {
+                toolbarBtn : {
+                    fontSize : 18
+                }
+            },
+            MuiPickersCalendarHeader : {
+                dayLabel : {
+                    fontSize : 14
+                }
+            }
+        }
+    }}
 class DateField extends Abstract {
 
     constructor(props){
@@ -10,7 +41,7 @@ class DateField extends Abstract {
         }
     }
 
-    handleChange = (event, date) => {
+    handleChange = (date) => {
         this.setState({
             date: date,
         });
@@ -54,25 +85,28 @@ class DateField extends Abstract {
 
     renderDate = ()=> {
         let text = Identify.isRtl() ? 'yyyy/mm/dd' : 'dd/mm/yyyy';
-        return null
-        // return (
-        //     <MuiThemeProvider muiTheme={muiTheme}>
-        //         <DatePicker
-        //             className="date-picker"
-        //             hintText={<div className="flex"><span>{Identify.__('Select date')}</span> <span>: {text}</span></div>}
-        //             value={this.state.date}
-        //             minDate={new Date()}
-        //             mode={window.innerWidth < 768 ? 'portrait' : "landscape"}
-        //             onChange={this.handleChange}
-        //             formatDate={this.formatDate}
-        //             textFieldStyle={{
-        //                 fontFamily : 'Montserrat, sans-serif',
-        //                 color : 'rgba(0, 0, 0, 0.87)'
-        //             }}
-        //         />
-        //     </MuiThemeProvider>
-        //
-        // )
+        return (
+            <MuiThemeProvider theme={theme}>
+                <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                    <DatePicker
+                        className={`date-picker`}
+                        placeholder={Identify.__('Select date ') + text}
+                        style={{
+                            fontSize:16,
+                        }}
+                        value={this.state.date}
+                        clearable
+                        views={["year", "month", "day"]}
+                        animateYearScrolling
+                        format={`dd/MM/yyyy`}
+                        onChange={this.handleChange}
+                        margin="normal"
+                        minDate={new Date()}
+                    />
+                </MuiPickersUtilsProvider>
+            </MuiThemeProvider>
+
+        )
     }
 
     render(){

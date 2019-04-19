@@ -176,7 +176,7 @@ class Label extends Abstract{
                     <img style={imgStyle} src={item.option_image} alt={item.label}/>
                     {base_img}
                     <div className="label-line">
-                        <div className="line"></div>
+                        <div className="line"/>
                     </div>
                     <div className="label-check-selected">
                         <CheckIcon style={{fill:'#fff'}}/>

@@ -8,7 +8,7 @@ class File extends Abstract {
     constructor(props){
         super(props);
         //get base url
-        this.config = window.SMCONFIGS;
+        this.config = this.SMCONFIGS;
         this.merchantConfig = Identify.getMerchantConfig();
         this.baseUrl = this.SMCONFIGS.merchant_url;
         if (this.merchantConfig !== null) {
@@ -16,7 +16,7 @@ class File extends Abstract {
                 this.baseUrl = this.merchantConfig.storeview.base.base_url || this.config.merchant_url;
             }
         }
-        this.baseUrl += this.config.api_path;
+        this.baseUrl += this.SMCONFIGS.api_path;
     }
 
     render(){
