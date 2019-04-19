@@ -44,7 +44,6 @@ class OrderDetail extends PageAbstract {
     }
 
     processError(data) {
-        // Router.back();
         if (this.requestOrderDetail) {
             this.pushLink('/sales/order/history');
         }
@@ -59,7 +58,7 @@ class OrderDetail extends PageAbstract {
             this.isQuoteItemRequest = true;
             this.CartModel.getCart();
             this.requestReOrder = false;
-        } if(this.isQuoteItemRequest) {
+        } else if(this.isQuoteItemRequest) {
             this.isQuoteItemRequest = false;
             this.props.updateCart(data);
         } else if(this.requestOrderDetail) {

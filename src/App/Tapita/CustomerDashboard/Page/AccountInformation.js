@@ -12,18 +12,20 @@ class Profile extends PageAbstract{
     constructor(props){
         super(props);
         this.CustomerModel = new CustomerModel({obj:this})
+        this.isChangePass = Identify.getDataFromStoreage(Identify.SESSION_STOREAGE, 'password_change');
         this.state = {
             isChangePass : false,
         }
 
     }
-
-    // componentDidMount(){
-    //     let location = this.context.router.history.location;
-    //     if(location.hasOwnProperty('state') && location.state && location.state.hasOwnProperty('change_password')){
-    //         this.updateCheck()
-    //     }
-    // }
+    
+    componentDidMount(){
+        // let location = this.context.router.history.location;
+        // if(location.hasOwnProperty('state') && location.state && location.state.hasOwnProperty('change_password')){
+        //     this.updateCheck()
+        // }
+        sessionStorage.removeItem('password_change');
+    }
 
     updateCheck = ()=> {
         this.setState({isChangePass: !this.state.isChangePass})
@@ -213,6 +215,7 @@ class Profile extends PageAbstract{
     }
 
     render(){
+        console.log(this.isChangePass);
         return (
             <div className="my-account-page">
                 {this.renderPageTitle('Edit Account Information')}
@@ -222,7 +225,7 @@ class Profile extends PageAbstract{
                         title : this.renderSectionHeader('Account Information'),
                         content : this.renderInfo()
                     })}
-                    {this.state.isChangePass ?
+                    {this.isChangePass ?
                         this.renderSection({
                             class : 'section-password',
                             title : this.renderSectionHeader('Change Password'),
