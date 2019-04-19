@@ -87,13 +87,14 @@ class TableOrder extends Abstract {
             return <Loading />
         }
 
-        let isDashBoard = this.props.useForDashBoard;
+        let isDashBoard = this.props.useForDashboard;
+
         let data = this.props.order_history;
 
         if(!data || !data.hasOwnProperty('orders') || data.orders.length === 0) {
             return <div className="text-center">{Identify.__('You have no items in your order')}</div>
         } else {
-            const order = isDashBoard ? data.order.slice(0, 3) : data.orders;
+            const order = isDashBoard ? data.orders.slice(0, 3) : data.orders;
             const cols = ['Order #', 'Date', 'Ship to', 'Order Total', 'Status', 'Action'];
 
             return (

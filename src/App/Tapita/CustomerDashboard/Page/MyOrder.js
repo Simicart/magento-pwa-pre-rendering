@@ -55,6 +55,22 @@ class MyOrder extends PageAbstract {
     }
 
     render() {
+        if(this.props.hasOwnProperty('page') && this.props.page === 'dashboard') {
+            return this.renderSection({
+                class: 'section-order',
+                title: this.renderSectionHeader(
+                    'Recent Order',
+                    <div 
+                        className="section-link"
+                        style={{color: this.configColor.button_background}}
+                        onClick={(e) => this.pushLink('/sales/order/history')}
+                    >
+                        {Identify.__('View all >>')}
+                    </div>
+                ),
+                content: this.renderContentPage(true)
+            })
+        }
         return (
             <div className="order-history-page">
                 {this.renderPageTitle('My Orders')}

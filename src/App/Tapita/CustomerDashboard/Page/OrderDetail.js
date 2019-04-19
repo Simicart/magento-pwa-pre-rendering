@@ -44,7 +44,6 @@ class OrderDetail extends PageAbstract {
     }
 
     processError(data) {
-        // Router.back();
         if (this.requestOrderDetail) {
             this.pushLink('/sales/order/history');
         }

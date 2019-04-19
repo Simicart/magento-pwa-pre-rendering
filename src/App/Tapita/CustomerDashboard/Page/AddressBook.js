@@ -116,6 +116,21 @@ class AddressBook extends PageAbstract {
     
     render () {
         const { data } = this.state;
+        if (this.props.hasOwnProperty('page') && this.props.page === 'dashboard') {
+            return this.renderSection({
+                class: 'section-default-address',
+                title: this.renderSectionHeader(
+                    'Address Book',
+                    <div 
+                        className="section-link"
+                        onClick={(e) => this.pushLink('/customer/address')}
+                        style={{color: this.configColor.button_background}}
+                    >{Identify.__('Manager Address >>')}</div>
+                ),
+                content: this.renderDefaultAddress()
+            });
+        }
+
         if(!data && this.props.hasOwnProperty('page') && this.props.page === 'edit-address') {
             return <AddressFrom parent={this}/>
         }

@@ -35,12 +35,15 @@ const styles = {
         fill: '#717171'
     }
 }
+
 const configColor = Identify.getColorConfig()
 class CustomerDashboard extends Abstract {
     constructor(props) {
         super(props);
-        this.state.page = 'dashboard';
-
+        this.state = {
+            page: 'dashboard',
+            changePassword: false,
+        }
     }
     static getDerivedStateFromProps(nextProps, prevState) {
         if (!nextProps.page || nextProps.page === prevState.page) {
@@ -48,7 +51,7 @@ class CustomerDashboard extends Abstract {
         }
         return { page: nextProps.page }
     }
-
+    
     getMenuConfig = () => {
         let menuConfig = {
             dashboard: {
@@ -151,7 +154,10 @@ class CustomerDashboard extends Abstract {
         let content = <div />
         switch (page) {
             case 'dashboard':
-                content = <Dashboard />;
+                content = <Dashboard parent={this}/>;
+                break;
+            case 'my-account':
+                content = <Profile parent={this} />;
                 break;
             case 'my-order':
                 content = <MyOrder parent={this} />
