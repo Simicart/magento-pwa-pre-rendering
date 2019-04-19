@@ -1,12 +1,38 @@
 import React from 'react';
 import Abstract from './Abstract';
 import Identify from "../../../../../Helper/Identify";
+import { MuiPickersUtilsProvider, TimePicker } from 'material-ui-pickers';
+import DateFnsUtils from "@date-io/date-fns";
+import { MuiThemeProvider} from '@material-ui/core/styles';
+import getPageContext from '../../../../../Helper/PageContext'
+let theme = {
+    ...getPageContext().theme,
+    overrides : {
+        ...getPageContext().theme.overrides,
+        ...{
+            MuiPickersDay: {
+                day: {
+                    fontSize: 14
+                }
+            },
+            MuiTypography: {
+                body1: {
+                    fontSize: 16
+                }
+            },
+            MuiPickersCalendarHeader : {
+                dayLabel : {
+                    fontSize : 14
+                }
+            }
+        }
+    }}
 class Time extends Abstract {
     state = {
         time : null,
     };
 
-    handleChangeTimePicker = (event, time) => {
+    handleChangeTimePicker = (time) => {
         this.setState({time});
         if(time){
             let val = this.convertTime(time);
@@ -17,6 +43,7 @@ class Time extends Abstract {
                     val = {...datetime,...val};
                 }
             }
+            console.log(val)
             this.updateSelected(key,val);
         }else{
             this.deleteSelected()
@@ -42,22 +69,21 @@ class Time extends Abstract {
     };
 
     renderTimePicker = () => {
-        return null
-        // return (
-        //     <MuiThemeProvider muiTheme={muiTheme}>
-        //         <TimePicker
-        //             format="ampm"
-        //             hintText={Identify.__('Select time') + ": --:-- --"}
-        //             value={this.state.time}
-        //             onChange={this.handleChangeTimePicker}
-        //             textFieldStyle={{
-        //                 fontFamily : 'Montserrat, sans-serif',
-        //                 color : 'rgba(0, 0, 0, 0.87)'
-        //             }}
-        //         />
-        //     </MuiThemeProvider>
-        //
-        // )
+        return (
+            <MuiThemeProvider theme={theme}>
+                <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                    <TimePicker
+                        className="date-picker"
+                        ampm
+                        placeholder={Identify.__('Select time') + ": --:-- --"}
+                        value={this.state.time}
+                        onChange={this.handleChangeTimePicker}
+                        format="HH:mm a"
+                        margin="normal"
+                    />
+                </MuiPickersUtilsProvider>
+            </MuiThemeProvider>
+        )
     }
 
     render(){

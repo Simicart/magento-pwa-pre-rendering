@@ -10,10 +10,10 @@ import {Dynamic} from "../../../../../BaseComponent/Async";
 
 const $ = window.$;
 const DatePicker = (props)=>{
-    return <Dynamic component={()=>import('../Type/Date')} {...props}/>
+    return <Dynamic component={()=>import(/* webpackChunkName : "DatePicker" */'../Type/Date')} {...props}/>
 }
 const TimePicker = (props)=>{
-    return <Dynamic component={()=>import('../Type/Time')} {...props}/>
+    return <Dynamic component={()=>import(/* webpackChunkName : "TimePicker" */'../Type/Time')} {...props}/>
 }
 class CustomAbstract extends OptionAbstract {
 

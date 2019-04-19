@@ -58,7 +58,7 @@ class Text extends Abstract {
         return (
             <div>
                 {(this.props.type === 'area')?this.renderTextArea():this.renderTextField()}
-                {this.max_characters && <p>{Identify.__('Maximum number of characters:')} {this.max_characters}</p>}
+                {this.max_characters > 0 && <p>{Identify.__('Maximum number of characters:')} {this.max_characters}</p>}
             </div>
         )
     }
