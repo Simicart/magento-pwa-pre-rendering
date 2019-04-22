@@ -1,6 +1,5 @@
 import React from 'react';
 import Base from '../../Core/BaseAbstract';
-import Layout from '../../../Layout/Tapita';
 import CmsModel from '../../Core/CmsPage/CmsModel';
 import CmsContent from './CmsContent';
 

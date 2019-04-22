@@ -6,7 +6,7 @@ import Identify from '../../../Helper/Identify';
 // import 'react-confirm-alert/src/react-confirm-alert.css';
 import SidebarItem from './CartComponent/SidebarItem';
 import ArrowDown from '@material-ui/icons/KeyboardArrowDown';
-import Layout from '../../../Layout/Tapita'
+import Layout from '../../../Layout'
 import Total from '../../../BaseComponent/Total'
 import { SubscribeOne } from 'unstated-x';
 import { AppState } from '../../../Observer/AppState';

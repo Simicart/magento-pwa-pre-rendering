@@ -4,7 +4,7 @@ import HomeAbstract from '../../Core/Home/HomeAbstract';
 import DefaultTheme from './Default'
 import MatrixTheme from './Matrix'
 import ZaraTheme from './Zara'
-import Layout from '../../../Layout/Tapita'
+import Layout from '../../../Layout/'
 import './style.css';
 class Home extends HomeAbstract{
 

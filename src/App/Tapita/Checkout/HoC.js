@@ -9,7 +9,7 @@ import {SubscribeOne} from 'unstated-x'
 import {AppState} from "../../../Observer/AppState"
 import CheckoutPage from "./index";
 import Identify from "../../../Helper/Identify";
-import Layout from "../../../Layout/Tapita";
+import Layout from "../../../Layout";
 export const CheckoutTapita = props => (
     <Layout header={{title : Identify.__('Checkout')}}>
         <SubscribeOne to={AppState} bind={['cart_data']}>
