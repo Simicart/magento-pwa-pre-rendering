@@ -40,10 +40,12 @@ class CustomerDashboard extends Abstract {
     constructor(props) {
         super(props);
         this.state = {
-            page: 'dashboard',
+            page: this.state.isPhone ? 'menu' : 'dashboard',
+            isPhone: this.state.isPhone,
             changePassword: false,
         }
     }
+
     static getDerivedStateFromProps(nextProps, prevState) {
         if (!nextProps.page || nextProps.page === prevState.page) {
             return null
@@ -113,6 +115,31 @@ class CustomerDashboard extends Abstract {
         this.setState({ page })
     };
 
+    renderMenuPhone() {
+        const menuConfig = this.getMenuConfig();
+        const menu = Object.keys(menuConfig).map((id, key) => {
+            const item = menuConfig[id];
+            return item.enable 
+                ?   <li key={key}>
+                        <div className="menu-customer-item" onClick={()=>this.handleClickMenu(item.url)}>
+                            <div className="menu-icon">
+                                {item.icon}
+                            </div>
+                            <div className="menu-title">
+                                {Identify.__(item.title)}
+                            </div>
+                        </div>
+                    </li> 
+                : null
+        })
+
+        return (
+            <ul className={`menu-customer`}>
+                {menu}
+            </ul>
+        )
+    }
+
     renderMenu = () => {
         let menuStyle = {
             fontFamily: 'Montserrat, sans-serif',
@@ -152,6 +179,9 @@ class CustomerDashboard extends Abstract {
         const { page } = this.state;
         let content = <div />
         switch (page) {
+            case 'menu':
+                content = this.renderMenuPhone();
+                break;
             case 'dashboard':
                 content = <Dashboard parent={this}/>;
                 break;
@@ -177,7 +207,7 @@ class CustomerDashboard extends Abstract {
                 content = <Newsletter parent={this} />
                 break;
             default :
-                content = <Dashboard/>
+                content = <Dashboard parent={this}/>
         }
         return (
             <div className="content-dashboard">
@@ -187,6 +217,7 @@ class CustomerDashboard extends Abstract {
     }
 
     render() {
+        console.log(this.state);
         return (
             <div className="container my-dashboard" style={{ marginBottom: 30 }}>
                 <div className="row">
