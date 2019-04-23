@@ -16,13 +16,12 @@ class ListProduct extends Abstract{
 
     renderFilter() {
         const {data} = this.props || {}
-        if (this.filterTree || (data && data.layers &&
+        if ((data && data.layers &&
             data.layers.layer_filter)) {
             return (
                 <div>
                     <div className="left-navigation-title">{Identify.__('Shop by')}</div>
-                    <Filter ref={(filterTree) => this.filterTree = filterTree}
-                            data={data.layers}
+                    <Filter data={data.layers}
                             obj={this}
                             ProductsParent={this.parent}
                             parent_props={this.props}/>
@@ -89,7 +88,6 @@ class ListProduct extends Abstract{
 
     render() {
         const {data} = this.props || {}
-        console.log(data)
         this.leftNavigation = this.renderLeftNavigation();
         return (
             <div className="product-list-container-tablet">

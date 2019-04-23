@@ -25,12 +25,12 @@ class ListHeader extends Abstract{
             currentPath = currentPath.map((id,key) => {
                 const item = catePath[id]
                 let link = item.link ?
-                    <div style={{display: 'inline-block', color: configColor.button_background}}>
+                    <div key={key} style={{display: 'inline-block', color: configColor.button_background}}>
                         <SimiLink route={item.link}>{item.name}</SimiLink>
                     </div> : item.name
                 let icon = size === key+1 ? null : ' | '
                 return (
-                    <React.Fragment>
+                    <React.Fragment key={key}>
                         {link}
                         {icon}
                     </React.Fragment>
