@@ -19,7 +19,6 @@ class Model  {
         Connection.restData();
         Connection.setGetData(params);
         let data = await Connection.connect(api);
-        console.log(this.obj);
         if(this.obj){
             this.setData(data)
             return true;

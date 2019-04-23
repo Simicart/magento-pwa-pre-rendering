@@ -3,7 +3,7 @@ import PageAbstract from './PageAbstract';
 import ListDownloadable from '../Component/MyDownloadable/ListDownloadable';
 import TableView from '../Component/MyDownloadable/TableView';
 
-class MyDowloadable extends PageAbstract {
+class MyDownloadable extends PageAbstract {
     render() {
         return (
             <div className="my-downloadable-page">
@@ -25,4 +25,4 @@ class MyDowloadable extends PageAbstract {
     }
 }
 
-export default MyDowloadable;
+export default MyDownloadable;

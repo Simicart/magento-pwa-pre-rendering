@@ -28,8 +28,7 @@ class BundleTablet extends BundleAbstract {
                         height: "36px",
                         width: "auto",
                         float: "left",
-                        paddingLeft: 20,
-                        paddingRight: 20,
+                        padding : '0 20px',
                         marginBottom : Identify.isRtl() ? 0:'30px'
 
                     }}

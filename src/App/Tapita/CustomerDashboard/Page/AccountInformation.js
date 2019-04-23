@@ -13,17 +13,18 @@ class Profile extends PageAbstract{
         super(props);
         this.CustomerModel = new CustomerModel({obj:this})
         this.state = {
-            isChangePass : false,
+            isChangePass : Identify.getDataFromStoreage(Identify.SESSION_STOREAGE, 'password_change') || false,
         }
 
     }
-
-    // componentDidMount(){
-    //     let location = this.context.router.history.location;
-    //     if(location.hasOwnProperty('state') && location.state && location.state.hasOwnProperty('change_password')){
-    //         this.updateCheck()
-    //     }
-    // }
+    
+    componentDidMount(){
+        // let location = this.context.router.history.location;
+        // if(location.hasOwnProperty('state') && location.state && location.state.hasOwnProperty('change_password')){
+        //     this.updateCheck()
+        // }
+        sessionStorage.removeItem('password_change');
+    }
 
     updateCheck = ()=> {
         this.setState({isChangePass: !this.state.isChangePass})

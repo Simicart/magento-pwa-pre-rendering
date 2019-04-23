@@ -6,7 +6,7 @@
  */
 import React from 'react'
 import {Dynamic} from "../../../BaseComponent/Async";
-import Layout from '../../../Layout/Tapita'
+import Layout from '../../../Layout'
 import CustomerDashboard from './index'
 export const CustomerDashboardHoC = props => (
     <Layout header={{title : 'Customer Dashboard'}}>
@@ -19,5 +19,11 @@ export const Dashboard = props => <Dynamic component={()=>import('./Page/Account
 export const MyOrder = props => <Dynamic component={() => import('./Page/MyOrder')} {...props} />
 
 export const OrderDetail = props => <Dynamic component={() => import('./Page/OrderDetail')} {...props} />
+
+export const Address = props => <Dynamic component={() => import('./Page/AddressBook')} {...props} />
+
+export const MyDownloadable = props => <Dynamic component={() => import('./Page/MyDownloadable')} {...props} />
+
+export const Newsletter = props => <Dynamic component={() => import('./Page/Newsletter')} {...props} />
 
 export const Profile = props => <Dynamic component={() => import('./Page/AccountInformation')}{...props}/>

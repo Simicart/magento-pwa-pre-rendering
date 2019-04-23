@@ -159,7 +159,7 @@ class Identify {
     static isRtl() {
         let is_rtl = false;
         let configs = this.getMerchantConfig();
-        if (configs !== null) {
+        if (configs !== null && configs.hasOwnProperty('storeview') &&  configs.storeview.hasOwnProperty('base')) {
             is_rtl = parseInt(configs.storeview.base.is_rtl, 10) === 1;
         }
         return is_rtl;
@@ -277,7 +277,6 @@ class Identify {
         }else{
             data = serverCache.get('url_match') || {}
         }
-        console.log(data)
         if(data.hasOwnProperty(url) && data[url]){
             return data[url]
         }

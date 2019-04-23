@@ -1,19 +1,22 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import Abstract from '../../../../Core/BaseAbstract';
 import AddressModel from '../../../../Core/Address/Model';
-import {confirmAlert} from 'react-confirm-alert';
+import { confirmAlert } from 'react-confirm-alert';
 import Identify from '../../../../../Helper/Identify';
 import EditIcon from '../../../../../BaseComponent/Icon/Edit';
-import PropTypes from 'prop-types';
+import TrashIcon from '../../../../../BaseComponent/Icon/Trash';
+import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
+
 
 class AddressItem extends Abstract{
     constructor(props) {
         super(props);
-        this.parent = props.parent;
-        this.isDelete = props.isDelete || false;
-        this.addressData = props.addressData || {};
-        this.title = props.title || null;
-        this.canEdit = props.canEdit || true;
+        this.parent = this.props.parent;
+        this.isDelete = this.props.isDelete || false;
+        this.addressData = this.props.addressData || {};
+        this.title = this.props.title || null;
+        this.canEdit = this.props.canEdit || true;
         this.updateCollection = false;
         this.AddressModel = new AddressModel({obj: this});
         if (
@@ -40,14 +43,19 @@ class AddressItem extends Abstract{
         confirmAlert({
             title: '',
             message: Identify.__('Are you sure you want to delete this address'),
-            confirmLabel: 'Confirm',
-            cancelLabel: 'Cancel',
-            onConfirm: () => {
-                this.AddressModel.deleteAddress(addressId);
-            },
-            onCancel: () => {
-                return false;
-            }
+            buttons: [
+                {
+                  label: Identify.__('Yes'),
+                  onClick: () => {
+                      this.AddressModel.deleteAdress(addressId)
+                      Identify.showLoading();
+                    }
+                },
+                {
+                  label: Identify.__('No')
+                }
+              ],
+            
         })
     }
 
@@ -55,7 +63,8 @@ class AddressItem extends Abstract{
         if(this.updateCollection) {
             Identify.ApiDataStorage('list_address', 'update', data);
             this.updateCollection = false;
-            Identify.showToastMessage(Identify.__('This address has been removed'))
+            this.parent.updateAddressList();
+            Identify.showToastMessage(Identify.__('This address has been removed'));
         } else {
             Identify.showLoading();
             this.AddressModel.getAddressesCollection()
@@ -91,8 +100,8 @@ class AddressItem extends Abstract{
                     )}
                     {this.isDelete && (
                         <div onClick={() => this.handleDeleteAddress(this.addressData.entity_id)}
-                             style={{marginTop: 12, cursor: 'pointer'}}><i
-                            className="far fa-trash-alt"/>
+                             style={{marginTop: 12, cursor: 'pointer'}}>
+                             <TrashIcon style={{width:17 , height : 17}}/>
                         </div>
                     )}
                 </div>

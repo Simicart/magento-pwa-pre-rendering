@@ -6,7 +6,6 @@
  */
 import React from 'react'
 import Abstract from '../../Core/BaseAbstract'
-import Layout from '../../../Layout/Tapita'
 import Identify from "../../../Helper/Identify";
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem';
@@ -18,11 +17,15 @@ import UserIcon from '@material-ui/icons/Person'
 import AddressIcon from '../../../BaseComponent/Icon/AddressBook'
 import OrderIcon from '@material-ui/icons/CardTravel'
 import LogoutIcon from '@material-ui/icons/ExitToApp'
-import { Dashboard, MyOrder, Profile } from "./HoC";
-import OrderDetail from './Page/OrderDetail';
-import Address from './Page/AddressBook';
-import MyDowloadable from './Page/MyDowloadable';
-import Newsletter from './Page/Newsletter';
+import { 
+    Dashboard,
+    MyOrder,
+    Profile,
+    OrderDetail,
+    Address,
+    MyDownloadable,
+    Newsletter
+} from "./HoC";
 
 const styles = {
     icon: {
@@ -31,20 +34,25 @@ const styles = {
         fill: '#717171'
     }
 }
+
 const configColor = Identify.getColorConfig()
 class CustomerDashboard extends Abstract {
     constructor(props) {
         super(props);
-        this.state.page = 'dashboard';
-
+        this.state = {
+            page: this.state.isPhone ? 'menu' : 'dashboard',
+            isPhone: this.state.isPhone,
+            changePassword: false,
+        }
     }
+
     static getDerivedStateFromProps(nextProps, prevState) {
         if (!nextProps.page || nextProps.page === prevState.page) {
             return null
         }
         return { page: nextProps.page }
     }
-
+    
     getMenuConfig = () => {
         let menuConfig = {
             dashboard: {
@@ -107,6 +115,31 @@ class CustomerDashboard extends Abstract {
         this.setState({ page })
     };
 
+    renderMenuPhone() {
+        const menuConfig = this.getMenuConfig();
+        const menu = Object.keys(menuConfig).map((id, key) => {
+            const item = menuConfig[id];
+            return item.enable 
+                ?   <li key={key}>
+                        <div className="menu-customer-item" onClick={()=>this.handleClickMenu(item.url)}>
+                            <div className="menu-icon">
+                                {item.icon}
+                            </div>
+                            <div className="menu-title">
+                                {Identify.__(item.title)}
+                            </div>
+                        </div>
+                    </li> 
+                : null
+        })
+
+        return (
+            <ul className={`menu-customer`}>
+                {menu}
+            </ul>
+        )
+    }
+
     renderMenu = () => {
         let menuStyle = {
             fontFamily: 'Montserrat, sans-serif',
@@ -146,8 +179,14 @@ class CustomerDashboard extends Abstract {
         const { page } = this.state;
         let content = <div />
         switch (page) {
+            case 'menu':
+                content = this.renderMenuPhone();
+                break;
             case 'dashboard':
-                content = <Dashboard />;
+                content = <Dashboard parent={this}/>;
+                break;
+            case 'my-account':
+                content = <Profile parent={this} />;
                 break;
             case 'my-order':
                 content = <MyOrder parent={this} />
@@ -162,13 +201,13 @@ class CustomerDashboard extends Abstract {
                 content = <Address parent={this} page="edit-address"/>
                 break;
             case 'downloadable':
-                content = <MyDowloadable parent={this} />
+                content = <MyDownloadable parent={this} />
                 break;
             case 'newsletter':
                 content = <Newsletter parent={this} />
                 break;
             default :
-                content = <Dashboard/>
+                content = <Dashboard parent={this}/>
         }
         return (
             <div className="content-dashboard">
@@ -178,6 +217,7 @@ class CustomerDashboard extends Abstract {
     }
 
     render() {
+        console.log(this.state);
         return (
             <div className="container my-dashboard" style={{ marginBottom: 30 }}>
                 <div className="row">

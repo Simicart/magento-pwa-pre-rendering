@@ -38,7 +38,7 @@ let config = {
         return config
     },
     postcssLoaderOptions: {
-        parser: true,
+        // parser: true,
         ident: 'postcss',
         plugins: () => [
             require('postcss-flexbugs-fixes'),

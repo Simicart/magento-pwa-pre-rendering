@@ -7,12 +7,12 @@
 import React from 'react'
 import ProductPath from '../Component/ProductPath'
 import ProductImage from '../Component/ProductImage'
-import ProductTabs from '../Component/ProductTabs'
+// import ProductTabs from '../Component/ProductTabs'
 import ProductName from '../Component/ProductName'
 import ReviewCount from '../Component/ReviewCount'
 import ProductPrice from '../Component/ProductPrice'
 import ProductAction from '../Component/ProductAction'
-import {ProductOptions} from "../HoC";
+import {ProductOptions, ProductTabs} from "../HoC";
 
 export const layoutConfig =  {
     top_section : {

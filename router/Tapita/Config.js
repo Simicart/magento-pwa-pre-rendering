@@ -44,10 +44,15 @@ const tapitaRoute = {
         page : 'Tapita/Contact',
         pattern : '/contacts'
     },
+    customer: {
+        name : 'customer',
+        page : 'Tapita/Customer',
+        pattern : '/customer'
+    },
     customer_dashboard: {
-        name: 'customer_dashboard',
-        page: 'Tapita/CustomerDashboard',
-        pattern: '/customer'
+        name : 'customer_dashboard',
+        page : 'Tapita/CustomerDashboard',
+        pattern : '/customer/dashboard'
     },
     customer_order: {
         name: 'my_order',
