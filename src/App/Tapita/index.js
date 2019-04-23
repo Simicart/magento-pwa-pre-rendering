@@ -2,7 +2,7 @@ import React from 'react'
 import AppBar from './Header/AppBar'
 import NoSSR from 'react-no-ssr';
 import LoadingImg from '../../BaseComponent/Loading/LoadingImg';
-export const Tapita = props => {
+const Tapita = props => {
     return(
         <React.Fragment>
             <div className="app-header">
@@ -18,3 +18,4 @@ export const Tapita = props => {
         </React.Fragment>
     )
 }
+export default Tapita

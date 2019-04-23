@@ -6,7 +6,7 @@
  */
 import React from 'react'
 import Abstract from '../../Core/BaseAbstract'
-import Layout from '../../../Layout/Tapita';
+import Layout from '../../../Layout';
 import Identify from '../../../Helper/Identify';
 import Login from './Login'
 import './style.css';

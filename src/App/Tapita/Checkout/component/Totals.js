@@ -30,7 +30,7 @@ class Totals extends Abstract {
                 {tax_cart_display_subtotal === 2 && totals.subtotal_incl_tax !== undefined && (
                     <div className="checkout-total-item">
                         <span className="total-label"
-                              style={{color: this.this.configColor.content_color}}>{Identify.__('Subtotal') + Identify.__(':')}</span>
+                              style={{color: this.configColor.content_color}}>{Identify.__('Subtotal') + Identify.__(':')}</span>
                         <span className="total-price"><Price prices={{price: totals.subtotal_incl_tax}}/></span>
                     </div>
                 )}
@@ -40,14 +40,14 @@ class Totals extends Abstract {
                         {totals.subtotal_excl_tax !== undefined && (
                             <div className="checkout-total-item">
                             <span className="total-label"
-                                  style={{color: this.this.configColor.content_color}}>{Identify.__('Subtotal (Excl. Tax)') + Identify.__(':')}</span>
+                                  style={{color: this.configColor.content_color}}>{Identify.__('Subtotal (Excl. Tax)') + Identify.__(':')}</span>
                                 <span className="total-price"><Price prices={{price: totals.subtotal_excl_tax}}/></span>
                             </div>
                         )}
                         {totals.subtotal_incl_tax !== undefined && (
                             <div className="checkout-total-item">
                             <span className="total-label"
-                                  style={{color: this.this.configColor.content_color}}>{Identify.__('Subtotal (Incl. Tax)') + Identify.__(':')}</span>
+                                  style={{color: this.configColor.content_color}}>{Identify.__('Subtotal (Incl. Tax)') + Identify.__(':')}</span>
                                 <span className="total-price"><Price prices={{price: totals.subtotal_incl_tax}}/></span>
                             </div>
                         )}
@@ -95,7 +95,7 @@ class Totals extends Abstract {
                 {tax_cart_display_shipping === 1 && totals.shipping_hand_excl_tax !== undefined && (
                     <div className="checkout-total-item">
                         <span className="total-label"
-                              style={{color: this.this.configColor.content_color}}>{Identify.__('Shipping') + ':'}</span>
+                              style={{color: this.configColor.content_color}}>{Identify.__('Shipping') + ':'}</span>
                         <span className="total-price"><Price prices={{price: totals.shipping_hand_excl_tax}}/></span>
                     </div>
                 )}
@@ -103,7 +103,7 @@ class Totals extends Abstract {
                 {tax_cart_display_shipping === 2 && totals.shipping_hand_incl_tax !== undefined && (
                     <div className="checkout-total-item">
                         <span className="total-label"
-                              style={{color: this.this.configColor.content_color}}>{Identify.__('Shipping') + Identify.__(':')}</span>
+                              style={{color: this.configColor.content_color}}>{Identify.__('Shipping') + Identify.__(':')}</span>
                         <span className="total-price"><Price prices={{price: totals.shipping_hand_incl_tax}}/></span>
                     </div>
                 )}

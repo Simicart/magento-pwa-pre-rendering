@@ -1,2 +1,2 @@
-import React from 'react'
-export default () => <div>Tapita CMS</div>
+import CmsPage from '../../src/App/Tapita/CmsPage';
+export default CmsPage;

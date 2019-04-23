@@ -45,7 +45,7 @@ class Info extends Base {
                     </div>
                     <div className="item-content">
                         <div className="contact-title">{Identify.__('Sms')}</div>
-                        <ul className="list-sub-items" onClick={()=>{this.analyticsTracking('sms')}}>
+                        <ul className="list-sub-items" >
                             {subItems}
                         </ul>
                     </div>
@@ -73,7 +73,7 @@ class Info extends Base {
                     </div>
                     <div className="item-content">
                         <div className="contact-title">{Identify.__('Email')}</div>
-                        <ul className="list-sub-items" onClick={()=>{this.analyticsTracking('email')}}>
+                        <ul className="list-sub-items" >
                             {subItems}
                         </ul>
                     </div>
@@ -101,7 +101,7 @@ class Info extends Base {
                     </div>
                     <div className="item-content">
                         <div className="contact-title">{Identify.__('Hotline')}</div>
-                        <ul className="list-sub-items" onClick={()=>{this.analyticsTracking('phone')}}>
+                        <ul className="list-sub-items">
                             {subItems}
                         </ul>
                     </div>
@@ -122,9 +122,9 @@ class Info extends Base {
                     </div>
                     <div className="item-content">
                         <div className="contact-title">{Identify.__('Website')}</div>
-                        <ul className="list-sub-items" onClick={()=>{this.analyticsTracking('website')}}>
+                        <ul className="list-sub-items">
                             <li className="sub-item" key={Identify.makeid()}>
-                                <a href={`tel:${website}`} style={{textDecoration: 'underline'}}>{website}</a>
+                                <a href={`${website}`} style={{textDecoration: 'underline'}}>{website}</a>
                             </li>
                         </ul>
                     </div>

@@ -11,6 +11,10 @@ import PropTypes from 'prop-types';
 
 class TapitaLayout extends Layout{
 
+    componentDidMount() {
+        sessionStorage.removeItem('product_list_review');
+    }
+    
     renderApp(){
         return(
             <Tapita server_render={this.props.server_render}>

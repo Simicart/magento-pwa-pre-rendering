@@ -45,10 +45,10 @@ class TableOrder extends Abstract {
     renderOrderItem(item) {
         let date = Date.parse(item.created_at);
         date = new Date(date);
-        // if (Identify.detectPlatforms() === 1) {
-        //     let arr = item.created_at.split(/[- :]/);
-        //     date = new Date(arr[0], arr[1] - 1, arr[2], arr[3], arr[4], arr[5]);
-        // }
+        if (Identify.detectPlatforms() === 1) {
+            let arr = item.created_at.split(/[- :]/);
+            date = new Date(arr[0], arr[1] - 1, arr[2], arr[3], arr[4], arr[5]);
+        }
         let m = date.getMonth() + 1;
         m = m < 10 ? "0" + m : m;
         date = m + '/' + date.getDate() + '/' + date.getFullYear();
@@ -87,13 +87,14 @@ class TableOrder extends Abstract {
             return <Loading />
         }
 
-        let isDashBoard = this.props.useForDashBoard;
+        let isDashBoard = this.props.useForDashboard;
+
         let data = this.props.order_history;
 
         if(!data || !data.hasOwnProperty('orders') || data.orders.length === 0) {
             return <div className="text-center">{Identify.__('You have no items in your order')}</div>
         } else {
-            const order = isDashBoard ? data.order.slice(0, 3) : data.orders;
+            const order = isDashBoard ? data.orders.slice(0, 3) : data.orders;
             const cols = ['Order #', 'Date', 'Ship to', 'Order Total', 'Status', 'Action'];
 
             return (

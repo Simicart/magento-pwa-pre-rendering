@@ -2,7 +2,8 @@ import Head from "./Head";
 import React from "react";
 import {Loading} from "../BaseComponent/Loading";
 import Message from './Message'
-import './global.css'
+import App from '../App/Tapita'
+import PropTypes from "prop-types";
 /**
  * Created by PhpStorm.
  * User: Peter
@@ -11,15 +12,13 @@ import './global.css'
  */
 class Layout extends React.Component{
 
-    renderApp(){
-        return null
-    }
-
     render(){
         return(
             <div>
                 <Head {...this.props.header} />
-                {this.renderApp()}
+                <App server_render={this.props.server_render}>
+                    {this.props.children}
+                </App>
                 <Message/>
                 <div className="app-loading" style={{display:'none'}} id="app-loading">
                     <Loading/>
@@ -27,5 +26,9 @@ class Layout extends React.Component{
             </div>
         )
     }
+}
+Layout.propsTypes = {
+    server_render : PropTypes.bool,
+    header : PropTypes.object
 }
 export default Layout

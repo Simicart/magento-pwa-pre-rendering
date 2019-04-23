@@ -5,18 +5,14 @@
  * Time: 4:18 PM
  */
 import React from 'react'
-import {Router} from 'simiLink'
+import {Link} from 'simiLink'
 
-export const Link = props => {
-    const onClick = e => {
-        e.preventDefault()
-        if(props.route){
-            Router.pushRoute(props.route,props.params)
-        }
-    }
+export const SimiLink = props => {
     return(
-        <a href={props.href} target={props.target} onClick={onClick}>
-            {props.children}
-        </a>
+        <Link {...props}>
+            <a>
+                {props.children}
+            </a>
+        </Link>
     )
 }

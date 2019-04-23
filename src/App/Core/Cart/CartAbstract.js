@@ -97,7 +97,7 @@ class CartAbstract extends Base{
             else {
                 let isVirtualCart = false;
                 if (quoteItemsData.quoteitems !== undefined) {
-                    isVirtualCart = Identify.hasVirtualItem(quoteItemsData.quoteitems);
+                    isVirtualCart = Identify.isVirtualCart(quoteItemsData.quoteitems);
                 }
                 if (isVirtualCart)
                     forceLogin = true
@@ -108,10 +108,16 @@ class CartAbstract extends Base{
                 pathname: '/customer/account/login',
                 pushTo: '/checkout/onepage'
             };
-            this.pushLink('/customer/account/login');
+            this.pushLink(location);
         } else {
             this.pushLink('/checkout/onepage');
         }
+    }
+
+    moveToWishlist = (item_id) => {
+        Identify.showLoading()
+        this.cartModelCollection.moveToWishlist(item_id);
+        this.wishList = true;
     }
 }
 export default CartAbstract

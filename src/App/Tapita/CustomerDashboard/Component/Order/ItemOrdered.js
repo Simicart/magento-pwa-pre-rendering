@@ -4,8 +4,6 @@ import Identify from "../../../../../Helper/Identify";
 import IconDown from "../../../../../BaseComponent/Icon/Down";
 import Price from "../../../../../BaseComponent/Price";
 
-// const $ = window.$;
-
 class ItemOrdered extends Abstract {
     constructor(props) {
         super(props);
@@ -14,7 +12,7 @@ class ItemOrdered extends Abstract {
         this.configs = Identify.getMerchantConfig() || {};
     }
 
-    toggleOptionView = () => {
+    toggleOptionView = (item_id) => {
         const $ = window.$; 
         let currentItem = $('#btn-'+item_id);
         let iconElement = currentItem.find('svg');

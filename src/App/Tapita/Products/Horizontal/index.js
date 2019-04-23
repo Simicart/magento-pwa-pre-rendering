@@ -3,8 +3,6 @@ import Abstract from '../../../Core/BaseAbstract';
 import Loading from '../../../../BaseComponent/Loading';
 import Identify from '../../../../Helper/Identify';
 import CarouselProduct from "./Carousel";
-import {WIDTH_IMAGE, HEIGHT_IMAGE, LIMIT, OFFSET} from '../../../../Helper/Constants';
-import Model from '../../../../Model'
 import './horizontal.css';
 import GridItem from '../Component/Griditem'
 

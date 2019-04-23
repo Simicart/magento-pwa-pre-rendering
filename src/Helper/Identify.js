@@ -159,7 +159,7 @@ class Identify {
     static isRtl() {
         let is_rtl = false;
         let configs = this.getMerchantConfig();
-        if (configs !== null) {
+        if (configs !== null && configs.hasOwnProperty('storeview') &&  configs.storeview.hasOwnProperty('base')) {
             is_rtl = parseInt(configs.storeview.base.is_rtl, 10) === 1;
         }
         return is_rtl;
@@ -230,6 +230,10 @@ class Identify {
         return /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/.test(password);
     }
 
+    static validateName = (name) => {
+        return /^\w+( \w+)*$/.test(name);
+    }
+
     static capitalizeFirstLetter = (string) => {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
@@ -277,7 +281,6 @@ class Identify {
         }else{
             data = serverCache.get('url_match') || {}
         }
-        console.log(data)
         if(data.hasOwnProperty(url) && data[url]){
             return data[url]
         }
@@ -331,6 +334,14 @@ class Identify {
         if(msg){
             this.showToastMessage(msg)
             sessionStorage.removeItem('msg_login')
+        }
+    }
+
+    static showMsgLogout() {
+        const msg = this.getDataFromStoreage(Identify.SESSION_STOREAGE, 'msg_logout');
+        if(msg) {
+            this.showToastMessage(msg);
+            sessionStorage.removeItem('msg_logout');
         }
     }
 
@@ -418,6 +429,16 @@ class Identify {
             }, duration);
         }
 
+    }
+
+    static detectPlatforms() {
+        if (navigator.userAgent.match(/iPad|iPhone|iPod/)) {
+            return 1;
+        } else if (navigator.userAgent.match(/Android/)) {
+            return 2;
+        } else {
+            return 3;
+        }
     }
 }
 

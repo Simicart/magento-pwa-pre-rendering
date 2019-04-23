@@ -8,6 +8,7 @@ import {SubscribeOne} from 'unstated-x'
 import {AppState} from "../../../Observer/AppState";
 import React from 'react'
 import ItemAction from './Component/ItemAction'
+import {Dynamic} from "../../../BaseComponent/Async";
 
 export const ItemActionHoC = props => (
     <SubscribeOne to={AppState} bind={['']}>
@@ -18,3 +19,5 @@ export const ItemActionHoC = props => (
         )}
     </SubscribeOne>
 )
+
+export const Filter = props => <Dynamic component={()=>import('./List/Filter')} {...props}/>

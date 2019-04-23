@@ -6,7 +6,7 @@ import Identify from '../../../Helper/Identify';
 // import 'react-confirm-alert/src/react-confirm-alert.css';
 import SidebarItem from './CartComponent/SidebarItem';
 import ArrowDown from '@material-ui/icons/KeyboardArrowDown';
-import Layout from '../../../Layout/Tapita'
+import Layout from '../../../Layout'
 import Total from '../../../BaseComponent/Total'
 import { SubscribeOne } from 'unstated-x';
 import { AppState } from '../../../Observer/AppState';
@@ -91,9 +91,9 @@ class CartTapita extends Cart {
         for (let i in quoteItems) {
             let item = quoteItems[i];
             let element = <SidebarItem key={Identify.makeid()}
-                item={item}
-                handleEditCart={this.handleEditCart} />
-            //  moveToWishlist={this.moveToWishlist}/>;
+                                        item={item}
+                                        handleEditCart={this.handleEditCart}
+                                        moveToWishList={this.moveToWishlist} />
             obj.push(element);
         }
         return <ul className="cart-list">{obj}</ul>;
@@ -118,15 +118,12 @@ class CartTapita extends Cart {
                 className="tapita-cart-page-loading"
                 style={{ borderBottom: `solid 1px ${this.configColor.line_color}` }}
             >
-                {console.log(this.state.loaded)}
                 <Loading
                     loadingStyle={{ width: 25, height: 25 }}
                     divStyle={{ marginTop: 0 }}
                 />
             </div>
         if (!this.state.simiData || !this.state.simiData.cart_total || this.state.simiData.all_ids.length <= 0) {
-            // const $ = window.$
-            // $('.cart-number').text(0);
             return (
                 <Layout>
                     <div className="cart-page-static cart-page-tapita">
@@ -137,8 +134,6 @@ class CartTapita extends Cart {
                     </div>
                 </Layout>);
         } else {
-            // const $ = window.$  
-            // $('.cart-number').text(this.state.simiData.cart_total);
             return (
                 <Layout>
                     <div className="cart-page-static cart-page-tapita" style={{ maxWidth: '740px', margin: '15px auto', padding: '0 5px' }}>

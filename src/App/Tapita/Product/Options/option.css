@@ -129,8 +129,8 @@ Product option tablet - downloadable products
 }
 .option-label .label-check-selected {
     position: absolute;
-    top: 7px;
-    left: 0;
+    top: 5px;
+    left: 5px;
     width: 35px;
     display: none;
 }
@@ -167,4 +167,9 @@ Product option tablet - downloadable products
 .option-row {
     white-space: normal;
     line-height: 20px;
+}
+.date-picker input[type="text"]{
+    padding: unset !important;
+    border: unset !important;
+    font-size: 16px;
 }

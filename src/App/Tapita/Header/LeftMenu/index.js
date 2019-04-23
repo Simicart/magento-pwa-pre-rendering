@@ -26,6 +26,16 @@ class LeftMenu extends Abstract{
             this.cms = json.storeview.hasOwnProperty('cms') ? json.storeview.cms.cmspages:null;
             this.contacts = json.storeview.instant_contact || null;
         }
+        if(this.cms !== null) {
+            
+            this.cms.map(item => {
+                let cmsPath = '';
+                if(item.cms_url) {
+                    cmsPath = `/${item.cms_url}`;
+                }
+                Identify.setUrlMatchApi(cmsPath, 'cms_page', {id: item.cms_id});
+            })
+        }
     }
 
     handleChangeTab = (e,value) => {

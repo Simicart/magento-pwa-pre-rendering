@@ -1,9 +1,11 @@
 import React from 'react'
 import Identify from '../../../Helper/Identify';
 import Model from '../../../Model';
+import CmsModel from '../../Core/CmsPage/CmsModel';
 import {Page404} from "../../Core/NotFound";
-import Layout from '../../../Layout/Tapita'
+import Layout from '../../../Layout/'
 import ProductDetail from '../Product/Detail'
+import CmsContent from '../CmsPage/CmsContent';
 const ApiModel = new Model();
 let product_api = null;
 class UrlMatch extends React.Component{
@@ -19,6 +21,10 @@ class UrlMatch extends React.Component{
                     let api = `products/${obj.params.id}`
                     product_api = await ApiModel.getProductApi(api)
                     return {component,data:product_api}
+                } else if (component === 'cms_page') {
+                    const cmsModel = new CmsModel();
+                    const cmsData = await cmsModel.getCmsPage(obj.params.id);
+                    return { component, data: cmsData}
                 }
             }
         }else{
@@ -30,6 +36,8 @@ class UrlMatch extends React.Component{
         const {component,data} = this.props;
         if(component === 'product_detail'){
             return <ProductDetail data={data}/>
+        } else if(component === 'cms_page') {
+            return <CmsContent data={data} />
         }
         return (
             <Layout>

@@ -44,7 +44,6 @@ class OrderDetail extends PageAbstract {
     }
 
     processError(data) {
-        // Router.back();
         if (this.requestOrderDetail) {
             this.pushLink('/sales/order/history');
         }
@@ -59,7 +58,7 @@ class OrderDetail extends PageAbstract {
             this.isQuoteItemRequest = true;
             this.CartModel.getCart();
             this.requestReOrder = false;
-        } if(this.isQuoteItemRequest) {
+        } else if(this.isQuoteItemRequest) {
             this.isQuoteItemRequest = false;
             this.props.updateCart(data);
         } else if(this.requestOrderDetail) {
@@ -72,10 +71,10 @@ class OrderDetail extends PageAbstract {
     getDateFormat = (dateData) => {
         let date = Date.parse(dateData);
         date = new Date(date);
-        // if (Identify.detectPlatforms() === 1 || Identify.detectPlatforms() === 3) {
-        //     let arr = dateData.split(/[- :]/);
-        //     date = new Date(arr[0], arr[1] - 1, arr[2], arr[3], arr[4], arr[5]);
-        // }
+        if (Identify.detectPlatforms() === 1 || Identify.detectPlatforms() === 3) {
+            let arr = dateData.split(/[- :]/);
+            date = new Date(arr[0], arr[1] - 1, arr[2], arr[3], arr[4], arr[5]);
+        }
         return date;
     };
 

@@ -22,6 +22,7 @@ class Pagination extends ViewComponent {
         this.setState({
             currentPage: Number(event.target.id)
         });
+        this.props.handleChangePage(event.target.id,this.state.limit)
     }
 
     changeLimit = (event, index, value) => {
@@ -29,6 +30,7 @@ class Pagination extends ViewComponent {
             limit: Number(event.target.value),
             currentPage : 1
         });
+        this.props.handleChangePage(1,Number(event.target.value))
     };
 
     renderItem =(item)=>{
@@ -47,6 +49,7 @@ class Pagination extends ViewComponent {
         this.setState({
             currentPage : currentPage
         })
+        this.props.handleChangePage(currentPage,this.state.limit)
     }
 
     renderPageNumber = (total)=>{
@@ -223,7 +226,9 @@ Pagination.defaultProps = {
     itemsPerPageOptions: [5, 10, 15, 20],
     table : false,
     showPageNumber : true,
-    showInfoItem : true
+    showInfoItem : true,
+    handleChangePage : ()=>{},
+    renderItem : ()=>{}
 };
 Pagination.propTypes = {
     currentPage: PropTypes.number,
@@ -231,6 +236,7 @@ Pagination.propTypes = {
     data: PropTypes.array,
     renderItem : PropTypes.func,
     itemCount: PropTypes.number,
-    itemsPerPageOptions: PropTypes.array
+    itemsPerPageOptions: PropTypes.array,
+    handleChangePage : PropTypes.func
 };
 export default Pagination;

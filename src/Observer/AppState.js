@@ -8,7 +8,7 @@ import {Container} from 'unstated-x'
 import Identify from "../Helper/Identify";
 class AppStateContainer extends Container {
     state = {
-        cart_data : null,
+        cart_data : Identify.getDataFromStoreage(Identify.SESSION_STOREAGE,'quoteitems') || null,
         wishlist_data : null,
         order_history : null,
         downloadable_data : null,
@@ -25,6 +25,8 @@ class AppStateContainer extends Container {
 
     updateWishlist = (data) => {
         this.setStateSync({wishlist_data : data})
+        // console.log(this.state.wishlist_data,'data in appState')
+
     }
 
     updateOrderHistory = (data) => {
