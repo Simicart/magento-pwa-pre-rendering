@@ -230,6 +230,10 @@ class Identify {
         return /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/.test(password);
     }
 
+    static validateName = (name) => {
+        return /^\w+( \w+)*$/.test(name);
+    }
+
     static capitalizeFirstLetter = (string) => {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }

@@ -28,11 +28,15 @@ class Register extends Abstract {
       let valid = false;
 
       if (input.value !== '' && input.value !== null) {
-        if (input.name === 'email') {
-          if (!Identify.validateEmail(input.value)) {
-            warning.innerText = Identify.__('Check your email and try again');
-          } else
-            valid = true;
+        if(input.name === 'firstname' || input.name === 'lastname'){
+          if(!Identify.validateName(input.value)){
+            warning.innerText = Identify.__('Please enter your name')
+          } else valid = true;
+        } else if (input.name === 'email') {
+            if (!Identify.validateEmail(input.value)) {
+              warning.innerText = Identify.__('Check your email and try again');
+            } else
+              valid = true;
         } else if(input.name === 'password'){
             this.password = input.value
             if(this.password.length < 8){
