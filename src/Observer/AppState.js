@@ -25,6 +25,8 @@ class AppStateContainer extends Container {
 
     updateWishlist = (data) => {
         this.setStateSync({wishlist_data : data})
+        // console.log(this.state.wishlist_data,'data in appState')
+
     }
 
     updateOrderHistory = (data) => {

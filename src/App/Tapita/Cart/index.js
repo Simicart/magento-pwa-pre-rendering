@@ -91,9 +91,9 @@ class CartTapita extends Cart {
         for (let i in quoteItems) {
             let item = quoteItems[i];
             let element = <SidebarItem key={Identify.makeid()}
-                item={item}
-                handleEditCart={this.handleEditCart} />
-            //  moveToWishlist={this.moveToWishlist}/>;
+                                        item={item}
+                                        handleEditCart={this.handleEditCart}
+                                        moveToWishList={this.moveToWishlist} />
             obj.push(element);
         }
         return <ul className="cart-list">{obj}</ul>;
