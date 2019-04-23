@@ -91,9 +91,9 @@ class CartTapita extends Cart {
         for (let i in quoteItems) {
             let item = quoteItems[i];
             let element = <SidebarItem key={Identify.makeid()}
-                item={item}
-                handleEditCart={this.handleEditCart} />
-            //  moveToWishlist={this.moveToWishlist}/>;
+                                        item={item}
+                                        handleEditCart={this.handleEditCart}
+                                        moveToWishList={this.moveToWishlist} />
             obj.push(element);
         }
         return <ul className="cart-list">{obj}</ul>;
@@ -118,7 +118,6 @@ class CartTapita extends Cart {
                 className="tapita-cart-page-loading"
                 style={{ borderBottom: `solid 1px ${this.configColor.line_color}` }}
             >
-                {console.log(this.state.loaded)}
                 <Loading
                     loadingStyle={{ width: 25, height: 25 }}
                     divStyle={{ marginTop: 0 }}
