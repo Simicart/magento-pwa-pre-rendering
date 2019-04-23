@@ -162,7 +162,7 @@ class Register extends Abstract {
             <input type="email" name="email" id="register-input-email"
               ref={(thisField) => { this.registerInputs.push(thisField) }} />
             <div id="register-input-email-warning"
-              className="error-message"></div>
+              className="error-message">{Identify.__("This field is required")}</div>
           </div>
 
           <div className="form-field">
