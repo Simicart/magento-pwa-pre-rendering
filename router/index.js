@@ -20,5 +20,6 @@ module.exports = routes()
 .add(routerConfig.customer_newsletter)
 .add(routerConfig.order_detail)
 .add(routerConfig.profile)
+.add(routerConfig.wishlist)
 .add(routerConfig.url_match)
 

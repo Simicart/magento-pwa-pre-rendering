@@ -70,5 +70,11 @@ class CartModel extends Model{
         this.advancedConnect('PUT', 'quoteitems', urlParams, json);
     }
 
+    moveToWishlist(item_id) {
+        let api = `quoteitems/${item_id}`;
+        let data = {"move_to_wishlist":"1"};
+        this.connect(api, data);
+    }
+
 }
 export default CartModel

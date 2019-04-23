@@ -19,11 +19,17 @@ class SearchBar extends Abstract {
         this.searchInput.focus();
     }
 
+    handleSearch = (e) => {
+        if (e.key === 'Enter') {
+            this.startSearching();
+        }
+    }
+
     renderSearchField = () => {
         return <div className="search-field">
             <input id="search-field-value"
                    type="text"
-                   onKeyPress={(e) => {if (e.key === 'Enter') this.startSearching()}}
+                   onKeyPress={this.handleSearch}
                    ref={(input) => { this.searchInput = input}}
             />
             <IconButton className="search-field-icon"
@@ -37,13 +43,7 @@ class SearchBar extends Abstract {
         if (this.searchInput && this.searchInput.value) {
             this.handleHideSearchbar();
             const keyWord = this.searchInput.value;
-            const location = {
-                pathname: "/search/result?q=" + keyWord,
-                state: {
-                    search: "q=" + keyWord
-                }
-            }
-            this.props.history.push(location);
+            this.pushLink(`/search/result?q=${keyWord}`)
         }
     }
 

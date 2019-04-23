@@ -10,11 +10,61 @@ import Description from './Description'
 import Identify from "../../../../Helper/Identify";
 import ArrowUp from '../../../../BaseComponent/Icon/ArrowUp';
 import ArrowDown from '../../../../BaseComponent/Icon/ArrowDown';
-import TechSpec from './TechSpec'
+import TechSpec from './TechSpec';
+import ReviewTabPhone from './ReviewTabPhone';
+import SwipeableViews from 'react-swipeable-views';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import Typography from '@material-ui/core/Typography';
+import ReviewTabContent from './ReviewTabContent';
+import Model from '../../../../Model';
+import CustomerHelper from '../../../../Helper/Customer';
+
 const configColor = Identify.getColorConfig()
+const tabLabel = {
+    fontSize: 22,
+    fontWeight: 800,
+}
 class ProductTabs extends Abstract{
+    constructor(props) {
+        super(props);
+        this.model = new Model({ obj: this })
+        this.state = {
+            tabIndex: 0,
+            isPhone: this.state.isPhone,
+            checkLogin: false,
+        }
+    }
+
+    componentDidMount() {
+        if(
+            this.product.app_reviews.hasOwnProperty('form_add_reviews') 
+            && typeof this.product.app_reviews.form_add_reviews[0] === 'string'
+            && (CustomerHelper.isLogin() || CustomerHelper.isAllowGuestAddReview())
+        ) {
+            this.model.getProductApi(`products/${this.product.entity_id}`);
+        }
+    }
+
+    processData(data) {
+        this.setState({
+            checkLogin: true,
+            data: data.product,
+        })
+    }
+    
+    handleChange = (event, value) => {
+        this.setState({tabIndex: value});
+    }
+
+    handleChangeIndex = (index) => {
+        this.setState({tabIndex: index});
+    }
 
     tabDataConfig(){
+        if(this.state.data && this.state.checkLogin === true){
+            this.product = this.state.data;
+        }
         let data = [
             {
                 sort_order : 1000,
@@ -32,6 +82,19 @@ class ProductTabs extends Abstract{
                 label : 'More Information',
                 content : <div key={Identify.makeid()} className="techspec-content tab-content">
                     <TechSpec product={this.product}/>
+                </div>
+            },
+            {
+                sort_order : 4000,
+                enable : true,
+                id : 'review',
+                label : `Reviews ${this.product.app_reviews.number > 0 ? `(${this.product.app_reviews.number})` : ''}`,
+                content : <div key={Identify.makeid()} className="product-reviews tab-content" style={!this.state.isPhone ? { display: 'block'}: {}}>
+                    {
+                        this.state.isPhone 
+                        ? <ReviewTabPhone product={this.product.app_reviews} productId={this.product.entity_id} name={this.product.name}/> 
+                        : <ReviewTabContent data={this.product.app_reviews} productId={this.product.entity_id} name={this.product.name}/>
+                    }
                 </div>
             },
         ]
@@ -77,6 +140,73 @@ class ProductTabs extends Abstract{
         )
     }
 
+    renderTabContent() {
+        const data = this.tabDataConfig();
+        const items = [];
+        for(let i in data) {
+            const item = data[i];
+            i = parseInt(i, 10);
+            if(item.enable) {
+                items.push(
+                    <TabContainer key={i}>
+                        {item.content}
+                    </TabContainer>
+                )
+            }
+        }
+
+        return (
+            <div className="swipeable-views">
+                <SwipeableViews
+                    axis={Identify.isRtl() ? 'x-reverse' : 'x'}
+                    index={this.state.tabIndex}
+                    onChangeIndex={this.handleChangeIndex}
+                    animateHeight={true}
+                >
+                    {items}
+                </SwipeableViews>
+            </div>
+        )
+    }
+
+    renderTabLabel(text) {
+        return <div style={tabLabel}>{Identify.__(text)}</div>
+    }
+
+    renderTabs() {
+        const data = this.tabDataConfig();
+        const items = []
+        for(let i in data) {
+            const item = data[i];
+            i = parseInt(i, 10);
+            if(item.enable) {
+                items.push(
+                    <Tab 
+                        key={Identify.makeid()}
+                        id="detail-tab"
+                        value={i}
+                        className={`tab-${i}`}
+                        label={this.renderTabLabel(item.label)}
+                        textColor="primary"
+                    />
+                )
+            }
+        }
+        return (
+            <Tabs 
+                className="product-description-tabs"
+                value={this.state.tabIndex}
+                onChange={this.handleChange}
+                indicatorColor="primary"
+                textColor="primary"
+                variant="fullWidth"
+            >
+                {items}
+            </Tabs>
+            
+        )
+    }
+
     handleShowContent = (id)=>{
         const $ = window.$
         $('.panel-label').each(function () {
@@ -105,12 +235,24 @@ class ProductTabs extends Abstract{
         },1000)
     }
 
-    render(){
+    render() {
         this.product = this.props.data.product;
         if(this.state.isPhone){
             return this.renderViewPhone()
         }
-        return null
+        return (
+            <div className="product-info" style={{paddingBottom : 20}}>
+                {this.renderTabs()}
+                {this.renderTabContent()}
+            </div>
+        )
     }
 }
+
+const TabContainer = ({ children, dir }) => (
+    <Typography component="div" dir={dir}>
+        {children}
+    </Typography>
+);
+
 export default ProductTabs

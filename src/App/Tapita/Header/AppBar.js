@@ -20,6 +20,7 @@ import Menu from '../../../BaseComponent/Icon/Menu';
 import Search from '../../../BaseComponent/Icon/Search'
 import SearchBar from './Component/Search'
 import WishListIcon from '../../../BaseComponent/Icon/Heart-shape-outline'
+
 const configColor = Identify.getColorConfig()
 class AppBar extends Abstract{
     renderLogo = ()=>{
@@ -174,10 +175,11 @@ class AppBar extends Abstract{
             <div style={{borderBottom: '1px solid #eeeeee'}}>
                 {this.state.isPhone ? this.renderAppBarPhone() : this.renderAppTablet()}
                 {this.renderBottomMenu()}
-                {!this.state.isPhone && <SearchBar parent={this}/>}
                 <LeftMenu ref={node => this.LeftMenu = node}/>
+                {!this.state.isPhone && <SearchBar parent={this}/>}
             </div>
         )
     }
 }
+
 export default AppBar

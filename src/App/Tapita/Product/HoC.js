@@ -19,3 +19,4 @@ export const DownloadOptions = props => <Dynamic component={()=>import('./Option
 
 export const GroupedOptions = (props)=> <Dynamic component={()=>import('./Options/Grouped/GroupedTablet')} {...props}/>
 
+export const ProductTabs = (props)=> <Dynamic component={()=>import('./Component/ProductTabs')} {...props}/>
