@@ -45,10 +45,9 @@ class ListHeader extends Abstract{
         const {page_type,currentCate} = this.props
         if(page_type === 'category'){
             let catePath = this.getCategoryPath().length > 1 ? this.getCategoryPath() : null
-            console.log(catePath)
             let  headerStyle = {borderBottom: `1px solid ${configColor.line_color}`};
             if (currentCate && currentCate.thumbnail_url) {
-                headerStyle.background = `white url("${this.category.thumbnail_url}") top center no-repeat`;
+                headerStyle.background = `white url("${currentCate.thumbnail_url}") top center no-repeat`;
                 headerStyle.backgroundSize = 'cover';
             }
             return(

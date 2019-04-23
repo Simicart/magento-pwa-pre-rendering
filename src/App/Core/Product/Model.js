@@ -24,7 +24,7 @@ class ProductModel extends Model{
     getCollection(params = this.params){
         this.setParams(params);
         if(params.hasOwnProperty('filter[cat_id]') && params['filter[cat_id]']){
-            this.obj.catId = params['filter[cat_id]']
+            this.obj.cateId = params['filter[cat_id]']
         }
         return this.connect('products', params);
     }

@@ -63,7 +63,7 @@ class ProductListAbstract extends Abstract{
     }
 
     getMetaHeader(){
-        const currentCate = this.cateData
+        const currentCate = this.cateData || {}
         let title = currentCate.name
         let description = currentCate.meta_description ? currentCate.meta_description : title
         return {title,description}
@@ -73,13 +73,21 @@ class ProductListAbstract extends Abstract{
         const {catetrees,page_type,cateId} = this.props
         Identify.storeDataToStoreage(Identify.SESSION_STOREAGE,'categorytrees',catetrees)
         let params = this.ProductModel.getParams()
+        params['image_height'] = this.checkIsPhone() ? 180 : 300
+        params['image_width'] = this.checkIsPhone() ? 180 : 300
         if(page_type === 'category'){
             params['filter[cat_id]'] = cateId
         }
+        this.getProducts()
+    }
+
+    getProducts(){
         this.ProductModel.getCollection()
     }
 
-
+    processData(data){
+        this.setState({data})
+    }
 
     render() {
         return (
