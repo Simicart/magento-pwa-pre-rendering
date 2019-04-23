@@ -426,6 +426,16 @@ class Identify {
         }
 
     }
+
+    static detectPlatforms() {
+        if (navigator.userAgent.match(/iPad|iPhone|iPod/)) {
+            return 1;
+        } else if (navigator.userAgent.match(/Android/)) {
+            return 2;
+        } else {
+            return 3;
+        }
+    }
 }
 
 export default Identify;
