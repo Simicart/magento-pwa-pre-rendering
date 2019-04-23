@@ -13,11 +13,24 @@ import CustomerHelper from "../../../../Helper/Customer";
 import Identify from "../../../../Helper/Identify";
 import {Router} from 'simiLink'
 import CartModel from '../../../Core/Cart/CartModel'
+import WishlistCollection from '../../../Core/Wishlist/Model';
+import {SubscribeOne} from 'unstated-x'
+import {AppState} from "../../../../Observer/AppState";
 class ItemAction extends Abstract{
 
     constructor(props) {
         super(props);
         this.Model = new CartModel({obj:this})
+        this.WishListModel = new WishlistCollection({obj:this})
+        this.state = {
+            addWishlist : false
+        }
+        this.removeWishlist = true;
+        this.isRemove = false,
+        this.wishlistActived = false,
+        this.iconColor = "#e0e0e0"
+        this.activeDisplay = 'none';
+        this.inactiveDisplay = 'block';
     }
 
     processError(data){
@@ -29,6 +42,8 @@ class ItemAction extends Abstract{
         this.addCartBtn.hideLoading()
         this.addWishlistBtn.hideLoading()
 
+        console.log(data,'dataaaa')
+
         const messages = data.message;
         if(messages instanceof Array){
             Identify.showToastMessage(messages[0])
@@ -36,6 +51,17 @@ class ItemAction extends Abstract{
         if(this.AddToCart){
             this.AddToCart = false
             this.props.updateCart(data)
+        }
+
+        if(this.state.addWishlist){
+            Identify.showToastMessage(data.wishlistitem.name + " " +"added to your wishlist")
+            this.wishlistActived = true
+            if(this.wishlistActived){
+                this.isRemove = true;
+                this.activeDisplay = 'block';
+                this.inactiveDisplay = 'none';
+            }
+            this.props.updateWishlist(data)
         }
     }
 
@@ -76,12 +102,7 @@ class ItemAction extends Abstract{
     renderWishListButton() {
         const width = 40;
         const height = 40;
-        let activeDisplay = 'none';
-        let inactiveDisplay = 'block';
-        if (this.wishlistActived) {
-            activeDisplay = 'block';
-            inactiveDisplay = 'none';
-        }
+
         const wishlistInactiveIcon = <HearthOutline color="#e0e0e0" style={{width, height}}/>;
         const wishlistActiveIcon = <HearthFilled color="#ff0000" style={{width, height}}/>;
         const buttonStyle = {
@@ -92,17 +113,17 @@ class ItemAction extends Abstract{
         };
         return (
             <div>
-                <div className="wishlist-icon actived" style={{display: activeDisplay}}>
+                <div className="wishlist-icon actived" style={{display: this.activeDisplay}}>
                     <Button
                         style={buttonStyle}
                         text={wishlistActiveIcon}
                     />
                 </div>
-                <div className="wishlist-icon inactived" style={{display: inactiveDisplay}}>
+                <div className="wishlist-icon inactived" style={{display: this.inactiveDisplay}}>
                     <Button
                         ref={(btn) => {this.addWishlistBtn = btn}}
                         style={buttonStyle}
-                        onClick={() => this.addToWishList()}
+                        onClick={() => this.addToWishList(this.isRemove)}
                         text={wishlistInactiveIcon}
                     />
                 </div>
@@ -110,16 +131,22 @@ class ItemAction extends Abstract{
         );
     }
 
-    addToWishList() {
+    addToWishList(isRemove = false) {
         if (!CustomerHelper.isLogin()) {
             Identify.showToastMessage(Identify.__('Please login first!'));
             return;
         }
-        this.addWishlistBtn.showLoading();
-        const item = this.props.item;
-        //if (item.has_options !== '0')
-        //return;
-        this.addWishlist = true;
+        else {
+            if(isRemove && this.isRemove){
+                this.WishListModel.removeItem(this.wishlist_id)
+                this.removeWishlist = true;
+                return;
+            };
+            this.setState({addWishlist : true})
+            this.WishListModel.addItemToWishList(this.props.item.entity_id);
+            Identify.storeDataToStoreage(Identify.SESSION_STOREAGE,'add_to_cart',true);
+            Identify.showLoading()
+        }
     }
 
     render() {
@@ -134,4 +161,14 @@ class ItemAction extends Abstract{
         );
     }
 }
-export default ItemAction
+
+const ItemListAction = props => (
+    <SubscribeOne to={AppState} bind={['wishlist_data']}>
+        {app => <ItemAction updateCart={(data) => app.updateCart(data)}
+                                  updateWishlist={(data) => app.updateWishlist(data)}
+                                  wishListData ={app.state.wishlist_data}
+                                  {...props}/>}
+    </SubscribeOne>
+)
+
+export default ItemListAction

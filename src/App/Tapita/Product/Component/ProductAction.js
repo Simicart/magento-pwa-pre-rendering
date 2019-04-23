@@ -14,37 +14,58 @@ import CustomerHelper from "../../../../Helper/Customer";
 import {Qty} from '../../../../BaseComponent/Input/index';
 import {SubscribeOne} from 'unstated-x'
 import {AppState} from "../../../../Observer/AppState";
-import CartModel from '../../../Core/Cart/CartModel'
+import CartModel from '../../../Core/Cart/CartModel';
+import WishlistModel from '../../../Core/Wishlist/Model';
 class ProductAddToCart extends Base {
     constructor(props){
         super(props)
         this.data = this.props.data.product;
         this.CartModel = new CartModel({obj : this});
-        this.addWishlist = false;
+        this.WishListModel = new WishlistModel({obj: this});
+        // this.addWishlist = false;
         this.wishlist = false
-        this.wishlistActived = false;
+        this.wishlistActived = false,
+        this.iconColor = "#e0e0e0"
+        this.isRemove = false
         this.wishlist_id = this.data.wishlist_item_id;
         this.removeWishlist = false;
+        this.state = {
+            addWishlist: false,
+        }
     }
 
     processError(data){
         this.addCartBtn.hideLoading()
         this.addWishlistBtn.hideLoading()
+        console.log(data)
     }
 
     processData(data){
         this.addCartBtn.hideLoading()
         // this.addWishlistBtn.hideLoading()
-
         const messages = data.message;
-        console.log(messages)
-        if(messages instanceof Array){
-            Identify.showToastMessage(messages[0])
+        if(data.errors){
+            console.log(data.errors)
         }
-        if(this.AddCart){
+        // if(messages instanceof Array){
+        //     Identify.showToastMessage(messages[0])
+        // }
+        if(this.AddCart && messages){
             this.AddCart = false
+            Identify.showToastMessage(messages[0])
             this.props.updateCart(data)
         }
+        if(this.state.addWishlist){
+            Identify.showToastMessage(data.wishlistitem.name + " " +"added to your wishlist")
+            this.wishlistActived = true
+            if(this.wishlistActived){
+                this.isRemove = true;
+                this.iconColor = "#ff271b"
+                console.log(this.iconColor)
+            }
+            this.props.updateWishlist(data)
+        }
+
     }
 
     AddToCart =(disable=false,type=1)=>{
@@ -120,31 +141,23 @@ class ProductAddToCart extends Base {
                 this.removeWishlist = true;
                 return;
             };
-            this.addWishlist = true;
-            this.WishListModel.addItemToWishList(this.props.data.entity_id);
+            this.setState({addWishlist : true})
+            this.WishListModel.addItemToWishList(this.props.data.product.entity_id);
             Identify.storeDataToStoreage(Identify.SESSION_STOREAGE,'add_to_cart',true);
             Identify.showLoading()
         }
     }
 
     renderWishListButton = (width = 36, height = 36) => {
-        let iconColor = "#e0e0e0";
-        let isRemove = false;
-        if (this.data.wishlist_item_id && this.data.wishlist_item_id !== null ) {
-            if(this.wishlistActived) this.isRemove = true;
-            this.wishlistActived = true;
-            isRemove = true;
-            iconColor = "#ff271b";
+        if(this.data && this.data.wishlist_item_id){
+            this.iconColor = "#ff271b";
         }
-        if(this.wishlistActived){
-            isRemove = true;
-            iconColor = "#ff271b";
-        }
+
         return (
             <WishListButton
-                onClick={(e) => this.wishListAction(e, isRemove)}
+                onClick={(e) => this.wishListAction(e, this.isRemove)}
                 style={{minWidth:width, height, padding: 0,marginLeft : 8}} className="wishlist-btn-icon">
-                <WishListIcon style={{fill:iconColor,width,height}} className="wishlist-icon"/>
+                <WishListIcon style={{fill:this.iconColor,width,height}} className="wishlist-icon"/>
             </WishListButton>
         );
 
@@ -173,9 +186,10 @@ class ProductAddToCart extends Base {
     }
 }
 const ProductAction = props => (
-    <SubscribeOne to={AppState} bind={[]}>
+    <SubscribeOne to={AppState} bind={['wishlist_data']}>
         {app => <ProductAddToCart updateCart={(data) => app.updateCart(data)}
                                   updateWishlist={(data) => app.updateWishlist(data)}
+                                  wishListData ={app.state.wishlist_data}
                                   {...props}/>}
     </SubscribeOne>
 )

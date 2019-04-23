@@ -63,9 +63,9 @@ class SidebarItem extends BaseAbstract {
         if(merchantConfigs.storeview.base.hasOwnProperty('connector_version') && merchantConfigs.storeview.base.connector_version >= '0.1.2'){
             this.new_version = true;
         }
-        let moveToWishlist = (CustomerHelper.isLogin() && this.props.moveToWishlist && this.new_version)?
+        let moveToWishlist = (CustomerHelper.isLogin() && this.props.moveToWishList && this.new_version)?
             <div className="item-move-to-wishlist">
-                <div onClick={(e) => this.props.moveToWishlist(item.item_id)} style={{maxWidth: "400px", cursor: 'pointer'}}>
+                <div onClick={(e) => this.props.moveToWishList(item.item_id)} style={{maxWidth: "400px", cursor: 'pointer'}}>
                     {Identify.__('Move to Wishlist')}
                 </div>
             </div>:'';
