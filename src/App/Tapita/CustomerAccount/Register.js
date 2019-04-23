@@ -28,16 +28,27 @@ class Register extends Abstract {
       let valid = false;
 
       if (input.value !== '' && input.value !== null) {
-        if (input.name === 'email') {
-          if (!Identify.validateEmail(input.value)) {
-            warning.innerText = Identify.__('Check your email and try again');
-          } else
-            valid = true;
+        if(input.name === 'firstname' || input.name === 'lastname'){
+          if(!Identify.validateName(input.value)){
+            warning.innerText = Identify.__('Please enter your name')
+          } else valid = true;
+        } else if (input.name === 'email') {
+            if (!Identify.validateEmail(input.value)) {
+              warning.innerText = Identify.__('Check your email and try again');
+            } else
+              valid = true;
+        } else if(input.name === 'password'){
+            this.password = input.value
+            if(this.password.length < 8){
+              warning.innerText = Identify.__('Password must be at least 8 characters');
+            } else {
+              valid = true
+            }
         } else if (input.name === 'confirm-password') {
-          if (input.value !== this.password) {
-            warning.innerText = Identify.__('New password and confirm password do not match');
-          } else
-            valid = true;
+            if (input.value !== this.password) {
+              warning.innerText = Identify.__('New password and confirm password do not match');
+            } else
+              valid = true;
         } else
           valid = true;
       }
@@ -48,7 +59,6 @@ class Register extends Abstract {
         if (input.name === 'email') {
           this.email = input.value;
         } else if (input.name === 'password') {
-          this.password = input.value;
           warning.style.display = 'none';
         }
       } else {
