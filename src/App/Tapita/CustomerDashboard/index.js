@@ -6,7 +6,6 @@
  */
 import React from 'react'
 import Abstract from '../../Core/BaseAbstract'
-import Layout from '../../../Layout/Tapita'
 import Identify from "../../../Helper/Identify";
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem';

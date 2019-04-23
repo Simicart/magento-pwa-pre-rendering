@@ -3,7 +3,7 @@ import Identify from '../../../Helper/Identify';
 import Model from '../../../Model';
 import CmsModel from '../../Core/CmsPage/CmsModel';
 import {Page404} from "../../Core/NotFound";
-import Layout from '../../../Layout/Tapita'
+import Layout from '../../../Layout/'
 import ProductDetail from '../Product/Detail'
 import CmsContent from '../CmsPage/CmsContent';
 const ApiModel = new Model();

@@ -1,0 +1,50 @@
+/**
+ * Created by PhpStorm.
+ * User: Peter
+ * Date: 4/21/19
+ * Time: 10:00 PM
+ */
+.product-list-header-tablet {
+    padding: 18px 20px;
+    color: #2d2d2d
+}
+
+.tapita-products-header .category-nav-item-container {
+    width: 50%;
+    max-width: 500px;
+    padding: 5px 20px;
+    display: inline-block;
+}
+
+.tapita-products-header .category-nav-item-container:hover {
+    cursor: pointer;
+}
+
+.tapita-products-header .category-nav-item {
+    padding: 10px 15px;
+    font-size: 17px;
+    font-weight: 400;
+    border: solid 1px;
+}
+
+#category-path {
+    font-size: 17px;
+    font-weight: 500;
+}
+#category-title {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+@media (max-width: 767px){
+    .tapita-products-header .category-nav-item-container {
+        width: 100%;
+        padding: 0px 20px;
+    }
+
+    .tapita-products-header .category-nav-item-container .category-nav-item {
+        padding: 15px 15px;
+        border: none;
+        border-bottom: solid 1px;
+    }
+}

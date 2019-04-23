@@ -6,7 +6,7 @@
  */
 import React from 'react'
 import {Dynamic} from "../../../BaseComponent/Async";
-import Layout from '../../../Layout/Tapita'
+import Layout from '../../../Layout'
 import CustomerDashboard from './index'
 export const CustomerDashboardHoC = props => (
     <Layout header={{title : 'Customer Dashboard'}}>

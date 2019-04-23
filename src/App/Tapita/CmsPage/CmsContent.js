@@ -1,6 +1,6 @@
 import React from 'react';
 import Base from '../../Core/BaseAbstract';
-import Layout from '../../../Layout/Tapita';
+import Layout from '../../../Layout';
 import ReactHtmlParser from 'react-html-parser';
 
 class CmsContent extends Base {
