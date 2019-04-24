@@ -14,15 +14,21 @@ class ProductListAbstract extends Abstract{
     static async getInitialProps(ctx) {
         let query = ctx.query
         let page_type = 'category'
+        let cateId = null
+        let q_filter = null
         let params = {}
         if(query.hasOwnProperty('q')){
             page_type = 'search'
-        }
-        if(page_type === 'category'){
-            const cateId = query.cat
+            q_filter = query.q
             const Model = new CateModel();
             const data = await Model.getTreeCategory()
-            return {page_type,cateId,catetrees : data}
+            return {page_type, cateId, q_filter, catetrees : data}
+        }
+        if(page_type === 'category'){
+            cateId = query.cat
+            const Model = new CateModel();
+            const data = await Model.getTreeCategory()
+            return {page_type, cateId, q_filter, catetrees : data}
         }
     }
 
@@ -76,14 +82,24 @@ class ProductListAbstract extends Abstract{
     }
 
     getMetaHeader(){
-        const currentCate = this.cateData || {}
-        let title = currentCate.name
-        let description = currentCate.meta_description ? currentCate.meta_description : title
+        let {page_type, q_filter} = this.props;
+        let title = null;
+        let description = null;
+        if(page_type === 'search'){
+            title = Identify.__(`Search result for '${q_filter}'`);
+            description = Identify.__(`Result detail of search keyword: '${q_filter}'`)
+        }else{
+            const currentCate = this.cateData || {}
+
+            title = currentCate.name
+            description = currentCate.meta_description ? currentCate.meta_description : title
+        }
+
         return {title,description}
     }
 
     componentDidMount(){
-        const {catetrees,page_type,cateId} = this.props
+        const {catetrees,page_type,cateId,q_filter} = this.props
         Identify.storeDataToStoreage(Identify.SESSION_STOREAGE,'categorytrees',catetrees)
         let params = this.ProductModel.getParams()
         if(!this.state.data){
@@ -91,6 +107,8 @@ class ProductListAbstract extends Abstract{
             params['image_width'] = this.checkIsPhone() ? 180 : 300
             if(page_type === 'category'){
                 params['filter[cat_id]'] = cateId
+            }else if(page_type === 'search'){
+                params['filter[q]'] = q_filter
             }
             this.getProducts()
         }else{

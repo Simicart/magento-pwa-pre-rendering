@@ -14,11 +14,12 @@ class ProductList extends ProductListAbstract{
 
     render() {
         const {loaded,data} = this.state;
-        const {catetrees,cateId} = this.props;
+        const {catetrees,cateId, q_filter} = this.props;
+        console.log(this.cateData)
         this.getCateData(catetrees.categorytrees,cateId)
         return (
             <Layout server_render={true} header={this.getMetaHeader()}>
-                {this.cateData && <ListHeader {...this.props} currentCate={this.cateData} catePath={this.catePath}/>}
+                <ListHeader {...this.props} currentCate={this.cateData} catePath={this.catePath}/>
                 {data && loaded ? <ListItem data={data} currentCate={this.cateData} parent={this}/> : <Loading/>}
             </Layout>
         );

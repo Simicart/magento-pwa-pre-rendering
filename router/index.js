@@ -20,5 +20,7 @@ module.exports = routes()
 .add(routerConfig.order_detail)
 .add(routerConfig.profile)
 .add(routerConfig.wishlist)
+.add(routerConfig.search)
+.add(routerConfig.search_result)
 .add(routerConfig.url_match)
 
