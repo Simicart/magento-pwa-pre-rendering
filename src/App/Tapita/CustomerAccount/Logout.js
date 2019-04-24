@@ -4,6 +4,8 @@ import Loading from '../../../BaseComponent/Loading';
 import CustomerModel from '../../Core/Customer/CustomerModel';
 import CustomerHelper from '../../../Helper/Customer';
 import Identify from '../../../Helper/Identify';
+import { SubscribeOne } from 'unstated-x';
+import { AppState } from '../../../Observer/AppState';
 
 class Logout extends Base {
     constructor(props) {
@@ -25,6 +27,7 @@ class Logout extends Base {
         const $ = window.$;
         const msg = Identify.__('You have logged out. Thank you')
         CustomerHelper.logout();
+        this.props.updateCart(null);
         $('.cart-number').hide();
         Identify.storeDataToStoreage(Identify.SESSION_STOREAGE, 'msg_logout', msg);
         this.pushLink('/');
@@ -36,4 +39,10 @@ class Logout extends Base {
     }
 }
 
-export default Logout;
+const LogoutState = props => (
+    <SubscribeOne to={AppState} bind={['cart_data']}>
+        {app => <Logout updateCart={(data)=>app.updateCart(data)} {...props}/>}
+    </SubscribeOne>
+)
+
+export default LogoutState;
