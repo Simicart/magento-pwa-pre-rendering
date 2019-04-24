@@ -12,8 +12,8 @@ class ProductModel extends Model{
         this.params ={}
     }
 
-    setParams = (params) => {
-        this.params = params;
+    setParams = (params = {}) => {
+        this.params = {...this.params,...params};
         return this;
     }
 

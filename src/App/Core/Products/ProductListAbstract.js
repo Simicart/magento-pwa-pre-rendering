@@ -39,6 +39,24 @@ class ProductListAbstract extends Abstract{
         this.ProductModel.setParams({limit:this.limit,offset : this.offset})
     }
 
+    static getDerivedStateFromProps(nextProps, prevState) {
+        if (nextProps.list_products && nextProps.list_products !== prevState.data) {
+            return {data : nextProps.list_products}
+        }
+        return {...prevState}
+    }
+
+    shouldComponentUpdate(nextProps,nextState){
+        if(nextProps.cateId !== this.props.cateId){
+            let params = this.ProductModel.getParams()
+            params['filter[cat_id]'] = nextProps.cateId
+            this.ProductModel.setParams(params)
+            this.getProducts()
+            return true
+        }
+        return true
+    }
+
     getCateData = (catArray = [], catId = null) => {
         if(catArray.length > 0 && catId){
             for (let i = 0; i < catArray.length; i++) {
@@ -57,11 +75,6 @@ class ProductListAbstract extends Abstract{
         return false
     }
 
-    componentWillMount(){
-        const {catetrees,cateId} = this.props;
-        this.getCateData(catetrees.categorytrees,cateId)
-    }
-
     getMetaHeader(){
         const currentCate = this.cateData || {}
         let title = currentCate.name
@@ -73,12 +86,16 @@ class ProductListAbstract extends Abstract{
         const {catetrees,page_type,cateId} = this.props
         Identify.storeDataToStoreage(Identify.SESSION_STOREAGE,'categorytrees',catetrees)
         let params = this.ProductModel.getParams()
-        params['image_height'] = this.checkIsPhone() ? 180 : 300
-        params['image_width'] = this.checkIsPhone() ? 180 : 300
-        if(page_type === 'category'){
-            params['filter[cat_id]'] = cateId
+        if(!this.state.data){
+            params['image_height'] = this.checkIsPhone() ? 180 : 300
+            params['image_width'] = this.checkIsPhone() ? 180 : 300
+            if(page_type === 'category'){
+                params['filter[cat_id]'] = cateId
+            }
+            this.getProducts()
+        }else{
+            this.setLoaded(true)
         }
-        this.getProducts()
     }
 
     getProducts(){

@@ -280,6 +280,7 @@ class Identify {
             data = this.getDataFromStoreage(this.LOCAL_STOREAGE,'url_match') || {}
         }else{
             data = serverCache.get('url_match') || {}
+            console.log(data)
         }
         if(data.hasOwnProperty(url) && data[url]){
             return data[url]
