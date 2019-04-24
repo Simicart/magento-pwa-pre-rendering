@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import BundlePrice from './Bundle';
 import Simple from './Simple';
 import Grouped from './Grouped';
-import './style.css';
+import './style.scss';
 import NoSSR from 'react-no-ssr'
 const style = {
     pirce: {

@@ -11,7 +11,7 @@ import MyAccount from './RightBar/MyAccount'
 import Abstract from '../../Core/BaseAbstract'
 import {BottomMenuHoC} from "./HoC";
 import LeftMenu from './LeftMenu'
-import './style.css'
+import './style.scss'
 import Identify from "../../../Helper/Identify";
 import CustomerHelper from "../../../Helper/Customer";
 import IconButton from '@material-ui/core/IconButton';

@@ -5,7 +5,7 @@ import IconButton from '@material-ui/core/IconButton';
 import ClearSearch from '@material-ui/icons/HighlightOff';
 import SimiDialog from "../Dialog";
 import IconCheck from '../../BaseComponent/Icon/SingleSelect'
-import './SearchList.css';
+import './SearchList.scss';
 
 const configColor = Identify.getColorConfig()
 class SearchList extends ListWithSearchComponent {

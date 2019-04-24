@@ -8,7 +8,7 @@ import InputField from "./FormFields/InputField";
 import Gender from "./FormFields/Gender";
 import CountryState from "./FormFields/CountryState"
 // import {layout} from '../../../Observer/layout'
-import './style.css'
+import './style.scss'
 
 
 class AddressFormAbstract extends Base {

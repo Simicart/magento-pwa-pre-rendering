@@ -4,7 +4,7 @@ import Abstract from '../../../Core/BaseAbstract';
 import Identify from '../../../../Helper/Identify';
 import CustomerHelper from '../../../../Helper/Customer';
 import ObjectHelper from '../../../../Helper/ObjectHelper';
-import './item.css';
+import './item.scss';
 import Price from '../../../../BaseComponent/Price';
 import {Link,Router} from 'simiLink';
 import Rate from '../../../../BaseComponent/Rate';

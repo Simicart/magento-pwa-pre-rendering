@@ -2,7 +2,7 @@ import React from 'react';
 import Base from '../../App/Core/BaseAbstract'
 import PropTypes from 'prop-types';
 import Dialog from '@material-ui/core/Dialog';
-import './style.css';
+import './style.scss';
 import CloseIcon from '../../BaseComponent/Icon/Close';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogActions from '@material-ui/core/DialogActions';

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Identify from '../../Helper/Identify';
 import BackIcon from '../../BaseComponent/Icon/Back'
 import NextIcon from '../../BaseComponent/Icon/Next'
-import './pagination.css'
+import './pagination.scss'
 class Pagination extends ViewComponent {
     constructor(props){
         super(props);
