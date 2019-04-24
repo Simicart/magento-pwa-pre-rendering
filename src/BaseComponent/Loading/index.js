@@ -58,5 +58,5 @@ export const Loading = (props) => {
 //             <div className="item2" style={itemStyle}></div>
 //             <div className="item3" style={itemStyle}></div>
 //             import React from 'react';
-//             import './style.css';
+//             import './style.scss';
 //             import {configColor} from '../../Config';

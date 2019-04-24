@@ -4,6 +4,7 @@ const withImages = require('next-images')
 const autoprefixer = require('autoprefixer')
 const withBundleAnalyzer = require('@zeit/next-bundle-analyzer')
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
+const withSass = require('@zeit/next-sass')
 let config = {
     distDir : process.env.NODE_ENV !== 'production' ? '.next' : 'build',
     generateBuildId: async () => {
@@ -76,5 +77,5 @@ let config = {
     }
     // target: 'serverless'
 }
-config = withBundleAnalyzer(withCSS(withImages(config)))
+config = withBundleAnalyzer(withSass(withCSS(withImages(config))))
 module.exports = config;

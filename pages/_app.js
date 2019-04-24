@@ -15,7 +15,7 @@ import JssProvider from 'react-jss/lib/JssProvider';
 import getPageContext from '../src/Helper/PageContext'
 import DeviceDetector from 'node-device-detector'
 import {Provider} from 'unstated-x'
-import '../src/Layout/global.css'
+import '../src/Layout/global.scss'
 
 Router.events.on('routeChangeStart', url => {
     Identify.showLoading()
