@@ -42,10 +42,11 @@ class ListHeader extends Abstract{
     }
 
     renderHeader(){
-        const {page_type,currentCate} = this.props
+        const {page_type,currentCate,q_filter} = this.props
+        let  headerStyle = {borderBottom: `1px solid ${configColor.line_color}`};
         if(page_type === 'category'){
             let catePath = this.getCategoryPath().length > 1 ? this.getCategoryPath() : null
-            let  headerStyle = {borderBottom: `1px solid ${configColor.line_color}`};
+           
             if (currentCate && currentCate.thumbnail_url) {
                 headerStyle.background = `white url("${currentCate.thumbnail_url}") top center no-repeat`;
                 headerStyle.backgroundSize = 'cover';
@@ -63,6 +64,16 @@ class ListHeader extends Abstract{
                     </div>
                 </div>
             )
+        } else if(page_type === 'search'){
+            let title = Identify.__(`Search results for '%s'`).replace('%s', q_filter);
+            return <div className="product-list-header-tablet" style={headerStyle} >
+                        <div id="category-path">
+                            {Identify.__(`Home`) + ' | ' + title} 
+                        </div>
+                        <div id="category-title">
+                            {title}
+                        </div>
+                    </div>
         }
         return null
     }
