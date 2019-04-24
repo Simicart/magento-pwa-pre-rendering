@@ -3,7 +3,7 @@ import Abstract from '../../../Core/BaseAbstract';
 import Loading from '../../../../BaseComponent/Loading';
 import Identify from '../../../../Helper/Identify';
 import CarouselProduct from "./Carousel";
-import './horizontal.css';
+import './horizontal.scss';
 import GridItem from '../Component/Griditem'
 
 

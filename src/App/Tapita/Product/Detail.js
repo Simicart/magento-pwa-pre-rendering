@@ -8,7 +8,7 @@ import React from 'react'
 import Abstract from '../../Core/BaseAbstract'
 import Layout from '../../../Layout'
 import {layoutConfig} from "./etc/tapita_product_detail";
-import './style.css'
+import './style.scss'
 
 class Detail extends Abstract{
 

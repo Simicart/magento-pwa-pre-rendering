@@ -71,6 +71,7 @@
         "uglifyjs-webpack-plugin": "^2.1.2",
         "unstated-x": "^0.1.1",
         "webpack": "^4.29.6",
+        "webpack-filter-warnings-plugin": "^1.2.1",
         "window-size": "^1.1.1"
     },
     "devDependencies": {

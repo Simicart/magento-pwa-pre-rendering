@@ -1,7 +1,7 @@
 import React from 'react';
 import View from '../ViewComponent'
 import PropTypes from 'prop-types';
-import './sidebar.css';
+import './sidebar.scss';
 import Identify from '../../Helper/Identify';
 const configColor = Identify.getColorConfig()
 class SideBar extends View{

@@ -8,7 +8,7 @@ import React from 'react'
 import Abstract from '../../../Core/BaseAbstract'
 import ListItem from './ListItem'
 import SideBar from '../../../../BaseComponent/SideBar'
-import './list.css'
+import './list.scss'
 import Identify from "../../../../Helper/Identify";
 import {Filter} from "../HoC";
 

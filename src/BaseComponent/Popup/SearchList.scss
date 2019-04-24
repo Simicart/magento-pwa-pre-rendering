@@ -1,0 +1,19 @@
+.list-container {
+  .list-items {
+    li {
+      font-weight: 500;
+      padding: 16px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      font-size: 16px;
+      border-bottom: 1px solid #cacaca;
+      i {
+        margin-left: auto;
+        order: 2;
+      }
+    }
+    list-style-type: none;
+    padding: 0;
+  }
+}

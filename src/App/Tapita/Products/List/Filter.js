@@ -6,7 +6,7 @@ import ListItem from '../../../../BaseComponent/MuiListItem/Text';
 import NestedListItem from '../../../../BaseComponent/MuiListItem/Nested';
 import CloseIcon from '../../../../BaseComponent/Icon/Close';
 
-import './filter.css';
+import './filter.scss';
 import {Loading} from "../../../../BaseComponent/Loading";
 
 const $ = window.$;

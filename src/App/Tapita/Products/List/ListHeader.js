@@ -8,7 +8,7 @@ import React from 'react'
 import Abstract from '../../../Core/BaseAbstract'
 import Identify from "../../../../Helper/Identify";
 import {SimiLink} from "../../../../BaseComponent/Link";
-import './ListHeader.css'
+import './ListHeader.scss'
 
 const configColor = Identify.getColorConfig()
 class ListHeader extends Abstract{
