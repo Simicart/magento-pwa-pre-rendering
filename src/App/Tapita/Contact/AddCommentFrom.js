@@ -2,7 +2,7 @@ import React from 'react';
 import Base from '../../Core/BaseAbstract';
 import Identify from "../../../Helper/Identify";
 import Model from '../../../Model';
-import "./contact.css"
+import "./contact.scss"
 
 const $ = window.$;
 

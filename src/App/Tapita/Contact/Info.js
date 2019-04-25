@@ -6,7 +6,7 @@ import IconEmail from '../../../BaseComponent/Icon/Email'
 import IconChat from '../../../BaseComponent/Icon/Chat'
 import IconPhone from '../../../BaseComponent/Icon/Phone-call'
 import IconHome from '../../../BaseComponent/Icon/Homepage'
-import "./contact.css"
+import "./contact.scss"
 
 class Info extends Base {
 
