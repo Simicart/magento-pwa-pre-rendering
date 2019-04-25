@@ -8,7 +8,7 @@ const configColor = Identify.getColorConfig()
 
 class ForgotPassword extends Base {
     state = {
-        email: ''
+        email: null
     }
 
     onChange = (e) => {
@@ -18,15 +18,16 @@ class ForgotPassword extends Base {
     handleForgotPassword() {
         let reQ = true;
         const {email} = this.state
-        if (!email)
-            return;
+        let warning = document.getElementById('fgtpwd-input-email-warning');
+        let warningMessage;
 
-        let warningMessage = Identify.__("This field is required");
-        if (email !== '' || email !== null) {
+        if (email) {
             if (Identify.validateEmail(email)) {
                 reQ = false;
             } else
                 warningMessage = Identify.__("Check your email and try again");
+        } else {
+            warningMessage = Identify.__("This field is required");
         }
 
         if (!reQ) {
@@ -35,7 +36,6 @@ class ForgotPassword extends Base {
             this.customerModel = new CustomerModel({ obj: this });
             this.customerModel.forgotPassword({ 'email': email })
         } else {
-            let warning = document.getElementById('fgtpwd-input-email-warning');
             warning.innerText = warningMessage;
             warning.style.display = 'block';
         }
