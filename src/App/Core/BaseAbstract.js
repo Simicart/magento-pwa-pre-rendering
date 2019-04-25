@@ -21,6 +21,20 @@ class SimiComponent extends React.Component{
         return window.innerWidth < 768
     }
 
+    checkPhoneResize(){
+        let obj = this;
+        if(Identify.isClient()){
+            const $ = window.$;
+            $(window).resize(function () {
+                let width = window.innerWidth;
+                let isPhone = width < 768;
+                if(obj.state.isPhone !== isPhone){
+                    obj.setState({isPhone})
+                }
+            })
+        }
+    }
+
     componentDidMount(){
         this.setState({isPhone : window.innerWidth < 768})
     }

@@ -53,7 +53,7 @@ class HomeAbstract extends BaseAbstract{
         if(this.layout === 3 || !this.props.home){
             return <div/>
         }
-        return <Banner data={this.props.home.homebanners}/>
+        return <Banner data={this.props.home.homebanners} isPhone={this.state.isPhone} />
     }
 
     renderLayout(component){
@@ -65,6 +65,7 @@ class HomeAbstract extends BaseAbstract{
     }
 
     componentDidMount(){
+        this.checkPhoneResize()
         Identify.showMsgLogin()
         Identify.showMsgLogout()
     }

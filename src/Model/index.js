@@ -6,7 +6,7 @@ class Model  {
     constructor(props) {
         this.isLoaded = false;
         this.data = null;
-        this.fullUrl = SMCONFIGS.merchant_url + SMCONFIGS.api_path
+        this.fullUrl = 'http://localhost:8080/'+SMCONFIGS.api_path
         if (props && props.obj) {
             this.obj = props.obj;
         }
