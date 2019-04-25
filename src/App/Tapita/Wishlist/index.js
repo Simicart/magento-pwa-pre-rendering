@@ -12,7 +12,7 @@ import Identify from '../../../Helper/Identify';
 import Link from 'next/link';
 import { SubscribeOne } from "unstated-x";
 import { AppState } from "../../../Observer/AppState";
-import './wishlist.css'
+import './wishlist.scss'
 
 // const $ = window.$;
 class Wishlist extends Abstract {
