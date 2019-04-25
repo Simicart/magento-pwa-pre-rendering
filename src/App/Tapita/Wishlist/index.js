@@ -1,6 +1,6 @@
 import React from 'react';
 import Abstract from '../../Core/Wishlist/WishListAbstract';
-import Layout from '../../../Layout/Tapita'
+import Layout from '../../../Layout'
 import ShareIcon from '../../../BaseComponent/Icon/Share';
 import Button from '../../../BaseComponent/Button';
 import Rate from '../../../BaseComponent/Rate';
