@@ -27,7 +27,7 @@ class ReviewForm extends Base {
         const nickname = this.refs.nickname.value;
         const title = this.refs.title.value;
         const detail = this.refs.detail.value;
-        if(nickname === '' || title === '' || detail === '') {
+        if(nickname.trim() === '' || title.trim() === '' || detail.trim() === '') {
             Identify.showToastMessage(Identify.__('Please fill in all required fields'));
         } else {
             const params = {

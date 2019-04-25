@@ -35,12 +35,15 @@ class DownloadableItem extends Abstract {
     };
 
     render() {
+        const style = {
+            color: this.itemData.order_status.toLowerCase() === 'available' ? this.configColor.button_background : 'inherit'
+        }
         return (
             <tr>
                 <td><span onClick={() => this.handleViewOrderDetail()}
                           style={{cursor: 'pointer'}}>{this.itemData.order_id}</span></td>
                 <td>{this.getDateFormat(this.itemData.order_date)}</td>
-                <td>{this.renderDownloadLink()}</td>
+                <td style={style} >{this.renderDownloadLink()}</td>
                 <td>{Identify.capitalizeFirstLetter(this.itemData.order_status)}</td>
                 <td>{this.itemData.order_remain}</td>
             </tr>

@@ -12,6 +12,10 @@ import PropTypes from "prop-types";
  */
 class Layout extends React.Component{
 
+    componentDidMount() {
+        sessionStorage.removeItem('product_list_review');
+    }
+
     render(){
         return(
             <div>
