@@ -16,7 +16,7 @@ let config = {
         if(!dev){
             config.plugins.push(new SWPrecacheWebpackPlugin({
                 cacheId: 'simipwa',
-                filepath: 'build/simi-sw.js',
+                filename: 'simi-sw.js',
                 staticFileGlobs: ['static/**/*'],
                 minify: true,
                 staticFileGlobsIgnorePatterns: [/\.next\//],

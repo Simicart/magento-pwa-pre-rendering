@@ -101,7 +101,7 @@ class SearchPage extends Base {
         let { classes } = this.props;
 
         return (
-            <Layout server_render={false} header={this.getMetaHeader()}>
+            <Layout header={this.getMetaHeader()}>
                 <div className="app-searchbox">
                     <div className="app-search-text">
                         <TextField
