@@ -1,7 +1,7 @@
 import React from 'react';
 import Cart from '../../Core/Cart/CartAbstract';
 import Loading from '../../../BaseComponent/Loading';
-import './cart.css';
+import './cart.scss';
 import Identify from '../../../Helper/Identify';
 // import 'react-confirm-alert/src/react-confirm-alert.css';
 import SidebarItem from './CartComponent/SidebarItem';

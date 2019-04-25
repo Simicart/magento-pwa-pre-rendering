@@ -1,6 +1,6 @@
 import React from 'react';
 import Abstract from '../../Core/Wishlist/WishListAbstract';
-import Layout from '../../../Layout/Tapita'
+import Layout from '../../../Layout'
 import ShareIcon from '../../../BaseComponent/Icon/Share';
 import Button from '../../../BaseComponent/Button';
 import Rate from '../../../BaseComponent/Rate';
@@ -12,7 +12,7 @@ import Identify from '../../../Helper/Identify';
 import Link from 'next/link';
 import { SubscribeOne } from "unstated-x";
 import { AppState } from "../../../Observer/AppState";
-import './wishlist.css'
+import './wishlist.scss'
 
 // const $ = window.$;
 class Wishlist extends Abstract {

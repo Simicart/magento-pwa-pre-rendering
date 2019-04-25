@@ -7,7 +7,7 @@ import Divider from '@material-ui/core/Divider'
 import MenuItemUI from '@material-ui/core/MenuItem'
 import Deleteicon from '../../../../BaseComponent/Icon/Trash'
 import ReactHTMLParse from 'react-html-parser'
-import './SidebarItem.css';
+import './SidebarItem.scss';
 
 class SidebarItem extends BaseAbstract {
     constructor(props) {
