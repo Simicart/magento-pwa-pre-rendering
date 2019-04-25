@@ -95,7 +95,9 @@ class AppBar extends Abstract{
         let pathname = window.location.pathname;
         let wishlistIcon = CustomerHelper.isLogin() ?
             <IconButton className="wishlist-icon-app-bar"
-                        onClick={this.handleWishListIcon}
+                        onClick={() => {
+                            this.pushLink('/wishlist')
+                        }}
             >
                 <WishListIcon
                     color={configColor.top_menu_icon_color}
