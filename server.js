@@ -20,6 +20,9 @@ const handler = routes.getRequestHandler(app,async ({req, res, route, query}) =>
     } else if(api === '/favicon.ico'){
         app.serveStatic(req,res, path.resolve('./static/favicon.ico'))
     }
+    else if(api === '/simi-sw.js'){
+        app.serveStatic(req,res, path.resolve('./build/simi-sw.js'))
+    }
     else{
         app.render(req, res, route.page, query)
     }
@@ -74,7 +77,10 @@ async function connectApiMagentoServer(api,method = 'GET',paramsBody = {}){
          if(method === 'GET'){
              credentials['body'] = null
          }
-         let fullApi = 'https://cody.pwa-commerce.com'+api
+         if(api[0] === '/'){
+             api = api.slice(1);
+         }
+         let fullApi = process.env.MERCHANRT_URL+api
          let data = await (await fetch(fullApi,credentials)).json()
          return data;
     }catch (e) {

@@ -36,6 +36,7 @@
         "autoprefixer": "^9.5.1",
         "body-parser": "^1.18.3",
         "date-fns": "^2.0.0-alpha.27",
+        "dotenv-webpack": "^1.7.0",
         "encoding": "^0.1.12",
         "express": "^4.16.4",
         "extract-css-chunks-webpack-plugin": "^4.3.2",
