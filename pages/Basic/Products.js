@@ -1,2 +1,2 @@
-import React from './node_modules/react'
+import React from 'react'
 export default ()=><div>Basic Product List</div>
