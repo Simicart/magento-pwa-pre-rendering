@@ -74,7 +74,7 @@ class CountryState extends Base {
             let requiredLabel = '';
             if (this.isCountryRequired === 'req') {
                 requiredLabel = '*';
-            } ;
+            };
 
             return (
                 <li key={Identify.makeid()} id="li-country" className='form-field-item'>
@@ -214,7 +214,7 @@ class CountryState extends Base {
         return (
             <div className="list-country-and-state">
                 {this.renderListCountry()}
-                
+                {this.renderStates()}
             </div>
         );
     }

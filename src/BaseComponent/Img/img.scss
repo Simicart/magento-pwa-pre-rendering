@@ -3,14 +3,12 @@
     background: none !important;
     width: 100%;
     height: 100%;
-
     overflow: hidden;
 }
-
 .iron-image-preload {
     position: absolute;
     top: 0;
-    bottom:0;
+    bottom: 0;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -19,17 +17,16 @@
     border: 1px solid #fff;
     background: #f2f2f2;
 }
-.iron-image-loaded img {
-    height: inherit !important;
-    width: inherit !important;
-}
 .iron-image-loaded {
+    img {
+        height: inherit !important;
+        width: inherit !important;
+    }
     z-index: 2;
     opacity: 0;
     position: relative;
     transition: opacity 1s ease;
 }
-
 .iron-image-fade-in {
     opacity: 1;
 }

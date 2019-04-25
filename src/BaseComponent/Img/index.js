@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './img.css';
+import './img.scss';
 import Loading from '../Loading/LoadingImg';
 import Identify from "../../Helper/Identify";
 import NoSSR from 'react-no-ssr'

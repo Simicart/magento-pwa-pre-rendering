@@ -1,7 +1,6 @@
 const routes = require('next-routes')
 const routerConfig = require('./Tapita/Config')
-
-module.exports = routes()  
+module.exports = routes()
 .add(routerConfig.home)                         
 .add(routerConfig.product_detail)
 .add(routerConfig.product_list)
@@ -21,5 +20,7 @@ module.exports = routes()
 .add(routerConfig.order_detail)
 .add(routerConfig.profile)
 .add(routerConfig.wishlist)
+.add(routerConfig.search)
+.add(routerConfig.search_result)
 .add(routerConfig.url_match)
 

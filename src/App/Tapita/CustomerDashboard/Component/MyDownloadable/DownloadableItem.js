@@ -16,10 +16,10 @@ class DownloadableItem extends Abstract {
     getDateFormat = (dateData) => {
         let date = Date.parse(dateData);
         date = new Date(date);
-        // if (Identify.detectPlatforms() === 1 || Identify.detectPlatforms() === 3) {
-        //     let arr = dateData.split(/[- :]/);
-        //     date = new Date(arr[0], arr[1] - 1, arr[2], arr[3], arr[4], arr[5]);
-        // }
+        if (Identify.detectPlatforms() === 1 || Identify.detectPlatforms() === 3) {
+            let arr = dateData.split(/[- :]/);
+            date = new Date(arr[0], arr[1] - 1, arr[2], arr[3], arr[4], arr[5]);
+        }
         let day = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
         let month = date.getMonth() + 1;
         month = month < 10 ? "0" + month : month;

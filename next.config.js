@@ -4,6 +4,8 @@ const withImages = require('next-images')
 const autoprefixer = require('autoprefixer')
 const withBundleAnalyzer = require('@zeit/next-bundle-analyzer')
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
+const withSass = require('@zeit/next-sass')
+const FilterWarningsPlugin = require('webpack-filter-warnings-plugin')
 let config = {
     distDir : process.env.NODE_ENV !== 'production' ? '.next' : 'build',
     generateBuildId: async () => {
@@ -35,6 +37,11 @@ let config = {
             fs: 'empty'
         }
         config.resolve.alias['simiLink'] = path.join(__dirname, 'router/index.js')
+        config.plugins.push(
+            new FilterWarningsPlugin({
+                exclude: /mini-css-extract-plugin[^]*Conflicting order between:/,
+            })
+        )
         return config
     },
     postcssLoaderOptions: {
@@ -76,5 +83,5 @@ let config = {
     }
     // target: 'serverless'
 }
-config = withBundleAnalyzer(withCSS(withImages(config)))
+config = withBundleAnalyzer(withCSS(withSass(withImages(config))))
 module.exports = config;

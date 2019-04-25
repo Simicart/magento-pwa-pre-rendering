@@ -5,7 +5,7 @@ import DefaultTheme from './Default'
 import MatrixTheme from './Matrix'
 import ZaraTheme from './Zara'
 import Layout from '../../../Layout/'
-import './style.css';
+import './style.scss';
 class Home extends HomeAbstract{
 
     renderTheme(){

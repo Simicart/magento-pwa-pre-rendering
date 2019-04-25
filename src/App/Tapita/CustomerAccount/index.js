@@ -9,7 +9,7 @@ import Abstract from '../../Core/BaseAbstract'
 import Layout from '../../../Layout';
 import Identify from '../../../Helper/Identify';
 import Login from './Login'
-import './style.css';
+import './style.scss';
 import IconButton from '../../../BaseComponent/IconButton';
 import NavigationRight from '../../../BaseComponent/Icon/ArrowRight';
 import Register from './Register';

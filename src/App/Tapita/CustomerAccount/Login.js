@@ -10,12 +10,17 @@ import Identify from "../../../Helper/Identify";
 import Button from '@material-ui/core/Button'
 import CustomerModel from '../../Core/Customer/CustomerModel'
 import CustomerHelper from "../../../Helper/Customer";
+import { SubscribeOne } from 'unstated-x';
+import { AppState } from '../../../Observer/AppState';
+import CartModel from '../../Core/Cart/CartModel';
 const configColor = Identify.getColorConfig()
 class Login extends Abstract {
 
     constructor(props) {
         super(props);
-        this.Model = new CustomerModel({ obj: this })
+        this.Model = new CustomerModel({ obj: this });
+        this.cartModel = new CartModel({ obj: this })
+        this.cart = false;
     }
 
 
@@ -61,21 +66,30 @@ class Login extends Abstract {
         };
     }
 
+    requestGetCart = () => {
+        this.cartModel.getCart()
+        this.setLoaded(false);
+        this.cart = true;
+    }
+
     processData(data) {
+        Identify.showLoading();
         if (this.cart) {
             this.props.updateCart(data);
             this.cart = false;
-            return;
-        }
-        if (data.message) {
-            this.message = data.message;
+            this.pushLink('/')
         } else {
-            this.message = Identify.__("Welcome %s, Start shopping now").replace('%s', data.customer.firstname);
+            
+            if (data.message) {
+                this.message = data.message;
+            } else {
+                this.message = Identify.__("Welcome %s, Start shopping now").replace('%s', data.customer.firstname);
+            }
+            data.customer.password = this.password
+            CustomerHelper.setLogin(data.customer);
+            Identify.storeDataToStoreage(Identify.SESSION_STOREAGE, 'msg_login', this.message)
+            this.requestGetCart();
         }
-        data.customer.password = this.password
-        CustomerHelper.setLogin(data.customer);
-        Identify.storeDataToStoreage(Identify.SESSION_STOREAGE, 'msg_login', this.message)
-        this.pushLink('/')
     };
 
     render() {
@@ -85,14 +99,14 @@ class Login extends Abstract {
                 <div className="form-field">
                     <div className="label">{Identify.__('Email')} <span style={{ color: 'red' }}>*</span></div>
                     <input type="email" name="email" id="login-input-email"
-                        ref={(thisField) => { this.loginInputs.push(thisField) }} required />
+                        ref={(thisField) => { this.loginInputs.push(thisField) }} />
                     <div id="login-input-email-warning"
                         className="error-message">{Identify.__("This field is required")}</div>
                 </div>
                 <div className="form-field">
                     <div className="label">{Identify.__('Password')} <span style={{ color: 'red' }}>*</span></div>
                     <input type="password" name="password" id="login-input-password"
-                        ref={(thisField) => { this.loginInputs.push(thisField) }} required />
+                        ref={(thisField) => { this.loginInputs.push(thisField) }}/>
                     <div id="login-input-password-warning"
                         className="error-message">{Identify.__("This field is required")}</div>
                 </div>
@@ -112,4 +126,10 @@ class Login extends Abstract {
         );
     }
 }
-export default Login
+
+const LoginState = props => (
+    <SubscribeOne to={AppState} bind={['cart_data', 'wishlist_data']}>
+        {app => <Login updateCart={(data) => app.updateCart(data)} {...props}/>}
+    </SubscribeOne>
+)
+export default LoginState;

@@ -15,7 +15,7 @@ import JssProvider from 'react-jss/lib/JssProvider';
 import getPageContext from '../src/Helper/PageContext'
 import DeviceDetector from 'node-device-detector'
 import {Provider} from 'unstated-x'
-import '../src/Layout/global.css'
+import '../src/Layout/global.scss'
 
 Router.events.on('routeChangeStart', url => {
     Identify.showLoading()
@@ -86,16 +86,16 @@ export default class MyApp extends App {
         if (jssStyles && jssStyles.parentNode) {
             jssStyles.parentNode.removeChild(jssStyles);
         }
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker
-                .register('/simi-sw.js')
-                .then(registration => {
-                    console.log('service worker registration successful')
-                })
-                .catch(err => {
-                    console.warn('service worker registration failed', err.message)
-                })
-        }
+        // if ('serviceWorker' in navigator) {
+        //     navigator.serviceWorker
+        //         .register('/simi-sw.js')
+        //         .then(registration => {
+        //             console.log('service worker registration successful')
+        //         })
+        //         .catch(err => {
+        //             console.warn('service worker registration failed', err.message)
+        //         })
+        // }
     }
 
     render () {

@@ -280,6 +280,7 @@ class Identify {
             data = this.getDataFromStoreage(this.LOCAL_STOREAGE,'url_match') || {}
         }else{
             data = serverCache.get('url_match') || {}
+            console.log(data)
         }
         if(data.hasOwnProperty(url) && data[url]){
             return data[url]
@@ -429,6 +430,16 @@ class Identify {
             }, duration);
         }
 
+    }
+
+    static detectPlatforms() {
+        if (navigator.userAgent.match(/iPad|iPhone|iPod/)) {
+            return 1;
+        } else if (navigator.userAgent.match(/Android/)) {
+            return 2;
+        } else {
+            return 3;
+        }
     }
 }
 

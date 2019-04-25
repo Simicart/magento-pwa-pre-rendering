@@ -13,11 +13,11 @@ class SimiComponent extends React.Component{
         this.configColor = ColorConfig
         this.data = this.props.data
         if(Identify.isClient()){
-            this.state.isPhone = this.setIsPhone()
+            this.state.isPhone = this.checkIsPhone()
         }
     }
 
-    setIsPhone(){
+    checkIsPhone(){
         return window.innerWidth < 768
     }
 
@@ -55,8 +55,7 @@ class SimiComponent extends React.Component{
     }
 
     processData(data){
-        console.log(data);
-        this.setState(data)
+        this.setState({data})
     }
 
     setLoaded(loaded){

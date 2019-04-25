@@ -5,7 +5,6 @@
     padding: 8px;
     background: #ffffff;
 }
-
 .autocomplete-search-box.fixed {
     -webkit-box-shadow: 0px 1px 5px 0px rgba(117, 117, 117, 1);
     -moz-box-shadow: 0px 1px 5px 0px rgba(117, 117, 117, 1);
@@ -13,7 +12,6 @@
     position: fixed;
     z-index: 10;
 }
-
 #search-ac {
     height: 42px;
     width: 100%;
@@ -22,12 +20,10 @@
     padding-left: 20px;
     padding-right: 20px;
 }
-
 #search-box {
     width: 100%;
     position: relative;
 }
-
 .clear-search {
     display: none;
     position: absolute;

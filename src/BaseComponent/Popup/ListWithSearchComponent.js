@@ -6,7 +6,7 @@ import Check from '@material-ui/icons/Check';
 import ClearSearch from '@material-ui/icons/HighlightOff';
 import Divider from '@material-ui/core/Divider';
 import FullscreenDialog from '../../BaseComponent/Dialog';
-import './ListWithSearchComponent.css';
+import './ListWithSearchComponent.scss';
 import PropTypes from 'prop-types';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '../../BaseComponent/Icon/Close'

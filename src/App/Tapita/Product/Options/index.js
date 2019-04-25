@@ -3,7 +3,7 @@ import Abstract from '../../../Core/BaseAbstract';
 import Identify from "../../../../Helper/Identify";
 import ProductPrice from '../Component/ProductPrice'
 import {CustomOptions,ConfigurableOptions,DownloadOptions,BundleOptions,GroupedOptions} from "../HoC";
-import './option.css';
+import './option.scss';
 
 class Options extends Abstract {
 

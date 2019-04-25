@@ -1,6 +1,6 @@
 import  React from 'react';
 import Identify from '../../Helper/Identify';
-import './placeholder.css'
+import './placeholder.scss'
 import Loading from '../Loading';
 
 const IMAGE_TYPE = 'image';

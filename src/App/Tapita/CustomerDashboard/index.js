@@ -9,7 +9,7 @@ import Abstract from '../../Core/BaseAbstract'
 import Identify from "../../../Helper/Identify";
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem';
-import './style.css'
+import './style.scss'
 import DownloadIcon from '../../../BaseComponent/Icon/Download'
 import EmailIcon from '../../../BaseComponent/Icon/Email'
 import DashboardIcon from '@material-ui/icons/Dashboard'
@@ -217,7 +217,6 @@ class CustomerDashboard extends Abstract {
     }
 
     render() {
-        console.log(this.state);
         return (
             <div className="container my-dashboard" style={{ marginBottom: 30 }}>
                 <div className="row">

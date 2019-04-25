@@ -45,10 +45,10 @@ class TableOrder extends Abstract {
     renderOrderItem(item) {
         let date = Date.parse(item.created_at);
         date = new Date(date);
-        // if (Identify.detectPlatforms() === 1) {
-        //     let arr = item.created_at.split(/[- :]/);
-        //     date = new Date(arr[0], arr[1] - 1, arr[2], arr[3], arr[4], arr[5]);
-        // }
+        if (Identify.detectPlatforms() === 1) {
+            let arr = item.created_at.split(/[- :]/);
+            date = new Date(arr[0], arr[1] - 1, arr[2], arr[3], arr[4], arr[5]);
+        }
         let m = date.getMonth() + 1;
         m = m < 10 ? "0" + m : m;
         date = m + '/' + date.getDate() + '/' + date.getFullYear();

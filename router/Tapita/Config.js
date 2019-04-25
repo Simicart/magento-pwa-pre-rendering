@@ -94,6 +94,16 @@ const tapitaRoute = {
         page: 'Tapita/Wishlist',
         pattern: '/wishlist'
     },
+    search: {
+        name: 'search',
+        page: 'Tapita/Search',
+        pattern: '/search'
+    },
+    search_result: {
+        name: 'search_result',
+        page: 'Tapita/Products',
+        pattern: '/search/result/:q?'
+    },
     url_match: {
         name: 'url_match',
         page: 'Tapita/UrlMatch',

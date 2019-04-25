@@ -13,6 +13,7 @@ const configColor = Identify.getColorConfig()
 class CartQty extends Abstract{
     render(){
         const {cart_data} = this.props;
+        console.log(cart_data);
         let cartQty = cart_data && cart_data.hasOwnProperty('cart_total') ? cart_data.cart_total : 0
         return (
             <span className="right-icon-item checkout-cart"

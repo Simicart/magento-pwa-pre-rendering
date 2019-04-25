@@ -2,6 +2,7 @@ import React from 'react';
 import Base from '../../../Core/BaseAbstract';
 import ReviewListItem from './ReviewListItem';
 import ReviewForm from './ReviewForm';
+import Identify from '../../../../Helper/Identify';
 
 class ReviewTabContent extends Base {
     constructor(props) {

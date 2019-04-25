@@ -8,7 +8,7 @@ import React from 'react'
 import Abstract from '../../../Core/BaseAbstract'
 import Identify from "../../../../Helper/Identify";
 import {SimiLink} from "../../../../BaseComponent/Link";
-import './ListHeader.css'
+import './ListHeader.scss'
 
 const configColor = Identify.getColorConfig()
 class ListHeader extends Abstract{
@@ -25,12 +25,12 @@ class ListHeader extends Abstract{
             currentPath = currentPath.map((id,key) => {
                 const item = catePath[id]
                 let link = item.link ?
-                    <div style={{display: 'inline-block', color: configColor.button_background}}>
+                    <div key={key} style={{display: 'inline-block', color: configColor.button_background}}>
                         <SimiLink route={item.link}>{item.name}</SimiLink>
                     </div> : item.name
                 let icon = size === key+1 ? null : ' | '
                 return (
-                    <React.Fragment>
+                    <React.Fragment key={key}>
                         {link}
                         {icon}
                     </React.Fragment>
@@ -42,13 +42,13 @@ class ListHeader extends Abstract{
     }
 
     renderHeader(){
-        const {page_type,currentCate} = this.props
+        const {page_type,currentCate,q_filter} = this.props
+        let  headerStyle = {borderBottom: `1px solid ${configColor.line_color}`};
         if(page_type === 'category'){
             let catePath = this.getCategoryPath().length > 1 ? this.getCategoryPath() : null
-            console.log(catePath)
-            let  headerStyle = {borderBottom: `1px solid ${configColor.line_color}`};
+           
             if (currentCate && currentCate.thumbnail_url) {
-                headerStyle.background = `white url("${this.category.thumbnail_url}") top center no-repeat`;
+                headerStyle.background = `white url("${currentCate.thumbnail_url}") top center no-repeat`;
                 headerStyle.backgroundSize = 'cover';
             }
             return(
@@ -64,6 +64,16 @@ class ListHeader extends Abstract{
                     </div>
                 </div>
             )
+        } else if(page_type === 'search'){
+            let title = Identify.__(`Search results for '%s'`).replace('%s', q_filter);
+            return <div className="product-list-header-tablet" style={headerStyle} >
+                        <div id="category-path">
+                            {Identify.__(`Home`) + ' | ' + title} 
+                        </div>
+                        <div id="category-title">
+                            {title}
+                        </div>
+                    </div>
         }
         return null
     }
