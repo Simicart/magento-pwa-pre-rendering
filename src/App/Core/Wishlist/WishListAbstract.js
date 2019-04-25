@@ -39,8 +39,8 @@ class WishListAbstract extends Base {
         }
     }
 
-    setData(data) {
-        // hideFogLoading()
+    processError(data){
+        console.log(data,'errors')
         if (data.errors) {
             let errors = data.errors;
             let text = "";
@@ -50,31 +50,36 @@ class WishListAbstract extends Base {
             }
             Identify.showToastMessage(text);
             this.pushLink(`/`)
-        } else {
-            if (this.addCart || this.removeItem) {
-                this.wishlistModel.getWishlist();
-                if (this.addCart) {
-                    Identify.showToastMessage(Identify.__('This product added to cart'));
-                    this.wishlistModel.getCart();
-                }
-                if (this.removeItem) {
-                    Identify.showToastMessage(Identify.__('This wishlist item has been removed from your wishlist'));
-                    this.props.updateWishlist(data);
-                }
-                this.addCart = false;
-                this.removeItem = false;
-                return;
-            }
-            if (data.cart_total) {
-                Identify.updateCart(data.cart_total);
-                // $('.cart-number').text(data.cart_total);
-                this.props.updateCart(data);
-                return;
-            }
-            this.props.updateWishlist(data);
-            //this.setState({data: data, loaded: true});
         }
     }
+
+    processData(data){
+        console.log(data,"Data")
+        if (this.addCart || this.removeItem) {
+            this.wishlistModel.getWishlist();
+            if (this.addCart) {
+                Identify.showToastMessage(Identify.__('This product added to cart'));
+                this.wishlistModel.getCart();
+            }
+            if (this.removeItem) {
+                Identify.showToastMessage(Identify.__('This wishlist item has been removed from your wishlist'));
+                // this.props.updateWishlist(data.wishlistitems);
+            }
+            this.addCart = false;
+            this.removeItem = false;
+            return;
+        }
+        if (data.cart_total) {
+            Identify.updateCart(data.cart_total);
+            // $('.cart-number').text(data.cart_total);
+            this.props.updateCart(data);
+            return;
+        }
+        this.props.updateWishlist(data);
+        //this.setState({data: data, loaded: true});
+    }
+
+
 
     handleDelete = (id) => {
         // showFogLoading()

@@ -55,7 +55,9 @@ class BottomMenu extends Abstract{
                 className={`wishlist-icon-app-bar menu-item`}
                 label={Identify.__('Wishlist')}
                 style={itemStyle}
-                onClick={this.parent.handleWishListIcon}
+                onClick={() => {
+                    this.pushLink("/wishlist")
+                }}
                 icon={<WishListIcon style={iconStyle}
                                     color={configColor.top_menu_icon_color}/>}/>
             : null;

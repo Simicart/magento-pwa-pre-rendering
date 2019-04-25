@@ -1,6 +1,6 @@
 import React from 'react'
 import BaseAbstract from '../../../Core/BaseAbstract'
-import '../cart.css'
+import '../cart.scss'
 import Identify from '../../../../Helper/Identify'
 import CustomerHelper from '../../../../Helper/Customer'
 import Divider from '@material-ui/core/Divider'
