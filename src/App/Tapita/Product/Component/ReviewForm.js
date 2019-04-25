@@ -20,6 +20,10 @@ class ReviewForm extends Base {
         $('#detail').val('');
         this.ReviewBtn.hideLoading();
     }
+
+    processError(data) {
+        this.ReviewBtn.hideLoading();
+    }
     
 
     handleSubmitReview = () => {
