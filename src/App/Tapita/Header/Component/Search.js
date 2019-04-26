@@ -40,10 +40,12 @@ class SearchBar extends Abstract {
     }
 
     startSearching = () => {
-        if (this.searchInput && this.searchInput.value) {
+        if (this.searchInput && this.searchInput.value.trim()) {
             this.handleHideSearchbar();
             const keyWord = this.searchInput.value;
             this.pushLink(`/search/result?q=${keyWord}`)
+        } else {
+            Identify.showToastMessage(Identify.__('Please enter key word!'));
         }
     }
 

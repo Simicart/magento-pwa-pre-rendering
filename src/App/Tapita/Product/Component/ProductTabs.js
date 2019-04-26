@@ -185,6 +185,7 @@ class ProductTabs extends Abstract{
                         key={Identify.makeid()}
                         id="detail-tab"
                         value={i}
+                        id={item.id}
                         className={`tab-${i}`}
                         label={this.renderTabLabel(item.label)}
                         textColor="primary"

@@ -13,6 +13,7 @@ class Profile extends PageAbstract{
         super(props);
         this.CustomerModel = new CustomerModel({obj:this})
         this.state = {
+            customer: this.customer,
             isChangePass : Identify.getDataFromStoreage(Identify.SESSION_STOREAGE, 'password_change') || false,
         }
 
@@ -38,14 +39,14 @@ class Profile extends PageAbstract{
                     required="*" 
                     className="input-required" 
                     name="firstname" 
-                    value={(this.customer && this.customer.firstname)?this.customer.firstname:''}
+                    value={(this.state.customer && this.state.customer.firstname)?this.state.customer.firstname:''}
                 />
                 <InputField 
                     label="Last Name" 
                     required="*" 
                     className="input-required" 
                     name="lastname" 
-                    value={(this.customer && this.customer.lastname)?this.customer.lastname:''}
+                    value={(this.state.customer && this.state.customer.lastname)?this.state.customer.lastname:''}
                 />
                 <FormControlLabel
                     id="checkbox-account"
@@ -104,7 +105,7 @@ class Profile extends PageAbstract{
     handleEditAccount =()=>{
         if(this.validateForm()){
             let params = {
-                email : this.customer.email
+                email : this.state.customer.email
             }
             if(this.state.isChangePass){
                 params['change_password'] = 1;
@@ -121,37 +122,25 @@ class Profile extends PageAbstract{
             }
             Identify.showLoading()
             let query = {
-                email: this.customer.email,
-                simi_hash: this.customer.simi_hash
+                email: this.state.customer.email,
+                simi_hash: this.state.customer.simi_hash
             }
             this.CustomerModel.editCustomer(query,params);
         }
     };
 
-
-
-    setData(data){
-        Identify.hideLoading()
-        if (data.errors) {
-            let errors = data.errors;
-            let text = "";
-            for (let i in errors) {
-                let error = errors[i];
-                text += error.message + ' ';
-            }
-            Identify.showToastMessage(text);
-        }else{
-            if(this.state.isChangePass) this.updateCheck();
-            this.customer = data.customer;
-            Identify.showToastMessage(Identify.__(data.message))
-            Identify.storeDataToStoreage(Identify.SESSION_STOREAGE,'customer_data',data.customer)
-        }
+    processData(data) {
+        if(this.state.isChangePass) this.updateCheck();
+        this.setState({customer: data.customer});
+        // this.customer = data.customer;
+        Identify.showToastMessage(Identify.__(data.message))
+        Identify.storeDataToStoreage(Identify.SESSION_STOREAGE,'customer_data',data.customer)
     }
 
     validateForm = () => {
         let isValid = true;
         $('.input-field').find('input.input-required').each(function () {
-            if ($(this).val() === '' || $(this).val().length === 0) {
+            if ($(this).val() === '' || $(this).val().length === 0 || $(this).val().trim().length === 0) {
                 isValid = false;
                 $(this).next('.error-message').show();
             } else {

@@ -3,7 +3,10 @@ import Model from '../../../Model';
 
 class ReviewModel extends Model {
     getReviewProduct = (productId) => {
-        return this.connect(`reviews?filter[product_id]=${productId}`, {});
+        const params = {
+            'filter[product_id]': productId
+        }
+        return this.connect('reviews', params);
     }
 
     submitReview = (params) => {
