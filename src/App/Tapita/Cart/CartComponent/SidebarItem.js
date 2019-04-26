@@ -87,7 +87,7 @@ class SidebarItem extends BaseAbstract {
                         <div className="des-cart">
                             <div style={{color: this.configColor.content_color}}
                                  onClick={(e)=>{
-                                     this.handleLink(location)
+                                     this.pushLink(location)
                                      if (this.props.closeSideBar)
                                         this.props.closeSideBar()
                                  }}>
