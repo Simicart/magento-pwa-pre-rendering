@@ -9,6 +9,7 @@ import Abstract from '../../Core/BaseAbstract'
 import Layout from '../../../Layout'
 import {layoutConfig} from "./etc/tapita_product_detail";
 import './style.scss'
+import Identify from '../../../Helper/Identify';
 
 class Detail extends Abstract{
 
@@ -33,7 +34,8 @@ class Detail extends Abstract{
         this.data = this.props.data.product || {}
         let meta_header = {
             title : this.data.meta_title ? this.data.meta_title : this.data.name,
-            description : this.data.meta_description ? this.data.meta_description : this.data.name
+            description : this.data.meta_description ? this.data.meta_description : this.data.name,
+            ogImage: (this.data.images && this.data.images.length > 0) ? this.data.images[0].url : this.SMCONFIGS.logo_url
         }
         return (
             <Layout server_render={true} header={meta_header}>
