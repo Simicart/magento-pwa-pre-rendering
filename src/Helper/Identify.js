@@ -271,15 +271,15 @@ class Identify {
             }
             $(document).ready(function () {
                 switch(type_load){
+                    case null:
+                        $('#app-placeholder-loading').find('.smc-normal-preload').css({display: 'flex'});
+                    break;
                     case 'category':
                         $('#app-placeholder-loading').find('.smc-list-preload').css({display: 'flex'});
                     break;
                     case 'product_detail':
                         $('#app-placeholder-loading').find('.smc-detail-preload').css({display: 'flex'});
                     break;
-                    case null:
-                        $('#app-placeholder-loading').find('.smc-normal-preload').css({display: 'flex'});
-                        break;
                     default:
                         $('#app-placeholder-loading').find('.smc-normal-preload').css({display: 'flex'});
                     break;

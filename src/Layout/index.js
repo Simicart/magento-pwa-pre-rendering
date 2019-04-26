@@ -40,7 +40,9 @@ class Layout extends React.Component{
                     </div>
                 </App>
                 <Message/>
-                
+                <div className="app-loading" style={{display:'none'}} id="app-loading">
+                    <Loading/>
+                </div>
             </div>
         )
     }

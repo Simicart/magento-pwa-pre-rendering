@@ -274,6 +274,10 @@
             margin-left: 4px;
         }
 
+        &:nth-child(n + 4){
+            margin-top: 15px;
+        }
+
         .pl-image {
             background: #eeeeee;
             height: 175px;
@@ -332,17 +336,20 @@
 }
 
 @media screen and (max-width: 767px){
-    .simi-placeholder-detail{
-        .pl-card{
-            width: 100%;
-
-            &:nth-child(odd){
-                margin-left: 0px;
-            }
-
-            .pl-bar{
-                margin-left: 0;
+    .loading-holder{
+        .simi-placeholder-detail{
+            .pl-card{
+                width: 100%;
+    
+                &:nth-child(odd){
+                    margin-left: 0px;
+                }
+    
+                .pl-bar{
+                    margin-left: 0;
+                }
             }
         }
     }
+    
 }

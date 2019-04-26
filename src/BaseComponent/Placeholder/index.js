@@ -101,6 +101,20 @@ class Placeholder extends React.Component {
                         <div className="pl-bar pl-bar2 pl-loading" />
                     </div>
                 </div>
+                <div className="pl-card">
+                    <div className="pl-image pl-loading" />
+                    <div className="pl-bars">
+                        <div className="pl-bar pl-bar1 pl-loading" />
+                        <div className="pl-bar pl-bar2 pl-loading" />
+                    </div>
+                </div>
+                <div className="pl-card">
+                    <div className="pl-image pl-loading" />
+                    <div className="pl-bars">
+                        <div className="pl-bar pl-bar1 pl-loading" />
+                        <div className="pl-bar pl-bar2 pl-loading" />
+                    </div>
+                </div>
             </div>
         )
     }
