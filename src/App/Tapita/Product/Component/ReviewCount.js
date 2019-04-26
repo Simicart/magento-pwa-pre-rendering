@@ -10,6 +10,26 @@ import Identify from "../../../../Helper/Identify";
 import Rate from '../../../../BaseComponent/Rate'
 class ReviewCount extends Abstract{
 
+    handleClickReview = () => {
+        const $ = window.$;
+        if(window.innerWidth < 768){
+            Identify.smoothScrollToView($('#accordion #review'))
+            if($('.product-reviews').parent().css('display') !== 'none'){
+                $('.review-action .review-btn').click();
+                return
+            }
+            $('#accordion #review').click();
+            $('.review-action .review-btn').click();
+            return;
+        }
+        $('button#review').click();
+        $('.product-reviews').show();
+        setTimeout(() => {
+            Identify.smoothScrollToView($('.review-form'));
+        }, 100)
+    }
+
+
     render() {
         this.data = this.data.product
         let reviewLink = {

@@ -13,6 +13,10 @@ import Placeholder from './../BaseComponent/Placeholder'
  */
 class Layout extends React.Component{
 
+    componentDidMount() {
+        sessionStorage.removeItem('product_list_review');
+    }
+    
     renderLoadingType(){
         return (
             <React.Fragment>

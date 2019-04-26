@@ -46,8 +46,8 @@ class ReviewListItem extends Base {
     }
 
     renderListItem() {
-        const { data } = this.state;
-        if(data) {
+        const { data, loaded } = this.state;
+        if(data && loaded) {
             return (
                 <div className="list-review-item">
                     <div className="list-review-title">{Identify.__('Customer Reviews')}</div>

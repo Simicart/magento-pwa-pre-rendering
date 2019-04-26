@@ -1,5 +1,5 @@
 import React from 'react';
-import Totals from '../../../Checkout/component/Totals';
+import Totals from '../../../Checkout/Totals';
 
 class OrderTotals extends Totals {
     render = () => {

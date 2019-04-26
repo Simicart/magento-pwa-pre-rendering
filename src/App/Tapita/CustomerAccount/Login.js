@@ -95,7 +95,7 @@ class Login extends Abstract {
     render() {
         this.loginInputs = []
         return (
-            <form className="login-dialog-content" action="POST" onSubmit={this.handleSubmitLogin}>
+            <form className="login-dialog-content" action="POST" onSubmit={this.handleSubmitLogin} noValidate>
                 <div className="form-field">
                     <div className="label">{Identify.__('Email')} <span style={{ color: 'red' }}>*</span></div>
                     <input type="email" name="email" id="login-input-email"
