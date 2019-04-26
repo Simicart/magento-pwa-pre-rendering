@@ -52,7 +52,7 @@ class SearchPage extends Base {
         const $ = window.$;
         let searchBox = $('.input-search input[type="text"]');
         let keyWord = searchBox.val();
-        if (!keyWord) {
+        if (!keyWord || keyWord.trim() === '') {
             Identify.showToastMessage(Identify.__('Please enter key word!'));
             return;
         }
