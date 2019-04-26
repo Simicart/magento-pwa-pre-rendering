@@ -59,6 +59,13 @@ class ProductListAbstract extends Abstract{
             this.ProductModel.setParams(params)
             this.getProducts()
             return true
+        } else if (nextProps.q_filter !== this.props.q_filter) {
+            this.setLoaded(false)
+            const params = this.ProductModel.getParams()
+            params['filter[q]'] = nextProps.q_filter;
+            this.ProductModel.setParams(params);
+            this.getProducts();
+            return true;
         }
         return true
     }
