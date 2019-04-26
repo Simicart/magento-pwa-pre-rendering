@@ -15,10 +15,15 @@ var session = require('express-session');
 var FileStore = require('session-file-store')(session);
 
 server.use(cookieParser())
+const hour = 3600000
 server.use(session({
     store: new FileStore,
     secret: "ssh , its a a secret!",
-    name : 'simipwa'
+    name : 'simipwa',
+    cookie : {
+        maxAge : hour,
+        expires : new Date(Date.now() + hour)
+    }
 }))
 server.use(bodyParser.urlencoded({ extended: false }));
 server.use(bodyParser.json());
@@ -37,6 +42,7 @@ const handler = routes.getRequestHandler(app,async ({req, res, route, query}) =>
         app.serveStatic(req,res, path.resolve('./build/simi-sw.js'))
     }
     else if(api === '/test-session'){
+        // console.log(req.sessionID)
         if(req.session.page_views){
             req.session.page_views++;
             res.send("You visited this page " + req.session.page_views + " times");
@@ -46,6 +52,7 @@ const handler = routes.getRequestHandler(app,async ({req, res, route, query}) =>
         }
     }
     else{
+        // console.log(req.sessionID)
         app.render(req, res, route.page, query)
     }
 })

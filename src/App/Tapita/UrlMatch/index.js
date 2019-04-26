@@ -18,6 +18,7 @@ class UrlMatch extends React.Component{
         if(query && query.hasOwnProperty('0')){
             let obj = Identify.getUrlMatchApi('/'+query[0])
             if(obj){
+                // for url match
                 component = obj.type
                 if(component === 'product_detail'){
                     let api = `products/${obj.params.id}`
@@ -40,7 +41,6 @@ class UrlMatch extends React.Component{
                 let data = await ApiModel.connect(api)
                 if(data.urldict && data.urldict.hasOwnProperty('category_id')){
                     catetrees = await ApiModel.connect('categorytrees')
-                    console.log(data.urldict.simi_category_products)
                     return {
                         component : 'category',
                         cateId : data.urldict.category_id,
