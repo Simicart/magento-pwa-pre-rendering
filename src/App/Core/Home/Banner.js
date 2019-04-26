@@ -7,14 +7,55 @@
 import React from 'react'
 import {Carousel} from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import LazyLoad from 'react-lazyload';
+import Identify from '../../../Helper/Identify';
+import Router from 'next/router'
+
 class Banner extends React.Component{
 
     renderBannerItem = data => {
+        const {isPhone} = this.props;
+        let location_dest = null;
+        let item_type = parseInt(data.type, 10);
+        if(item_type === 1){
+            location_dest = `/product/${data.product_id}`;
+        }else if(item_type === 2){
+            location_dest = `/products?cat=${data.category_id}`;
+        }else{
+            location_dest = data.banner_url;
+        }
+
         return(
-            <div className="banner-item">
-                <img src={data.banner_name} alt={data.title}/>
+            <div className="banner-item" onClick={() => this.redirectTo(item_type, location_dest)}>
+                <LazyLoad key={Identify.makeid()}
+                                offset={200}
+                                once={true}
+                                placeholder={<div style={{width: "100%"}}/>}>
+                    {isPhone && data.banner_name_tablet ? <img src={data.banner_name_tablet} alt={data.title}/> : <img src={data.banner_name} alt={data.title}/>}
+                </LazyLoad>
             </div>
         )
+    }
+
+    redirectTo = (type, dest) => {
+        if(!dest){
+            return;
+        }
+        if(type === 3){
+            if(dest.includes('http')){
+                window.location.replace(dest)
+            }else if(dest.length > 0){
+                if(dest.charAt(0) !== '/'){
+                    Router.push(`/${dest}`);
+                }else{
+                    Router.push(dest)
+                }
+            }else{
+                Router.push(dest)
+            }
+        }else{
+            Router.push(dest)
+        }
     }
 
     render() {

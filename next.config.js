@@ -1,3 +1,4 @@
+require('dotenv').config()
 const path = require('path')
 const withCSS = require('@zeit/next-css')
 const withImages = require('next-images')
@@ -6,6 +7,7 @@ const withBundleAnalyzer = require('@zeit/next-bundle-analyzer')
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
 const withSass = require('@zeit/next-sass')
 const FilterWarningsPlugin = require('webpack-filter-warnings-plugin')
+const Dotenv = require('dotenv-webpack')
 let config = {
     distDir : process.env.NODE_ENV !== 'production' ? '.next' : 'build',
     generateBuildId: async () => {
@@ -16,7 +18,7 @@ let config = {
         if(!dev){
             config.plugins.push(new SWPrecacheWebpackPlugin({
                 cacheId: 'simipwa',
-                filepath: 'build/simi-sw.js',
+                filename: 'simi-sw.js',
                 staticFileGlobs: ['static/**/*'],
                 minify: true,
                 staticFileGlobsIgnorePatterns: [/\.next\//],
@@ -40,6 +42,12 @@ let config = {
         config.plugins.push(
             new FilterWarningsPlugin({
                 exclude: /mini-css-extract-plugin[^]*Conflicting order between:/,
+            })
+        )
+        config.plugins.push(
+            new Dotenv({
+                path: path.join(__dirname, '.env'),
+                systemvars: true
             })
         )
         return config

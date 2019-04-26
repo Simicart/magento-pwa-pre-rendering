@@ -9,7 +9,6 @@ import Price from '../../../BaseComponent/Price';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import Identify from '../../../Helper/Identify';
-import Link from 'next/link';
 import { SubscribeOne } from "unstated-x";
 import { AppState } from "../../../Observer/AppState";
 import './wishlist.scss'
@@ -141,10 +140,13 @@ class Wishlist extends Abstract {
               //     this.parent.wishlistSideBar.handleCloseSideBar()
               // }}>
               >
-                <Link href={`/product/${item.product_id}`}>
-                  <img src={item.product_image} alt={item.name}
-                    style={{ width: 120, height: 120 }} />
-                </Link>
+            
+              <img 
+                src={item.product_image} alt={item.name}
+                style={{ width: 120, height: 120 }} 
+                onClick = {()=>this.pushLink(`/product/${item.product_id}`)}
+              />
+            
               </div>
               <div className="item-decs ">
                 <div className="item-name" style={{ width: '90%' }}>{item.name}</div>

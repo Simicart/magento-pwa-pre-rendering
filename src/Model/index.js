@@ -1,4 +1,3 @@
-import {Component} from 'react';
 import Connection from './Connection';
 import {SMCONFIGS} from '../../static/config'
 class Model  {
@@ -6,7 +5,8 @@ class Model  {
     constructor(props) {
         this.isLoaded = false;
         this.data = null;
-        this.fullUrl = SMCONFIGS.merchant_url + SMCONFIGS.api_path
+        let url = process.env.NODE_ENV === 'production' ? process.env.SERVER_URL : process.env.LOCAL_URL
+        this.fullUrl = url+SMCONFIGS.api_path
         if (props && props.obj) {
             this.obj = props.obj;
         }
