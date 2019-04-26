@@ -3,8 +3,8 @@
     height: 100%;
     display: flex;
     display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6 */
-    display: -moz-box;    /* OLD - Firefox 19- (buggy but mostly works) */
-    display: -ms-flexbox;  /* TWEENER - IE 10 */
+    display: -moz-box; /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox; /* TWEENER - IE 10 */
     display: -webkit-flex; /* NEW - Chrome */
     align-items: center;
     justify-content: center;
@@ -37,8 +37,8 @@
 }
 
 .spinner .rect3 {
-    -webkit-animation-delay: -1.0s;
-    animation-delay: -1.0s;
+    -webkit-animation-delay: -1s;
+    animation-delay: -1s;
 }
 
 .spinner .rect4 {
@@ -52,22 +52,26 @@
 }
 
 @-webkit-keyframes sk-stretchdelay {
-    0%, 40%, 100% {
-        -webkit-transform: scaleY(0.4)
+    0%,
+    40%,
+    100% {
+        -webkit-transform: scaleY(0.4);
     }
     20% {
-        -webkit-transform: scaleY(1.0)
+        -webkit-transform: scaleY(1);
     }
 }
 
 @keyframes sk-stretchdelay {
-    0%, 40%, 100% {
+    0%,
+    40%,
+    100% {
         transform: scaleY(0.4);
         -webkit-transform: scaleY(0.4);
     }
     20% {
-        transform: scaleY(1.0);
-        -webkit-transform: scaleY(1.0);
+        transform: scaleY(1);
+        -webkit-transform: scaleY(1);
     }
 }
 
@@ -82,10 +86,10 @@
 
 @keyframes placeHolderShimmer {
     0% {
-        background-position: -468px 0
+        background-position: -468px 0;
     }
     100% {
-        background-position: 468px 0
+        background-position: 468px 0;
     }
 }
 
@@ -114,8 +118,10 @@
     width: 100%;
 }
 
-.background-masker.padding-list, .background-masker.padding-list-second,
-.background-masker.padding-cate-second, .background-masker.padding-cate {
+.background-masker.padding-list,
+.background-masker.padding-list-second,
+.background-masker.padding-cate-second,
+.background-masker.padding-cate {
     width: 10px;
     height: 90px;
 }
@@ -229,4 +235,114 @@
     width: 26%;
     height: 10px;
     left: 52%;
+}
+
+/* placeholder product list */
+.loading-holder {
+    .simi-placeholder-list, .simi-placeholder-detail{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding: 0 15px;
+    }
+
+    .pl-bars.pl-bars-title {
+        margin-top: 10px;
+        margin-bottom: 17px;
+        box-sizing: border-box;
+        width: 100%;
+
+        .pl-bar {
+            background: #eeeeee;
+            height: 19px;
+        }
+        .pl-bar1 {
+            width: 100%;
+            margin-top: 17px;
+        }
+        .pl-bar2 {
+            width: 40%;
+            margin-top: 13px;
+        }
+    }
+    
+    .pl-card {
+        width: 49%;
+        border: 1px solid rgba(222, 222, 222, 0.33);
+
+        &:nth-child(odd){
+            margin-left: 4px;
+        }
+
+        .pl-image {
+            background: #eeeeee;
+            height: 175px;
+        }
+        .pl-bars {
+            height: 85px;
+            .pl-bar {
+                background: #eeeeee;
+                margin: 0 13px 13px;
+                height: 19px;
+            }
+            .pl-bar1 {
+                width: 80%;
+                margin-top: 17px;
+            }
+            .pl-bar2 {
+                width: 30%;
+            }
+        }
+
+        &.card-detail{
+            border: 0;
+        }
+    }
+
+    .pl-loading {
+        position: relative;
+        overflow: hidden;
+        &::after {
+            content: "";
+            display: block;
+            background-color: #f6f7f8;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            transform: translateX(0);
+            animation: 1.5s simi-loading-placeholder ease-in-out infinite;
+        }
+    }
+
+    /* .simi-placeholder-detail{
+        padding: 0 15px;
+    } */
+
+}
+
+@keyframes simi-loading-placeholder {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+@media screen and (max-width: 767px){
+    .simi-placeholder-detail{
+        .pl-card{
+            width: 100%;
+
+            &:nth-child(odd){
+                margin-left: 0px;
+            }
+
+            .pl-bar{
+                margin-left: 0;
+            }
+        }
+    }
 }
