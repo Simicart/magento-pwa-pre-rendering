@@ -1,9 +1,10 @@
 import React from 'react'
 import NextHead from 'next/head'
 import { string } from 'prop-types'
+import {SMCONFIGS} from '../../static/config'
 const defaultDescription = 'Progress Web App'
-const defaultOGURL = ''
-const defaultOGImage = ''
+const defaultOGURL = SMCONFIGS.merchant_url || ''
+const defaultOGImage = SMCONFIGS.logo_url || ''
 
 const Head = props => (
   <NextHead>
