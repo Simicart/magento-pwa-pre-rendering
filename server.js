@@ -10,18 +10,40 @@ const server = express()
 const fetch = require('isomorphic-unfetch')
 const serverCache = require('memory-cache')
 const bodyParser = require('body-parser')
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
+var FileStore = require('session-file-store')(session);
 
-
+server.use(cookieParser())
+server.use(session({
+    store: new FileStore,
+    secret: "ssh , its a a secret!",
+    name : 'simipwa'
+}))
+server.use(bodyParser.urlencoded({ extended: false }));
+server.use(bodyParser.json());
 const handler = routes.getRequestHandler(app,async ({req, res, route, query}) => {
     let api = req.url;
-    if(api.toString().indexOf('simiconnector/rest') > -1){
+    if(api.indexOf('simiconnector/rest') > -1){
         let data = await connectApiMagentoServer(api,req.method,req.body)
-        return res.json({...data});
+        if(api.indexOf('storeviews/') > -1){
+            serverCache.put('merchant_config',data)
+        }
+        res.json({...data});
     } else if(api === '/favicon.ico'){
         app.serveStatic(req,res, path.resolve('./static/favicon.ico'))
     }
     else if(api === '/simi-sw.js'){
         app.serveStatic(req,res, path.resolve('./build/simi-sw.js'))
+    }
+    else if(api === '/test-session'){
+        if(req.session.page_views){
+            req.session.page_views++;
+            res.send("You visited this page " + req.session.page_views + " times");
+        } else {
+            req.session.page_views = 1;
+            res.send("Welcome to this page for the first time!");
+        }
     }
     else{
         app.render(req, res, route.page, query)
@@ -30,20 +52,6 @@ const handler = routes.getRequestHandler(app,async ({req, res, route, query}) =>
 
 app.prepare()
     .then(() => {
-        server.use(bodyParser.urlencoded({ extended: false }));
-        server.use(bodyParser.json());
-
-        server.post('/change-storeview',async (req, res) => {
-            console.log(serverCache.keys())
-            let data = await changeStoreView(req.body.api)
-            serverCache.put('merchant_config',data)
-            res.json({...data})
-        })
-        // server.get('/simi-sw.js',({req, res, route, query})=>{
-        //     const filePath = path.resolve('./static/simi-sw.js')
-        //     app.serveStatic(req, res, filePath)
-        // })
-
         server.use(handler).listen(8080)
         console.log('Server is running')
     })

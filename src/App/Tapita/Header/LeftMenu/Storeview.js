@@ -27,13 +27,14 @@ class Storeview extends Abstract {
                 Identify.storeAppSettings(appSettings);
                 Identify.showLoading();
                 this.changeStore = true;
-                this.Model.connectWithUrl('/change-storeview/'+store.store_id)
+                this.Model.connect('storeviews/'+store.store_id)
             }
         }
     }
 
     processData(data){
         Identify.setMerchantConfig(data);
+        window.location.replace(window.location.origin)
     }
 
     renderItem() {
