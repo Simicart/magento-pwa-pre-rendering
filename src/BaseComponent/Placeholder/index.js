@@ -6,6 +6,8 @@ import Loading from '../Loading';
 const IMAGE_TYPE = 'image';
 const CUSTOM_TYPE = 'custom';
 const LOADING_TYPE = 'loading';
+const LOADING_PRODUCT_LIST = 'loading-list';
+const LOADING_PRODUCT_DETAIL = 'loading-detail';
 
 const maskerStyle = {background: Identify.getColorConfig().app_background}
 class Placeholder extends React.Component {
@@ -72,13 +74,60 @@ class Placeholder extends React.Component {
                         <div className="background-masker product-price" style={maskerStyle}></div>
                         <div className="background-masker product-sub-price" style={maskerStyle}></div>
                         <div className="background-masker line-product-third" style={maskerStyle}></div>
-
                     </div>
                 </div>
             </div>
         );
     }
 
+    renderProductListLoading(){
+        return (
+            <div className="simi-placeholder-list">
+                <div className="pl-bars pl-bars-title">
+                    <div className="pl-bar pl-bar1 pl-loading" />
+                    <div className="pl-bar pl-bar2 pl-loading" />
+                </div>
+                <div className="pl-card">
+                    <div className="pl-image pl-loading" />
+                    <div className="pl-bars">
+                        <div className="pl-bar pl-bar1 pl-loading" />
+                        <div className="pl-bar pl-bar2 pl-loading" />
+                    </div>
+                </div>
+                <div className="pl-card">
+                    <div className="pl-image pl-loading" />
+                    <div className="pl-bars">
+                        <div className="pl-bar pl-bar1 pl-loading" />
+                        <div className="pl-bar pl-bar2 pl-loading" />
+                    </div>
+                </div>
+            </div>
+        )
+    }
+
+    renderProductDetailLoading(){
+        return (
+            <div className="simi-placeholder-detail">
+                <div className="pl-bars pl-bars-title">
+                    <div className="pl-bar pl-bar1 pl-loading" />
+                    <div className="pl-bar pl-bar2 pl-loading" />
+                </div>
+                <div className="pl-card">
+                    <div className="pl-image pl-loading" />
+                    <div className="pl-bars">
+                        <div className="pl-bar pl-bar1 pl-loading" />
+                        <div className="pl-bar pl-bar2 pl-loading" />
+                    </div>
+                </div>
+                <div className="pl-card card-detail">
+                    <div className="pl-bars">
+                        <div className="pl-bar pl-bar1 pl-loading" />
+                        <div className="pl-bar pl-bar2 pl-loading" />
+                    </div>
+                </div>
+            </div>
+        )
+    }
 
     render() {
 
@@ -106,6 +155,22 @@ class Placeholder extends React.Component {
             return (
                 <div className="loading-holder">
                     {this.renderLoadingBlock()}
+                </div>
+            );
+        }
+
+        if (this.props && this.props.placeholderType === LOADING_PRODUCT_LIST) {
+            return (
+                <div className="loading-holder">
+                    {this.renderProductListLoading()}
+                </div>
+            );
+        }
+
+        if (this.props && this.props.placeholderType === LOADING_PRODUCT_DETAIL) {
+            return (
+                <div className="loading-holder">
+                    {this.renderProductDetailLoading()}
                 </div>
             );
         }

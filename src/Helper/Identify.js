@@ -257,6 +257,47 @@ class Identify {
         }
     }
 
+    static showPlaceholderLoading(url){
+        const $ = window.$;
+        if(!!$){
+            let type_load = null;
+            if(this.isClient()){
+                let url_match = this.getDataFromStoreage(this.LOCAL_STOREAGE,'url_match');
+                
+                if(url_match[url]){
+                    let obj_focus = url_match[url];
+                    type_load = obj_focus.type
+                }
+            }
+            $(document).ready(function () {
+                switch(type_load){
+                    case 'category':
+                        $('#app-placeholder-loading').find('.smc-list-preload').css({display: 'flex'});
+                    break;
+                    case 'product_detail':
+                        $('#app-placeholder-loading').find('.smc-detail-preload').css({display: 'flex'});
+                    break;
+                    case null:
+                        $('#app-placeholder-loading').find('.smc-normal-preload').css({display: 'flex'});
+                        break;
+                    default:
+                        $('#app-placeholder-loading').find('.smc-normal-preload').css({display: 'flex'});
+                    break;
+                }
+
+                $('#app-placeholder-loading').css({display: 'flex'});
+            });
+        }
+    }
+
+    static hidePlaceholderLoading(){
+        const $ = window.$;
+        if(!!$){
+            $(document).ready(function () {
+                $('#app-placeholder-loading').css({display: 'none'});
+            });
+        }
+    }
     
     static setUrlMatchApi(urlPath = null,type = null,params=null){
         if(!urlPath || !type || !params) return false;
