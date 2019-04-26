@@ -1,9 +1,10 @@
 import React from 'react'
 import NextHead from 'next/head'
 import { string } from 'prop-types'
+import {SMCONFIGS} from '../../static/config'
 const defaultDescription = 'Progress Web App'
-const defaultOGURL = ''
-const defaultOGImage = ''
+const defaultOGURL = SMCONFIGS.merchant_url || ''
+const defaultOGImage = SMCONFIGS.logo_url || ''
 
 const Head = props => (
   <NextHead>
@@ -33,8 +34,15 @@ const Head = props => (
     <meta property="og:image" content={props.ogImage || defaultOGImage} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
+      <link rel="stylesheet" async href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i"/>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"/>
-
+      <style type="text/css">
+          {`
+            body {
+                  font-family: Montserrat,sans-serif!important;
+              }
+          `}
+      </style>
   </NextHead>
 )
 

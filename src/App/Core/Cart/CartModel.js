@@ -38,6 +38,7 @@ class CartModel extends Model{
         let json = {};
         json[key] = value;
         let urlParams = {
+            pwa : 1,
             quote_id: data.quote_id
         }
         if(type === 1){
