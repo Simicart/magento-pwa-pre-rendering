@@ -37,6 +37,7 @@ class ProductTabs extends Abstract{
     }
 
     componentDidMount() {
+        this.checkPhoneResize();
         if(
             this.product.app_reviews.hasOwnProperty('form_add_reviews') 
             && typeof this.product.app_reviews.form_add_reviews[0] === 'string'
