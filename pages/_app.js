@@ -18,10 +18,10 @@ import {Provider} from 'unstated-x'
 import '../src/Layout/global.scss'
 
 Router.events.on('routeChangeStart', url => {
-    Identify.showLoading()
+    Identify.showPlaceholderLoading(url)
 })
-Router.events.on('routeChangeComplete', () => Identify.hideLoading())
-Router.events.on('routeChangeError', () => Identify.hideLoading())
+Router.events.on('routeChangeComplete', () => Identify.hidePlaceholderLoading())
+Router.events.on('routeChangeError', () => Identify.hidePlaceholderLoading())
 
 export default class MyApp extends App {
 

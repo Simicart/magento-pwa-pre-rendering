@@ -23,6 +23,23 @@ div#app-loading {
     -ms-flex-align: center;
     align-items: center;
 }
+
+#app-placeholder-loading{
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    display: -ms-flexbox;
+    display: flex;
+    background: #ffffff;
+    z-index: 100000;
+    opacity: 1;
+
+    .loading-holder{
+        width: 100%;
+    }
+}
+
 .message-global {
     position: fixed;
     top: 40%;

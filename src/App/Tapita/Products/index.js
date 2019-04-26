@@ -14,8 +14,7 @@ class ProductList extends ProductListAbstract{
 
     render() {
         const {loaded,data} = this.state;
-        const {catetrees,cateId, q_filter} = this.props;
-        console.log(this.cateData)
+        const {catetrees,cateId} = this.props;
         this.getCateData(catetrees.categorytrees,cateId)
         return (
             <Layout server_render={true} header={this.getMetaHeader()}>
