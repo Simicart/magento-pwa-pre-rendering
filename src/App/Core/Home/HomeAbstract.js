@@ -29,6 +29,13 @@ class HomeAbstract extends BaseAbstract{
             image_width: Constants.HEIGHT_IMAGE_PHONE
         }
         let data = null;
+
+        // for api cache
+        if (Identify.isClient()){
+            data = Identify.ApiDataStorage('home_api') || null;
+            if(data instanceof Object)  return {home:data}
+        }
+
         if(layout !== 3){
             data = await HomeModel.getHomeFull(params)
         }else{
@@ -68,6 +75,7 @@ class HomeAbstract extends BaseAbstract{
         this.checkPhoneResize()
         Identify.showMsgLogin()
         Identify.showMsgLogout()
+        Identify.ApiDataStorage('home_api','update',this.props.home)
     }
 
     render(){

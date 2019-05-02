@@ -21,6 +21,10 @@ class UrlMatch extends React.Component{
                 // for url match
                 component = obj.type
                 if(component === 'product_detail'){
+                    if(Identify.isClient()){
+                        product_api = {product : obj.params.data}
+                        return {component,data:product_api,cache_data:true}
+                    }
                     let api = `products/${obj.params.id}`
                     product_api = await ApiModel.getProductApi(api)
                     return {component,data:product_api}
@@ -69,7 +73,7 @@ class UrlMatch extends React.Component{
     render(){
         const {component,data} = this.props;
         if(component === 'product_detail'){
-            return <ProductDetail data={data}/>
+            return <ProductDetail data={data} cache_data={this.props.cache_data}/>
         } else if(component === 'category'){
             return <ProductList catetrees={data}
                                 cateId={this.props.cateId}

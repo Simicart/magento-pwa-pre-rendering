@@ -31,7 +31,7 @@ class ReviewCount extends Abstract{
 
 
     render() {
-        this.data = this.data.product
+        this.data = this.props.data.product
         let reviewLink = {
             color: this.configColor.button_background.toLowerCase() !== '#ffffff' ? this.configColor.button_background : "#f69435",
         }

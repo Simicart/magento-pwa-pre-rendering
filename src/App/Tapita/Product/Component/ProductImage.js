@@ -88,7 +88,6 @@ class ProductImage extends React.Component {
         const $ = window.$
         let carousel = $('.carousel.carousel-slider');
         let mediaWidth = carousel.width();
-        console.log(mediaWidth)
         carousel.height(mediaWidth);
         $('.carousel.carousel-slider img').height(mediaWidth);
     }
