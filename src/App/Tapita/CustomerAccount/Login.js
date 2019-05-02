@@ -92,21 +92,30 @@ class Login extends Abstract {
         }
     };
 
+    processError(data) {
+        for(let i in this.loginInputs) {
+            const input = this.loginInputs[i];
+            if (input !== null && input.id === 'login-input-email') {
+                input.focus();
+            }
+        }
+    }
+
     render() {
         this.loginInputs = []
         return (
-            <form className="login-dialog-content" action="POST" onSubmit={this.handleSubmitLogin} noValidate>
+            <form className="login-dialog-content" action="POST" onSubmit={this.handleSubmitLogin}>
                 <div className="form-field">
                     <div className="label">{Identify.__('Email')} <span style={{ color: 'red' }}>*</span></div>
                     <input type="email" name="email" id="login-input-email"
-                        ref={(thisField) => { this.loginInputs.push(thisField) }} />
+                        ref={(thisField) => { this.loginInputs.push(thisField) }} required/>
                     <div id="login-input-email-warning"
                         className="error-message">{Identify.__("This field is required")}</div>
                 </div>
                 <div className="form-field">
                     <div className="label">{Identify.__('Password')} <span style={{ color: 'red' }}>*</span></div>
                     <input type="password" name="password" id="login-input-password"
-                        ref={(thisField) => { this.loginInputs.push(thisField) }}/>
+                        ref={(thisField) => { this.loginInputs.push(thisField) }} required/>
                     <div id="login-input-password-warning"
                         className="error-message">{Identify.__("This field is required")}</div>
                 </div>
