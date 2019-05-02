@@ -14,9 +14,31 @@ import IconButton from '../../../BaseComponent/IconButton';
 import NavigationRight from '../../../BaseComponent/Icon/ArrowRight';
 import Register from './Register';
 import ForgotPassword from './ForgotPassword';
+import CreatePassword from './CreatePassword';
 class CustomerAccount extends Abstract{
-    state = {
-        content: 'login'
+
+    constructor(props){
+        super(props);
+        this.state.content = 'login';
+        this.token = false;
+    }
+
+    componentDidMount(){
+        if(Identify.isClient()){
+            if(window.location.pathname ==='/customer/account/register'){
+                this.setState({content: 'register'})
+            }else if(window.location.pathname ==='/customer/account/forgot-password'){
+                this.setState({content: 'forgot'})
+            }else if(window.location.pathname ==='/customer/account/create-password'){
+                this.setState({content: 'create-password'})
+                
+                const urlParams = new URLSearchParams(window.location.search);
+                if (urlParams && urlParams.get('token')) {
+                    this.token = urlParams.get('token');
+                }
+            }
+            
+        }
     }
 
     showContent(content){
@@ -31,6 +53,8 @@ class CustomerAccount extends Abstract{
             return <Register parent={this}/>
         } else if(content === 'forgot'){
             return <ForgotPassword parent={this}/>
+        } else if(content === 'create-password'){
+            return <CreatePassword parent={this} token={this.token} />
         }
     }
 
@@ -45,6 +69,8 @@ class CustomerAccount extends Abstract{
             title = Identify.__('Forgot Password');
         else if (this.state.content === 'register')
             title = Identify.__('Create an Account');
+        else if (this.state.content === 'create-password')
+            title = Identify.__('SET A NEW PASSWORD');
         else {
             title = Identify.__('Login');
             backButton = false;
