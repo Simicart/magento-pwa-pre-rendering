@@ -68,7 +68,6 @@ class Login extends Abstract {
 
     requestGetCart = () => {
         this.cartModel.getCart()
-        this.setLoaded(false);
         this.cart = true;
     }
 
@@ -78,8 +77,8 @@ class Login extends Abstract {
             this.props.updateCart(data);
             this.cart = false;
             this.pushLink('/')
+            Identify.hideLoading();
         } else {
-            
             if (data.message) {
                 this.message = data.message;
             } else {

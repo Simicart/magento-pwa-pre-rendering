@@ -10,7 +10,8 @@ import Layout from '../../../Layout'
 import {layoutConfig} from "./etc/tapita_product_detail";
 import './style.scss'
 import Identify from '../../../Helper/Identify';
-import ProductModel from '../../Core/Product/Model'
+import ProductModel from '../../Core/Product/Model';
+import CustomerHelper from '../../../Helper/Customer';
 class Detail extends Abstract{
 
     renderLayoutSectionFromConfig(section = {}){
@@ -44,6 +45,13 @@ class Detail extends Abstract{
             const Model = new ProductModel({obj:this})
             let api = 'products/'+productId
             Model.getProductApi(api)
+        } else if(
+            this.data.app_reviews.hasOwnProperty('form_add_reviews') 
+            && typeof this.data.app_reviews.form_add_reviews[0] === 'string'
+            && (CustomerHelper.isLogin() || CustomerHelper.isAllowGuestAddReview())
+        ) {
+            const model = new ProductModel({obj:this})
+            model.getProductApi(`products/${this.data.entity_id}`);
         }
     }
 
