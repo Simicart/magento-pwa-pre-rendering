@@ -18,29 +18,24 @@ class WishListAbstract extends Base {
         this.addCart = false;
         this.removeItem = false;
         this.wishlistModel = new Model({ obj: this });
-
+        this.parent = props.sidebarParent
         //wishlist opened from shared url
         this.wishlist_code = false
         if (props.match && props.match.params && props.match.params.id)
             this.wishlist_code = props.match.params.id
-
-        // this.parent = props.sidebarParent
     }
 
     getApiData() {
         // showFogLoading()
         if (this.wishlist_code){
-            console.log(this.wishlist_code)
             this.wishlistModel.getWishlistWithCode(this.wishlist_code)
         }     
         else{
-            console.log("get data")
             this.wishlistModel.getWishlist();
         }
     }
 
     processError(data){
-        console.log(data,'errors')
         if (data.errors) {
             let errors = data.errors;
             let text = "";
@@ -54,7 +49,6 @@ class WishListAbstract extends Base {
     }
 
     processData(data){
-        console.log(data,"Data")
         if (this.addCart || this.removeItem) {
             this.wishlistModel.getWishlist();
             if (this.addCart) {

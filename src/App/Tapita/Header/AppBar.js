@@ -19,7 +19,8 @@ import BackIcon from '../../../BaseComponent/Icon/Back'
 import Menu from '../../../BaseComponent/Icon/Menu';
 import Search from '../../../BaseComponent/Icon/Search'
 import SearchBar from './Component/Search'
-import WishListIcon from '../../../BaseComponent/Icon/Heart-shape-outline'
+import WishListIcon from '../../../BaseComponent/Icon/Heart-shape-outline';
+import {WishListHoC} from "./HoC"
 
 const configColor = Identify.getColorConfig()
 class AppBar extends Abstract{
@@ -72,6 +73,11 @@ class AppBar extends Abstract{
         this.LeftMenu.Menu.handleOpenSideBar()
     }
 
+    handleShowWishList = () => {
+        // this.wishListSideBar.current.handleOnClick();
+        console.log(this.wishListSideBar)
+    }
+
     renderAppTablet(){
         let app_style = {
             height: '55px',
@@ -94,11 +100,7 @@ class AppBar extends Abstract{
 
         let pathname = window.location.pathname;
         let wishlistIcon = CustomerHelper.isLogin() ?
-            <IconButton className="wishlist-icon-app-bar"
-                        onClick={() => {
-                            this.pushLink('/wishlist')
-                        }}
-            >
+            <IconButton className="wishlist-icon-app-bar" onClick={this.handleShowWishList}>
                 <WishListIcon
                     color={configColor.top_menu_icon_color}
                 />
@@ -178,10 +180,11 @@ class AppBar extends Abstract{
                 {this.state.isPhone ? this.renderAppBarPhone() : this.renderAppTablet()}
                 {this.renderBottomMenu()}
                 <LeftMenu ref={node => this.LeftMenu = node}/>
+                <WishListHoC />
                 {!this.state.isPhone && <SearchBar parent={this}/>}
             </div>
         )
     }
 }
 
-export default AppBar
+export default AppBar;

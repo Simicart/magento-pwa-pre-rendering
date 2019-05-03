@@ -1,2 +1,2 @@
-import Wishlist from '../../src/App/Tapita/Wishlist'
-export default Wishlist
+import {WishlistHoC} from '../../src/App/Tapita/Wishlist/HoC'
+export default WishlistHoC
