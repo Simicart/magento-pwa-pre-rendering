@@ -32,25 +32,7 @@ class ProductTabs extends Abstract{
         this.state = {
             tabIndex: 0,
             isPhone: this.state.isPhone,
-            checkLogin: false,
         }
-    }
-
-    componentDidMount() {
-        if(
-            this.product.app_reviews.hasOwnProperty('form_add_reviews') 
-            && typeof this.product.app_reviews.form_add_reviews[0] === 'string'
-            && (CustomerHelper.isLogin() || CustomerHelper.isAllowGuestAddReview())
-        ) {
-            this.model.getProductApi(`products/${this.product.entity_id}`);
-        }
-    }
-
-    processData(data) {
-        this.setState({
-            checkLogin: true,
-            data: data.product,
-        })
     }
     
     handleChange = (event, value) => {
@@ -62,9 +44,6 @@ class ProductTabs extends Abstract{
     }
 
     tabDataConfig(){
-        if(this.state.data && this.state.checkLogin === true){
-            this.product = this.state.data;
-        }
         let data = [
             {
                 sort_order : 1000,
@@ -185,6 +164,7 @@ class ProductTabs extends Abstract{
                         key={Identify.makeid()}
                         id="detail-tab"
                         value={i}
+                        id={item.id}
                         className={`tab-${i}`}
                         label={this.renderTabLabel(item.label)}
                         textColor="primary"

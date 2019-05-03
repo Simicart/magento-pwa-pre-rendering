@@ -23,14 +23,16 @@ class ProductAddToCart extends Base {
         this.CartModel = new CartModel({obj : this});
         this.WishListModel = new WishlistModel({obj: this});
         // this.addWishlist = false;
-        this.wishlist = false
-        this.wishlistActived = false,
-        this.iconColor = "#e0e0e0"
-        this.isRemove = false
+        this.wishlist = false;
+        this.wishlistActived = false;
+       
         this.wishlist_id = this.data.wishlist_item_id;
-        this.removeWishlist = false;
+        this.isRemove = this.wishlist_id ? true : false
+        this.iconColor = this.wishlist_id ? "#ff271b" : "#e0e0e0";
+        // this.removeWishlist = false;
         this.state = {
             addWishlist: false,
+            removeWishlist: false
         }
     }
 
@@ -56,16 +58,34 @@ class ProductAddToCart extends Base {
             this.props.updateCart(data)
         }
         if(this.state.addWishlist){
-            Identify.showToastMessage(data.wishlistitem.name + " " +"added to your wishlist")
+            Identify.showToastMessage(Identify.__('Product was added to your wishlist'));
+            
             this.wishlistActived = true
             if(this.wishlistActived){
                 this.isRemove = true;
                 this.iconColor = "#ff271b"
-                console.log(this.iconColor)
             }
             this.props.updateWishlist(data)
+            const apiCache = Identify.ApiDataStorage('product_detail_api') || {};
+            if(typeof apiCache === 'object' && Object.keys(apiCache).length !== 0) {
+                apiCache[this.data.entity_id].product.wishlist_item_id = data.wishlistitem.wishlist_item_id;
+                Identify.ApiDataStorage('product_detail_api', 'update', apiCache);
+            }
+            this.setState({addWishlist: false});
         }
-
+        if(this.state.removeWishlist) {
+            this.wishlistActived = false;
+            Identify.showToastMessage(Identify.__('Product was removed to your wishlist'));
+            this.props.updateWishlist(data);
+            this.isRemove = false;
+            this.iconColor = '#e0e0e0';
+            const apiCache = Identify.ApiDataStorage('product_detail_api') || {};
+            if(typeof apiCache === 'object' && Object.keys(apiCache).length !== 0) {
+                apiCache[this.data.entity_id].product.wishlist_item_id = null;
+                Identify.ApiDataStorage('product_detail_api', 'update', apiCache);
+            }
+            this.setState({removeWishlist: false});
+        }
     }
 
     AddToCart =(disable=false,type=1)=>{
@@ -137,8 +157,9 @@ class ProductAddToCart extends Base {
             return;
         }else {
             if(isRemove && this.isRemove){
+                Identify.showLoading();
                 this.WishListModel.removeItem(this.wishlist_id)
-                this.removeWishlist = true;
+                this.setState({removeWishlist: true})
                 return;
             };
             this.setState({addWishlist : true})
@@ -149,9 +170,9 @@ class ProductAddToCart extends Base {
     }
 
     renderWishListButton = (width = 36, height = 36) => {
-        if(this.data && this.data.wishlist_item_id){
-            this.iconColor = "#ff271b";
-        }
+        // if(this.data && this.data.wishlist_item_id){
+        //     this.iconColor = "#ff271b";
+        // }
 
         return (
             <WishListButton

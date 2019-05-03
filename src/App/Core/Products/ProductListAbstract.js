@@ -59,6 +59,13 @@ class ProductListAbstract extends Abstract{
             this.ProductModel.setParams(params)
             this.getProducts()
             return true
+        } else if (nextProps.q_filter !== this.props.q_filter) {
+            this.setLoaded(false)
+            const params = this.ProductModel.getParams()
+            params['filter[q]'] = nextProps.q_filter;
+            this.ProductModel.setParams(params);
+            this.getProducts();
+            return true;
         }
         return true
     }
@@ -85,17 +92,18 @@ class ProductListAbstract extends Abstract{
         let {page_type, q_filter} = this.props;
         let title = null;
         let description = null;
+        let ogImage = this.SMCONFIGS.logo_url || null;
         if(page_type === 'search'){
             title = Identify.__(`Search result for '${q_filter}'`);
-            description = Identify.__(`Result detail of search keyword: '${q_filter}'`)
+            description = Identify.__(`Result detail of search keyword: '${q_filter}'`);
         }else{
             const currentCate = this.cateData || {}
-
             title = currentCate.name
             description = currentCate.meta_description ? currentCate.meta_description : title
+            ogImage = currentCate.image_url ? currentCate.image_url : ogImage
         }
 
-        return {title,description}
+        return {title,description, ogImage}
     }
 
     componentDidMount(){

@@ -18,10 +18,10 @@ import {Provider} from 'unstated-x'
 import '../src/Layout/global.scss'
 
 Router.events.on('routeChangeStart', url => {
-    Identify.showLoading()
+    Identify.showPlaceholderLoading(url)
 })
-Router.events.on('routeChangeComplete', () => Identify.hideLoading())
-Router.events.on('routeChangeError', () => Identify.hideLoading())
+Router.events.on('routeChangeComplete', () => Identify.hidePlaceholderLoading())
+Router.events.on('routeChangeError', () => Identify.hidePlaceholderLoading())
 
 export default class MyApp extends App {
 
@@ -86,16 +86,16 @@ export default class MyApp extends App {
         if (jssStyles && jssStyles.parentNode) {
             jssStyles.parentNode.removeChild(jssStyles);
         }
-        // if ('serviceWorker' in navigator) {
-        //     navigator.serviceWorker
-        //         .register('/simi-sw.js')
-        //         .then(registration => {
-        //             console.log('service worker registration successful')
-        //         })
-        //         .catch(err => {
-        //             console.warn('service worker registration failed', err.message)
-        //         })
-        // }
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker
+                .register('/simi-sw.js')
+                .then(registration => {
+                    console.log('service worker registration successful')
+                })
+                .catch(err => {
+                    console.warn('service worker registration failed', err.message)
+                })
+        }
     }
 
     render () {

@@ -156,7 +156,7 @@ class AddressForm extends AddressAbstract {
                              color: configColor.button_text_color
                          }}>{Identify.__('Sign In')}</div>
                     <div className="forgot-password-label"
-                         onClick={(e) => this.handleLink(e, '/customer/account/password')}
+                         onClick={() => this.pushLink('/customer/account/forgot-password')}
                          style={{color: configColor.button_background}}>{Identify.__('Forgot your password?')}</div>
                 </div>
             </div>

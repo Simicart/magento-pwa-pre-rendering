@@ -21,6 +21,10 @@ class Login extends Abstract {
         this.Model = new CustomerModel({ obj: this });
         this.cartModel = new CartModel({ obj: this })
         this.cart = false;
+        this.pushTo = '/'
+        if(Identify.getDataFromStoreage(Identify.SESSION_STOREAGE,'pushTo')){
+            this.pushTo = Identify.getDataFromStoreage(Identify.SESSION_STOREAGE,'pushTo')
+        }
     }
 
 
@@ -43,7 +47,14 @@ class Login extends Abstract {
                         warning.innerText = Identify.__('Check your email and try again');
                     } else
                         valid = true;
-                } else
+                } else if(input.name === 'password'){
+                    if(Identify.magentoPlatform() === 2 && !Identify.validatePassword(input.value)){
+                        warning.innerText = Identify.__('The password needs at least 8 characters including 1 uppercase letter, 1 special character, alphanumeric characters');
+                    }else{
+                        valid = true;
+                    }
+                }
+                else
                     valid = true;
             }
             if (valid) {
@@ -68,29 +79,38 @@ class Login extends Abstract {
 
     requestGetCart = () => {
         this.cartModel.getCart()
-        this.setLoaded(false);
         this.cart = true;
     }
 
     processData(data) {
-        Identify.showLoading();
         if (this.cart) {
             this.props.updateCart(data);
             this.cart = false;
-            this.pushLink('/')
-        } else {
-            
-            if (data.message) {
-                this.message = data.message;
-            } else {
-                this.message = Identify.__("Welcome %s, Start shopping now").replace('%s', data.customer.firstname);
-            }
-            data.customer.password = this.password
-            CustomerHelper.setLogin(data.customer);
-            Identify.storeDataToStoreage(Identify.SESSION_STOREAGE, 'msg_login', this.message)
-            this.requestGetCart();
+            return
         }
+        if (data.message) {
+            this.message = data.message;
+        } else {
+            this.message = Identify.__("Welcome %s, Start shopping now").replace('%s', data.customer.firstname);
+        }
+        data.customer.password = this.password
+        CustomerHelper.setLogin(data.customer);
+        Identify.storeDataToStoreage(Identify.SESSION_STOREAGE, 'msg_login', this.message)
+        this.requestGetCart();
+        this.pushLink(this.pushTo)
+        sessionStorage.removeItem('pushTo')
+        sessionStorage.removeItem('product_api')
+        sessionStorage.removeItem('product_list_api')
     };
+
+    processError(data) {
+        for(let i in this.loginInputs) {
+            const input = this.loginInputs[i];
+            if (input !== null && input.id === 'login-input-email') {
+                input.focus();
+            }
+        }
+    }
 
     render() {
         this.loginInputs = []
@@ -99,14 +119,14 @@ class Login extends Abstract {
                 <div className="form-field">
                     <div className="label">{Identify.__('Email')} <span style={{ color: 'red' }}>*</span></div>
                     <input type="email" name="email" id="login-input-email"
-                        ref={(thisField) => { this.loginInputs.push(thisField) }} />
+                        ref={(thisField) => { this.loginInputs.push(thisField) }} required/>
                     <div id="login-input-email-warning"
                         className="error-message">{Identify.__("This field is required")}</div>
                 </div>
                 <div className="form-field">
                     <div className="label">{Identify.__('Password')} <span style={{ color: 'red' }}>*</span></div>
                     <input type="password" name="password" id="login-input-password"
-                        ref={(thisField) => { this.loginInputs.push(thisField) }}/>
+                        ref={(thisField) => { this.loginInputs.push(thisField) }} required/>
                     <div id="login-input-password-warning"
                         className="error-message">{Identify.__("This field is required")}</div>
                 </div>

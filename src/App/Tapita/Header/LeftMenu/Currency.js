@@ -46,8 +46,8 @@ class Currency extends StoreView {
                 Identify.showLoading();
                 appSettings.currency_code = currency.value;
                 Identify.storeAppSettings(appSettings);
-                let api = this.SMCONFIGS.merchant_url + this.SMCONFIGS.api_path +`storeviews/${appSettings.store_id}?currency=${currency.value}`;
-                this.Model.connectWithUrl('/change-storeview','POST',{},{api})
+                let api = `storeviews/${appSettings.store_id}?currency=${currency.value}`;
+                this.Model.connect(api)
             }
         }
     }

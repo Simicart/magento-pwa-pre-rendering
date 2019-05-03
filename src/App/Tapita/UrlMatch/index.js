@@ -18,8 +18,13 @@ class UrlMatch extends React.Component{
         if(query && query.hasOwnProperty('0')){
             let obj = Identify.getUrlMatchApi('/'+query[0])
             if(obj){
+                // for url match
                 component = obj.type
                 if(component === 'product_detail'){
+                    if(Identify.isClient()){
+                        product_api = {product : obj.params.data}
+                        return {component,data:product_api,cache_data:true}
+                    }
                     let api = `products/${obj.params.id}`
                     product_api = await ApiModel.getProductApi(api)
                     return {component,data:product_api}
@@ -38,14 +43,25 @@ class UrlMatch extends React.Component{
                 // for urldicts
                 let api = `urldicts/detail?url=${query[0]}`
                 let data = await ApiModel.connect(api)
-                if(data.urldict && data.urldict.hasOwnProperty('category_id')){
+                if(data.urldict &&
+                    data.urldict.hasOwnProperty('category_id')
+                    && data.urldict.hasOwnProperty('simi_category_products'))
+                {
                     catetrees = await ApiModel.connect('categorytrees')
-                    console.log(data.urldict.simi_category_products)
                     return {
                         component : 'category',
                         cateId : data.urldict.category_id,
                         list_products : data.urldict.simi_category_products,
                         data : catetrees
+                    }
+                }
+                if(data.urldict
+                    && data.urldict.hasOwnProperty('product_id')
+                    && data.urldict.hasOwnProperty('simi_product_data'))
+                {
+                    return {
+                        component : 'product_detail',
+                        data : data.urldict.simi_product_data
                     }
                 }
             }
@@ -57,9 +73,8 @@ class UrlMatch extends React.Component{
     render(){
         const {component,data} = this.props;
         if(component === 'product_detail'){
-            return <ProductDetail data={data}/>
+            return <ProductDetail data={data} cache_data={this.props.cache_data}/>
         } else if(component === 'category'){
-            console.log(this.props)
             return <ProductList catetrees={data}
                                 cateId={this.props.cateId}
                                 list_products={this.props.list_products}

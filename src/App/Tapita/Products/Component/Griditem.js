@@ -10,7 +10,8 @@ import {Link,Router} from 'simiLink';
 import Rate from '../../../../BaseComponent/Rate';
 import Img from './ImgItem'
 import {ItemActionHoC} from "../HoC";
-
+import NextRouter from 'next/router'
+import { format, resolve, parse } from 'url'
 const configColor = Identify.getColorConfig()
 class Griditem extends Abstract {
     constructor(props, context) {
@@ -78,13 +79,13 @@ class Griditem extends Abstract {
             url_path = 'product/' + item.entity_id;
 
         url_path = '/'+url_path
-        Identify.setUrlMatchApi(url_path,'product_detail',{id:item.entity_id})
+        Identify.setUrlMatchApi(url_path,'product_detail',{id:item.entity_id,data:item})
         let appreview = this.renderReview(item)
         let image = this.renderImg(item)
         return (
             <div className="product-item tapita-product-grid-item">
                 <Link route={url_path}>
-                    <a>
+                    <a >
                         {this.props.lazyImage?
                             (<LazyLoad placeholder={<div className="tapita-product-image"/>}>
                                 {image}
@@ -124,3 +125,32 @@ class Griditem extends Abstract {
 }
 
 export default Griditem;
+
+const prefetch = async (href) => {
+    // if  we're running server side do nothing
+    if (typeof window === 'undefined') return
+
+    const url =
+        typeof href !== 'string'
+            ? format(href)
+            : href
+
+    const { pathname } = window.location
+
+    const parsedHref = resolve(pathname, url)
+
+    const { query } =
+        typeof href !== 'string'
+            ? href
+            : parse(url, true);
+
+    // get component reference
+    const Component = await NextRouter.prefetch(parsedHref)
+    console.log(parsedHref)
+    // fetch the component props
+    // and cache locally, handled within getInitialProps
+    if (Component && Component.getInitialProps) {
+        const ctx = { pathname: href, query, isVirtualCall: true }
+        await Component.getInitialProps(ctx)
+    }
+}

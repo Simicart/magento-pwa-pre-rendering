@@ -20,7 +20,7 @@ class ReviewListItem extends Base {
         const { productId } = this.props;
         const apiData = Identify.ApiDataStorage('product_list_review');
         if(apiData && apiData instanceof Object && apiData.hasOwnProperty(productId)){
-            this.setState({data:apiData[productId], loaded:true})
+            this.setState({data: apiData[productId], loaded:true})
         }
     }
     
@@ -46,8 +46,8 @@ class ReviewListItem extends Base {
     }
 
     renderListItem() {
-        const { data } = this.state;
-        if(data) {
+        const { data, loaded } = this.state;
+        if(data && loaded) {
             return (
                 <div className="list-review-item">
                     <div className="list-review-title">{Identify.__('Customer Reviews')}</div>

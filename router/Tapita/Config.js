@@ -34,6 +34,21 @@ const tapitaRoute = {
         page: 'Tapita/Login',
         pattern: '/customer/account/login'
     },
+    customer_register: {
+        name: 'customer_register',
+        page: 'Tapita/Login',
+        pattern: '/customer/account/register'
+    },
+    customer_forgot_password: {
+        name: 'customer_forgot_password',
+        page: 'Tapita/Login',
+        pattern: '/customer/account/forgot-password'
+    },
+    customer_create_password: {
+        name: 'customer_create_password',
+        page: 'Tapita/Login',
+        pattern: '/customer/account/create-password'
+    },
     customer_logout: {
         name: 'customer_logout',
         page: 'Tapita/Logout',

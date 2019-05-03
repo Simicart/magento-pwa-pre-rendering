@@ -77,6 +77,15 @@ class SimiComponent extends React.Component{
     }
 
     pushLink(route){
+        if(route instanceof Object){
+            if(route.pushTo){
+                Identify.storeDataToStoreage(Identify.SESSION_STOREAGE,'pushTo',route.pushTo)
+            }
+            if(route.pathname){
+                Router.pushRoute(route.pathname)
+            }
+            return;
+        }
         if(route){
             Router.pushRoute(route)
         }
