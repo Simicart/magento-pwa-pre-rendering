@@ -13,7 +13,7 @@ class Connection {
             // 'Access-Control-Allow-Headers': 'X-Requested-With,content-type',
             // 'Access-Control-Allow-Credentials': true
         };
-        this._init = {cache: 'default', mode: 'cors'};
+        this._init = {cache: 'default', mode: 'cors',credentials: "same-origin"};
     }
 
     setHeader(key, value) {

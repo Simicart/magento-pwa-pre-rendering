@@ -23,14 +23,16 @@ server.use(session({
     cookie : {
         maxAge : hour,
         expires : new Date(Date.now() + hour)
-    }
+    },
+    resave: false,
+    saveUninitialized: true
 }))
 server.use(bodyParser.urlencoded({ extended: false }));
 server.use(bodyParser.json());
-const handler = routes.getRequestHandler(app,async ({req, res, route, query}) => {
+const handler = routes.getRequestHandler(app, async ({req, res, route, query}) => {
     let api = req.url;
     if(api.indexOf('simiconnector/rest') > -1){
-        let data = await connectApiMagentoServer(api,req.method,req.body)
+        let data = await connectApiMagentoServer(api,req.method,req.body,req.headers)
         if(api.indexOf('storeviews/') > -1){
             serverCache.put('merchant_config',data)
         }
@@ -77,18 +79,14 @@ async function changeStoreView(api){
 
 }
 
-async function connectApiMagentoServer(api,method = 'GET',paramsBody = {}){
+async function connectApiMagentoServer(api,method = 'GET',paramsBody = {},header={}){
     try {
          let credentials = {
-             cache: 'default',
-             mode: 'cors',
-             credentials : 'same-origin',
-             header : {
-                 'Content-Type': 'application/json'
-             },
+             ...header,
              method,
              body : JSON.stringify(paramsBody)
          };
+
          if(method === 'GET'){
              credentials['body'] = null
          }
