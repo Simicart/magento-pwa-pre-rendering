@@ -5,6 +5,8 @@ import ShareIcon from '../../../BaseComponent/Icon/Share';
 import Button from '../../../BaseComponent/Button';
 import Rate from '../../../BaseComponent/Rate';
 import Deleteicon from '../../../BaseComponent/Icon/Trash';
+import NavigationClose from '../../../BaseComponent/Icon/Close';
+import IconButton from '../../../BaseComponent/IconButton';
 import Price from '../../../BaseComponent/Price';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
@@ -13,7 +15,7 @@ import { SubscribeOne } from "unstated-x";
 import { AppState } from "../../../Observer/AppState";
 import './wishlist.scss'
 
-// const $ = window.$;
+const $ = window.$;
 class Wishlist extends Abstract {
   checkExistData = () => {
     if (this.props.wishlist_data) {
@@ -37,8 +39,7 @@ class Wishlist extends Abstract {
           onClick={(e) => this.shareAction(e, shareObj)}
           style={{
             color: this.configColor.button_background,
-            display: 'flex',
-            alignItems: 'center',
+            textAlign: 'center',
             justifyContent: 'flex-end',
             cursor: 'pointer',
           }}
@@ -68,6 +69,13 @@ class Wishlist extends Abstract {
     });
   }
 
+  handleOnClick = () => {
+    let obj = this;
+    $(".wishlist-icon-app-bar").click(function(){
+      obj.getApiData();
+    })
+  }
+
   renderWishlist = () => {
     if (!this.state.loaded) {
       this.getApiData()
@@ -80,16 +88,6 @@ class Wishlist extends Abstract {
       data = Identify.getDataFromStoreage(Identify.SESSION_STOREAGE, 'wishlistitems');
     let listItems = [];
     let renderShareAllWishlist = null;
-    // const closeWishlist = (
-    //   <div className="close-wishlist-sidebar">
-    //     <IconButton style={{ width: 30, height: 30, padding: 2 }} onClick={() => {
-    //       if (this.parent && this.parent.wishlistSideBar)
-    //         this.parent.wishlistSideBar.handleCloseSideBar()
-    //     }}>
-    //       <NavigationClose style={{ width: 20 }} />
-    //     </IconButton>
-    //   </div>
-    // )
     if (data === null || !data.hasOwnProperty('wishlistitems') || data.wishlistitems.length === 0) {
       listItems = <div className="empty-wishlist text-center"
         style={{ marginTop: 40, fontWeight: 300 }}>{Identify.__('You have no items in your wish list')}</div>
@@ -135,10 +133,7 @@ class Wishlist extends Abstract {
               <div
                 className="item-img "
                 style={{ maxWidth: 120, maxHeight: 120, border: '1px solid #eee', padding: '1px' }}
-              // onClick={() => {
-              //   if (this.parent && this.parent.wishlistSideBar)
-              //     this.parent.wishlistSideBar.handleCloseSideBar()
-              // }}>
+              >
               >
             
               <img 
@@ -195,11 +190,25 @@ class Wishlist extends Abstract {
     );
   }
 
+  componentDidMount(){
+    if(this.props.sidebar){
+      this.handleOnClick()
+    }
+  }
+
+  componentWillMount(){
+    // if(!this.parent){
+    //   return <div>Loading</div>
+    // }
+    if(typeof window !== 'undefined'){
+      console.log(this)
+    }
+    
+  }
+
   render() {
-    if (this.parent && !this.state.loaded) {
-      return <div>
-        <div className="btn-get-data" onClick={() => this.getApiData()}></div>
-      </div>
+     if(this.props.sidebar){
+      return <div>{this.renderWishlist()}</div>
     }
     return <Layout>{this.renderWishlist()}</Layout>
   }
