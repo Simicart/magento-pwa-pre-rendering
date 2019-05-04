@@ -13,13 +13,18 @@ import Loading from '../../../BaseComponent/Loading'
 class ProductList extends ProductListAbstract{
 
     render() {
-        const {loaded,data} = this.state;
-        const {catetrees,cateId} = this.props;
-        this.getCateData(catetrees.categorytrees,cateId)
+        let {loaded,data} = this.state;
+        const {catetrees,cateId,page_type} = this.props;
+        if (page_type == 'simi-product-lists') {
+           data = this.getHomeProductList(catetrees)
+        } else {
+            this.getCateData(catetrees.categorytrees,cateId)
+        }
+
         return (
             <Layout server_render={true} header={this.getMetaHeader()}>
                 <ListHeader {...this.props} currentCate={this.cateData} catePath={this.catePath}/>
-                {data && loaded ? <ListItem data={data} currentCate={this.cateData} parent={this}/> : <Loading/>}
+                {data && loaded ? <ListItem data={data} currentCate={this.cateData} parent={this} pageType={page_type}/> : <Loading/>}
             </Layout>
         );
     }

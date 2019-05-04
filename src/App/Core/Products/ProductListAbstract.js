@@ -88,6 +88,21 @@ class ProductListAbstract extends Abstract{
         return false
     }
 
+    getHomeProductList = (catetrees) => {
+        let { data } = this.state;
+        let newData = null;
+        if (data !== null && typeof data === 'object' && data.hasOwnProperty('homeproductlist')) {
+            newData = data.homeproductlist.product_array;
+
+            this.cateData = data.homeproductlist;
+        } else {
+            newData = catetrees.product_array;
+            this.cateData = catetrees;
+        }
+
+        return newData;
+    }
+
     getMetaHeader(){
         let {page_type, q_filter} = this.props;
         let title = null;
@@ -98,7 +113,7 @@ class ProductListAbstract extends Abstract{
             description = Identify.__(`Result detail of search keyword: '${q_filter}'`);
         }else{
             const currentCate = this.cateData || {}
-            title = currentCate.name
+            title = page_type ==='simi-product-lists' ? currentCate.list_title : currentCate.name;
             description = currentCate.meta_description ? currentCate.meta_description : title
             ogImage = currentCate.image_url ? currentCate.image_url : ogImage
         }
@@ -125,7 +140,13 @@ class ProductListAbstract extends Abstract{
     }
 
     getProducts(){
-        this.ProductModel.getCollection()
+        const { page_type, cateId } = this.props;
+        if (page_type === 'simi-product-lists') {
+            this.ProductModel.getHomeProductListCollection(cateId);
+        } else {
+            this.ProductModel.getCollection()
+        }
+        
     }
 
     processData(data){

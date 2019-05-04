@@ -7,6 +7,7 @@
 import React from 'react'
 import Abstract from '../../../Core/BaseAbstract'
 import GridItem from '../Component/Griditem'
+import ListProduct from '../Component/ListItem'
 import Identify from "../../../../Helper/Identify";
 import SortBy from './Sortby'
 import Pagination from '../../../../BaseComponent/Pagination'
@@ -18,12 +19,26 @@ class ListItem extends Abstract{
         this.itemsPerPageOptions = [12, 24, 36, 48, 60];
         this.limit = 12;
         this.currentPage = 1;
+        this.state = {
+            itemsDisplayMode: 1
+        }
     }
 
 
     renderProduct(data){
+        console.log(this.state.itemsDisplayMode);
         return data.products.map(function (item, index) {
             const itemKey = `tablet-product-items-${item.entity_id}-${index}`;
+            if (this.state.itemsDisplayMode === 0) {
+                return (
+                    <ListProduct
+                        key={itemKey}
+                        item={item}
+                        lazyImage={true}
+                    />
+                )
+            } 
+            
             return (
                 <GridItem
                     key={itemKey}
@@ -38,7 +53,7 @@ class ListItem extends Abstract{
     handleChangePage = (page,limit) => {
         let params = this.ProductsParent.ProductModel.getParams()
         params['limit'] = limit
-        params['offset'] = page*limit
+        params['offset'] = (page-1)*limit
         this.ProductsParent.ProductModel.setParams(params)
         Identify.showLoading()
         this.ProductsParent.getProducts()
