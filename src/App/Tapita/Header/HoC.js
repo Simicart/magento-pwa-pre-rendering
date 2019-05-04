@@ -14,7 +14,7 @@ import {Dynamic} from "../../../BaseComponent/Async";
 
 export const CartQtyHoC = props => (
     <SubscribeOne to={AppState} bind={['cart_data']}>
-        {app => <CartQty {...props} cart_data={app.state.cart_data}/>}
+        {app => <CartQty  cart_data={app.state.cart_data} {...props}/>}
     </SubscribeOne>
 )
 

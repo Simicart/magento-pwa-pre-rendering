@@ -77,12 +77,6 @@ class Wishlist extends Abstract {
   }
 
   renderWishlist = () => {
-    if (!this.state.loaded) {
-      this.getApiData()
-      return <div>
-        <div className="btn-get-data" onClick={() => this.getApiData()}></div>
-      </div>
-    }
     let data = this.props.wishlist_data || {};
     if (!data.wishlistitems)
       data = Identify.getDataFromStoreage(Identify.SESSION_STOREAGE, 'wishlistitems');
@@ -191,6 +185,7 @@ class Wishlist extends Abstract {
   }
 
   componentDidMount(){
+    this.getApiData();
     if(this.props.sidebar){
       this.handleOnClick()
     }
