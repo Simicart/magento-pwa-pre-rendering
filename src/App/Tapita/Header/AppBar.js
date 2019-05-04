@@ -23,6 +23,15 @@ import CartSideBar from './RightBar/CartSideBar';
 
 const configColor = Identify.getColorConfig()
 class AppBar extends Abstract {
+
+    handelLoginClick = () => {
+        let location = {
+            pathname: '/customer/account/login',
+            pushTo: '/checkout/onepage'
+        }
+        this.pushLink(location);
+    }
+
     renderLogo = () => {
         return (
             <div id="app-logo">
@@ -158,21 +167,19 @@ class AppBar extends Abstract {
     }
 
     renderSignInLink = () => {
-        let location = {
-            pathname: '/customer/account/login',
-            pushTo: '/checkout/onepage'
-        }
+
         let pathname = window.location.pathname;
         if (pathname.indexOf('/checkout/onepage') > -1) {
             return (
                 <div className="right-icon" id="sign-link">
                     {!CustomerHelper.isLogin() && (
-                        <Link className="sign-link-action" to={location} style={{
+                        <a className="sign-link-action" onClick={this.handelLoginClick} style={{
                             color: configColor.button_background,
                             fontSize: 20,
                             fontWeight: 600,
-                            textDecoration: 'none'
-                        }}>{Identify.__('Sign In')}</Link>
+                            textDecoration: 'none',
+                            
+                        }}>{Identify.__('Sign In')}</a>
                     )}
                 </div>
             );

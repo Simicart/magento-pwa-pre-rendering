@@ -26,7 +26,6 @@ class ListItem extends Abstract{
 
 
     renderProduct(data){
-        console.log(this.state.itemsDisplayMode);
         return data.products.map(function (item, index) {
             const itemKey = `tablet-product-items-${item.entity_id}-${index}`;
             if (this.state.itemsDisplayMode === 0) {

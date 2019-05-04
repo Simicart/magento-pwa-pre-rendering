@@ -91,7 +91,6 @@ class Sortby extends Abstract {
     }
 
     render() {
-        console.log(this.parent.state.itemsDisplayMode);
         const {data} = this.props || {};
         let itemCount = '';
         if(this.props.currentPage && data.total && this.props.limit && data.all_ids instanceof Array){
