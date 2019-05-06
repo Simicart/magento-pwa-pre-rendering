@@ -6,6 +6,8 @@ import Identify from '../../../Helper/Identify';
 // import 'react-confirm-alert/src/react-confirm-alert.css';
 import SidebarItem from './CartComponent/SidebarItem';
 import ArrowDown from '@material-ui/icons/KeyboardArrowDown';
+import IconButton from '@material-ui/core/IconButton';
+import NavigationClose from '@material-ui/icons/Close';
 import Layout from '../../../Layout'
 import Total from '../../../BaseComponent/Total'
 import { SubscribeOne } from 'unstated-x';
@@ -25,7 +27,19 @@ class CartTapita extends Cart {
 
     onChange = (e) => {
         let coupon_value = e.target.value;
-        this.setState({coupon_code: coupon_value})
+        this.setState({ coupon_code: coupon_value })
+    }
+
+    handleOnClickCoupon = (coupon_code) => {
+        const $ = window.$
+        let warning = document.getElementsByClassName('coupon-code-area-tablet')
+        if(!coupon_code){
+            $('.warning-text').text(Identify.__('This field is required'))
+            $('.warning-text').css('color','red')
+        } else {
+            this.handleCoupon(coupon_code)
+        }
+
     }
 
     renderCouponView() {
@@ -39,14 +53,18 @@ class CartTapita extends Cart {
                     <div className="coupon-code-area-tablet">
                         <input type="text"
                             placeholder={Identify.__('Enter a coupon code')}
-                            defaultValue={value} 
+                            defaultValue={value}
                             onChange={this.onChange}
                         />
+                        <div className="warning-text"></div>
                     </div>
-                    <div id="submit-coupon-tablet" onClick={() => this.handleCoupon(this.state.coupon_code)} style={{
+                    <div id="submit-coupon-tablet" 
+                        onClick={() => this.handleOnClickCoupon(this.state.coupon_code)} 
+                        style={{
                         backgroundColor: this.configColor.button_background,
                         color: this.configColor.button_text_color
-                    }}>{Identify.__('Apply')}</div>
+                        }}
+                    >{Identify.__('Apply')}</div>
                 </div>
             </div>);
         let icon = <div style={{ marginLeft: "auto" }}>
@@ -76,6 +94,11 @@ class CartTapita extends Cart {
         });
     }
 
+    closeSideBar() {
+        // console.log(this.props.parent.cartSideBar)
+        this.props.parent.cartSideBar.handleCloseSideBar();
+    }
+
     renderItems() {
         if (!this.state.simiData || !this.state.simiData.quoteitems)
             return
@@ -91,10 +114,11 @@ class CartTapita extends Cart {
         for (let i in quoteItems) {
             let item = quoteItems[i];
             let element = <SidebarItem key={Identify.makeid()}
-                                        item={item}
-                                        handleEditCart={this.handleEditCart}
-                                        moveToWishList={this.moveToWishlist} />
+                item={item}
+                handleEditCart={this.handleEditCart}
+                moveToWishList={this.moveToWishlist} />
             obj.push(element);
+        $('html,body').removeClass('disable-scroll')
         }
         return <ul className="cart-list">{obj}</ul>;
     }
@@ -123,7 +147,26 @@ class CartTapita extends Cart {
                     divStyle={{ marginTop: 0 }}
                 />
             </div>
+        const closeCart =
+        <div className="close-cart-sidebar">
+            <IconButton style={{width: 55, height: 55}}
+                        onClick={() => this.closeSideBar()}>
+                <NavigationClose/>
+            </IconButton>
+        </div>;
         if (!this.state.simiData || !this.state.simiData.cart_total || this.state.simiData.all_ids.length <= 0) {
+            if (this.props.sideBar) {
+                return (
+                    <div>
+                        <div className="cart-page-static cart-page-tapita">{closeCart}
+                            {loading}
+                            <div className="empty-cart">
+                                {Identify.__('You have no items in your shopping cart')}
+                            </div>
+                        </div>
+                    </div>
+                )
+            }
             return (
                 <Layout>
                     <div className="cart-page-static cart-page-tapita">
@@ -134,6 +177,25 @@ class CartTapita extends Cart {
                     </div>
                 </Layout>);
         } else {
+            if (this.props.sideBar) {
+                return (
+                    <div>
+                        <div className="cart-page-static cart-page-tapita" style={{ maxWidth: '740px', margin: '15px auto', padding: '0 5px' }}>
+                            {closeCart}
+                            {loading}
+                            <div className="cart-title"><b>{Identify.__('SHOPPING CART')}</b></div>
+                            <span>
+                                
+                            </span>
+                            {this.renderItems()}
+                            {this.renderCouponView()}
+                            {/* {layout.tapita_cart_abstract.after_render_couponcode_view(this)} */}
+                            {this.renderTotalView(this.state.data)}
+                            {this.renderCheckoutButton()}
+                        </div>
+                    </div>
+                )
+            }
             return (
                 <Layout>
                     <div className="cart-page-static cart-page-tapita" style={{ maxWidth: '740px', margin: '15px auto', padding: '0 5px' }}>

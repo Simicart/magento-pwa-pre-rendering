@@ -74,6 +74,16 @@ class ListHeader extends Abstract{
                             {title}
                         </div>
                     </div>
+        } else if (page_type === 'simi-product-lists' && currentCate) {
+            return (
+                <div
+                    className="product-list-header-tablet"
+                >
+                    <div id="category-title">
+                        {currentCate.list_title}
+                    </div>
+                </div>
+            )
         }
         return null
     }

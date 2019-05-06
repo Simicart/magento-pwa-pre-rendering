@@ -5,11 +5,10 @@
  * Time: 4:22 PM
  */
 import React from 'react'
-import {Link} from 'simiLink'
-import {CartQtyHoC} from "./HoC";
+import { Link } from 'simiLink'
+import { CartQtyHoC, WishListHoC, BottomMenuHoC } from "./HoC";
 import MyAccount from './RightBar/MyAccount'
 import Abstract from '../../Core/BaseAbstract'
-import {BottomMenuHoC} from "./HoC";
 import LeftMenu from './LeftMenu'
 import './style.scss'
 import Identify from "../../../Helper/Identify";
@@ -20,25 +19,34 @@ import Menu from '../../../BaseComponent/Icon/Menu';
 import Search from '../../../BaseComponent/Icon/Search'
 import SearchBar from './Component/Search'
 import WishListIcon from '../../../BaseComponent/Icon/Heart-shape-outline';
-import {WishListHoC} from "./HoC"
+import CartSideBar from './RightBar/CartSideBar';
 
 const configColor = Identify.getColorConfig()
-class AppBar extends Abstract{
-    renderLogo = ()=>{
+class AppBar extends Abstract {
+
+    handelLoginClick = () => {
+        let location = {
+            pathname: '/customer/account/login',
+            pushTo: '/checkout/onepage'
+        }
+        this.pushLink(location);
+    }
+
+    renderLogo = () => {
         return (
             <div id="app-logo">
                 <Link route={'home'}>
                     <a>
-                        <img style={{display: 'inline-block'}}
-                             alt={'App Logo'}
-                             src={"https://theme.zdassets.com/theme_assets/835315/46b5860567f3d9e07649c775676d979ab45b5b85.png"}/>
+                        <img style={{ display: 'inline-block' }}
+                            alt={'App Logo'}
+                            src={"https://theme.zdassets.com/theme_assets/835315/46b5860567f3d9e07649c775676d979ab45b5b85.png"} />
                     </a>
                 </Link>
             </div>
         )
     }
 
-    renderAppBarPhone = ()=>{
+    renderAppBarPhone = () => {
         let app_style = {
             height: '55px',
             backgroundColor: configColor.key_color
@@ -46,26 +54,26 @@ class AppBar extends Abstract{
         return (
             <div id="app-bar" style={app_style} className="app-bar-phone">
                 {this.renderLogo()}
-                <div className="app-bar-item " id="left-bar"/>
+                <div className="app-bar-item " id="left-bar" />
                 {this.renderRightBar()}
             </div>
         )
     }
 
-    renderRightBar(){
+    renderRightBar() {
         return (
             <div className="app-bar-item " id="right-bar">
                 <span className="right-icon-item">
-                    <MyAccount/>
+                    <MyAccount />
                 </span>
                 <CartQtyHoC/>
             </div>
         )
     }
 
-    renderBottomMenu(){
+    renderBottomMenu() {
         if (this.state.isPhone) {
-            return <BottomMenuHoC parent={this}/>
+            return <BottomMenuHoC parent={this} />
         }
     }
 
@@ -73,12 +81,20 @@ class AppBar extends Abstract{
         this.LeftMenu.Menu.handleOpenSideBar()
     }
 
-    handleShowWishList = () => {
-        // this.wishListSideBar.current.handleOnClick();
-        console.log(this.wishListSideBar)
+    handleShowCart = () => {
+        this.setState({loaded: true}, function () {
+            this.cartBar.cartSideBar.handleOpenSideBar()
+        });
     }
 
-    renderAppTablet(){
+    handleCloseCart = () => {
+        this.setState({loaded: false}, function(){
+            console.log(this.cartBar)
+            this.cartBar.cartSideBar.handleCloseSideBar()
+        })
+    }
+
+    renderAppTablet() {
         let app_style = {
             height: '55px',
             backgroundColor: configColor.key_color
@@ -100,7 +116,7 @@ class AppBar extends Abstract{
 
         let pathname = window.location.pathname;
         let wishlistIcon = CustomerHelper.isLogin() ?
-            <IconButton className="wishlist-icon-app-bar" onClick={this.handleShowWishList}>
+            <IconButton className="wishlist-icon-app-bar">
                 <WishListIcon
                     color={configColor.top_menu_icon_color}
                 />
@@ -110,12 +126,12 @@ class AppBar extends Abstract{
                 {this.renderLogo()}
                 <div className="app-bar-item " id="left-bar">
                     <IconButton className="app-bar-back"
-                                style={{padding: 0, display: 'none', color: configColor.top_menu_icon_color}}
-                                onClick={() => window.history.back()}>
-                        <BackIcon color={configColor.top_menu_icon_color}/>
+                        style={{ padding: 0, display: 'none', color: configColor.top_menu_icon_color }}
+                        onClick={() => window.history.back()}>
+                        <BackIcon color={configColor.top_menu_icon_color} />
                     </IconButton>
                     <IconButton className="app-bar-menu" onClick={() => this.handleShowMenu()}>
-                        <Menu color={configColor.top_menu_icon_color}/>
+                        <Menu color={configColor.top_menu_icon_color} />
                     </IconButton>
                 </div>
                 <div className="app-bar-item " id="right-bar">
@@ -123,19 +139,19 @@ class AppBar extends Abstract{
                         <div className="right-icon" id="basic-icon" style={rightIconStyle}>
                             <span className="right-icon-item">
                                 {wishlistIcon}
-                                </span>
+                            </span>
                             <span className="right-icon-item">
-                                <MyAccount parent={this}/>
+                                <MyAccount parent={this} />
                             </span>
                             <span className="right-icon-item">
                                 <IconButton className="search-icon"
-                                            onClick={() => {
-                                                this.handleShowSearchbar()
-                                            }}>
-                                    <Search color={configColor.top_menu_icon_color}/>
+                                    onClick={() => {
+                                        this.handleShowSearchbar()
+                                    }}>
+                                    <Search color={configColor.top_menu_icon_color} />
                                 </IconButton>
                             </span>
-                            <CartQtyHoC/>
+                            <CartQtyHoC handleShowCart={this.handleShowCart}/>
                         </div>
                     )}
 
@@ -151,21 +167,19 @@ class AppBar extends Abstract{
     }
 
     renderSignInLink = () => {
-        let location = {
-            pathname: '/customer/account/login',
-            pushTo: '/checkout/onepage'
-        }
+
         let pathname = window.location.pathname;
-        if(pathname.indexOf('/checkout/onepage') > -1){
+        if (pathname.indexOf('/checkout/onepage') > -1) {
             return (
                 <div className="right-icon" id="sign-link">
                     {!CustomerHelper.isLogin() && (
-                        <Link className="sign-link-action" to={location} style={{
+                        <a className="sign-link-action" onClick={this.handelLoginClick} style={{
                             color: configColor.button_background,
                             fontSize: 20,
                             fontWeight: 600,
-                            textDecoration: 'none'
-                        }}>{Identify.__('Sign In')}</Link>
+                            textDecoration: 'none',
+                            
+                        }}>{Identify.__('Sign In')}</a>
                     )}
                 </div>
             );
@@ -173,15 +187,16 @@ class AppBar extends Abstract{
 
     };
 
-    render(){
+    render() {
         // console.log(SMCONFIGS)
         return (
-            <div style={{borderBottom: '1px solid #eeeeee'}}>
+            <div style={{ borderBottom: '1px solid #eeeeee' }}>
                 {this.state.isPhone ? this.renderAppBarPhone() : this.renderAppTablet()}
                 {this.renderBottomMenu()}
-                <LeftMenu ref={node => this.LeftMenu = node}/>
+                <LeftMenu ref={node => this.LeftMenu = node} />
                 <WishListHoC />
-                {!this.state.isPhone && <SearchBar parent={this}/>}
+                {this.state.loaded?<CartSideBar ref={(cart)=> this.cartBar = cart} handleCloseCart={this.handleCloseCart}/>:null}
+                {!this.state.isPhone && <SearchBar parent={this} />}
             </div>
         )
     }

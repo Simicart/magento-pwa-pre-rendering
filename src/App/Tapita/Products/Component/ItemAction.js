@@ -79,6 +79,16 @@ class ItemAction extends Abstract{
     }
 
     renderAddCartButton(item) {
+        let styleList = {};
+        if (this.props.type === 'list') {
+            styleList = {
+                height: "36px",
+                width: "160px",
+                marginTop: "5px",
+                marginRight: "10px",
+                float: "left"
+            }
+        } 
         const addToCartString = (parseInt(item.is_salable) !== 1)?Identify.__('Out of stock'):Identify.__('Add to Cart');
         if (!this.addCartFontSize) {
             let fontSizeViewport = 30/addToCartString.length;
@@ -88,6 +98,7 @@ class ItemAction extends Abstract{
             ref={(btn) => {this.addCartBtn = btn}}
             style={{
                 opacity: (parseInt(item.is_salable) !== 1)?0.5:1,
+                ...styleList
             }}
             textStyle={{
                 textAlign : 'center',
@@ -100,9 +111,9 @@ class ItemAction extends Abstract{
     }
 
     renderWishListButton() {
-        const width = 40;
-        const height = 40;
-
+        let width = 40;
+        let height = 40;
+        
         const wishlistInactiveIcon = <HearthOutline color="#e0e0e0" style={{width, height}}/>;
         const wishlistActiveIcon = <HearthFilled color="#ff0000" style={{width, height}}/>;
         const buttonStyle = {
@@ -111,6 +122,12 @@ class ItemAction extends Abstract{
             float: "left",
             backgroundColor: "transparent"
         };
+
+        if (this.props.type === 'list') {
+            width = 32;
+            height = 32;
+            buttonStyle['marginTop'] = '2px';
+        }
         return (
             <div>
                 <div className="wishlist-icon actived" style={{display: this.activeDisplay}}>
@@ -152,8 +169,8 @@ class ItemAction extends Abstract{
     render() {
         const {item} = this.props;
         return (
-            <div className="product-item-action" style={{justifyContent : 'space-between'}}>
-                <div style={{width : '100%'}}>
+            <div className="product-item-action" style={this.props.type === 'list' ? {} : {justifyContent : 'space-between'}}>
+                <div style={this.props.type === 'list' ? {} : {width : '100%'}}>
                     {this.renderAddCartButton(item)}
                 </div>
                 {this.renderWishListButton()}

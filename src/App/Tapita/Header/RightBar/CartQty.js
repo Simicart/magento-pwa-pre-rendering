@@ -17,7 +17,7 @@ class CartQty extends Abstract{
         return (
             <span className="right-icon-item checkout-cart"
                   onClick={() => {
-                      this.pushLink('/checkout/cart');
+                      this.props.handleShowCart()
                   }}
                   style={{position: 'relative', margin: 0}}>
                 <IconButton className="cart-icon-app-bar" >

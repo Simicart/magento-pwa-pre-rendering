@@ -36,6 +36,21 @@ class ProductListAbstract extends Abstract{
         super(props);
         this.cateData = null;
         this.catePath = {};
+
+        const merchantConfig = Identify.getMerchantConfig()
+        let viewTypeDefault = 0
+        if (merchantConfig) {
+            viewTypeDefault = parseInt(merchantConfig.storeview.catalog.frontend.view_products_default, 10);
+        }
+        //show: 1-list, 0-grid
+        let show = 0;
+        if (Identify.isClient() && sessionStorage.getItem('itemsDisplayMode'))
+            show = parseInt(sessionStorage.getItem('itemsDisplayMode'),10)
+        else 
+            show = this.props.show ? this.props.show : viewTypeDefault === 0 ? 1 : 0;
+
+        this.state.itemsDisplayMode = show
+
         //loadingMore: 0-no, 1-loading, 2-loaded
         this.loadingMore = 0
         this.limit = 12;
@@ -88,6 +103,21 @@ class ProductListAbstract extends Abstract{
         return false
     }
 
+    getHomeProductList = (catetrees) => {
+        let { data } = this.state;
+        let newData = null;
+        if (data !== null && typeof data === 'object' && data.hasOwnProperty('homeproductlist')) {
+            newData = data.homeproductlist.product_array;
+
+            this.cateData = data.homeproductlist;
+        } else {
+            newData = catetrees.product_array;
+            this.cateData = catetrees;
+        }
+
+        return newData;
+    }
+
     getMetaHeader(){
         let {page_type, q_filter} = this.props;
         let title = null;
@@ -98,7 +128,7 @@ class ProductListAbstract extends Abstract{
             description = Identify.__(`Result detail of search keyword: '${q_filter}'`);
         }else{
             const currentCate = this.cateData || {}
-            title = currentCate.name
+            title = page_type ==='simi-product-lists' ? currentCate.list_title : currentCate.name;
             description = currentCate.meta_description ? currentCate.meta_description : title
             ogImage = currentCate.image_url ? currentCate.image_url : ogImage
         }
@@ -125,10 +155,44 @@ class ProductListAbstract extends Abstract{
     }
 
     getProducts(){
-        this.ProductModel.getCollection()
+        const { page_type, cateId } = this.props;
+        
+        this.loadingMore = 0;
+        let params = this.ProductModel.params
+        this.ProductModel.setParams(params)
+        if (page_type === 'simi-product-lists') {
+            this.ProductModel.getHomeProductListCollection(cateId);
+        } else {
+            this.ProductModel.getCollection()
+        }
+        
+    }
+
+    loadMoreProducts() {
+        if (this.loadingMore === 1) {
+            //loading, skip
+            return
+        }
+        let params = this.ProductModel.params
+        const newOffset = params.offset + params.limit
+        if (newOffset < this.total) {
+            this.offset = newOffset
+            params.offset = newOffset
+            this.ProductModel.setParams(params)
+            this.ProductModel.getCollection()
+            this.loadingMore = 1
+        }
     }
 
     processData(data){
+        this.total = data.total
+        if (this.loadingMore === 1) {
+            let oldData = this.state.data
+            if (oldData && oldData.products) {
+                data.products = oldData.products.concat(data.products)
+            }
+            this.loadingMore = 2
+        }
         this.setState({data})
     }
 
