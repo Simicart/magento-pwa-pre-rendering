@@ -38,6 +38,16 @@ class UrlMatch extends React.Component{
                     const cmsModel = new CmsModel();
                     const cmsData = await cmsModel.getCmsPage(obj.params.id);
                     return { component, data: cmsData}
+                } else if(component === 'simi-product-lists') {
+                    const api = `homeproductlists/${obj.params.id}`;
+                    const params = {
+                        image_height: 180,
+                        image_width: 180,
+                        limit: 12,
+                        offset: 0
+                    };
+                    const homeProductList = await ApiModel.connect(api, params);
+                    return { component, data: homeProductList.homeproductlist, cateId: obj.params.id }
                 }
             }else{
                 // for urldicts
@@ -74,12 +84,12 @@ class UrlMatch extends React.Component{
         const {component,data} = this.props;
         if(component === 'product_detail'){
             return <ProductDetail data={data} cache_data={this.props.cache_data}/>
-        } else if(component === 'category'){
+        } else if(component === 'category' || component === 'simi-product-lists' ){
             return <ProductList catetrees={data}
                                 cateId={this.props.cateId}
                                 list_products={this.props.list_products}
-                                page_type="category"/>
-        }
+                                page_type={component}/>
+        } 
         else if(component === 'cms_page') {
             return <CmsContent data={data} />
         }

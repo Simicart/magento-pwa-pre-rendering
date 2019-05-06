@@ -15,7 +15,8 @@ class Sortby extends Abstract {
 
     constructor(props) {
         super(props);
-        this.ProductsParent = this.props.ProductsParent
+        this.ProductsParent = this.props.ProductsParent;
+        this.parent = this.props.parent;
     }
 
 
@@ -30,7 +31,7 @@ class Sortby extends Abstract {
     }
 
     switchShowType(showType) {
-        this.props.productIndex.setState({itemsDisplayMode: showType});
+        this.parent.setState({itemsDisplayMode: showType});
         sessionStorage.setItem('itemsDisplayMode', showType);
     }
 
@@ -97,7 +98,7 @@ class Sortby extends Abstract {
             itemCount = <span className="items-count">
                     {Identify.__('Items %c of %t')
                         .replace('%c', (anchorItem + 1) + '-' + (anchorItem + data.all_ids.length))
-                        .replace('%t', this.props.itemCount)}
+                        .replace('%t', this.props.total)}
                 </span>;
 
         }
@@ -108,7 +109,7 @@ class Sortby extends Abstract {
         return (
             <div className="top-sort-by">
                 {filterButton}
-                <div className={1 > 0 ? "gridlist-switcher active" : "gridlist-switcher"}>
+                <div className={this.parent.state.itemsDisplayMode === 1 ? "gridlist-switcher active" : "gridlist-switcher"}>
                     <IconButton style={{width: '36px', height: '36px', padding: '8px'}}
                                 onClick={(e) => {
                                     this.switchShowType(1)
@@ -116,7 +117,7 @@ class Sortby extends Abstract {
                         <GridIcon/>
                     </IconButton>
                 </div>
-                <div className={1 > 0 ? "gridlist-switcher" : "gridlist-switcher active"}>
+                <div className={this.parent.state.itemsDisplayMode === 0 ? "gridlist-switcher active" : "gridlist-switcher"}>
                     <IconButton style={{width: '36px', height: '36px', padding: '8px'}}
                                 onClick={(e) => {
                                     this.switchShowType(0)
