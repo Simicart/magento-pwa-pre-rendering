@@ -30,6 +30,18 @@ class CartTapita extends Cart {
         this.setState({ coupon_code: coupon_value })
     }
 
+    handleOnClickCoupon = (coupon_code) => {
+        const $ = window.$
+        let warning = document.getElementsByClassName('coupon-code-area-tablet')
+        if(!coupon_code){
+            $('.warning-text').text(Identify.__('This field is required'))
+            $('.warning-text').css('color','red')
+        } else {
+            this.handleCoupon(coupon_code)
+        }
+
+    }
+
     renderCouponView() {
         let value = "";
 
@@ -44,11 +56,15 @@ class CartTapita extends Cart {
                             defaultValue={value}
                             onChange={this.onChange}
                         />
+                        <div className="warning-text"></div>
                     </div>
-                    <div id="submit-coupon-tablet" onClick={() => this.handleCoupon(this.state.coupon_code)} style={{
+                    <div id="submit-coupon-tablet" 
+                        onClick={() => this.handleOnClickCoupon(this.state.coupon_code)} 
+                        style={{
                         backgroundColor: this.configColor.button_background,
                         color: this.configColor.button_text_color
-                    }}>{Identify.__('Apply')}</div>
+                        }}
+                    >{Identify.__('Apply')}</div>
                 </div>
             </div>);
         let icon = <div style={{ marginLeft: "auto" }}>
@@ -153,7 +169,7 @@ class CartTapita extends Cart {
             }
             return (
                 <Layout>
-                    <div className="cart-page-static cart-page-tapita">{closeCart}
+                    <div className="cart-page-static cart-page-tapita">
                         {loading}
                         <div className="empty-cart">
                             {Identify.__('You have no items in your shopping cart')}
@@ -183,7 +199,6 @@ class CartTapita extends Cart {
             return (
                 <Layout>
                     <div className="cart-page-static cart-page-tapita" style={{ maxWidth: '740px', margin: '15px auto', padding: '0 5px' }}>
-                        {closeCart}
                         {loading}
                         <div className="cart-title"><b>{Identify.__('SHOPPING CART')}</b></div>
                         {this.renderItems()}

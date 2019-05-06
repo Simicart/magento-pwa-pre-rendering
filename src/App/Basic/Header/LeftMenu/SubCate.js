@@ -1,19 +1,15 @@
-/**
- * Created by PhpStorm.
- * User: Peter
- * Date: 9/28/18
- * Time: 10:47 AM
- */
 import React from 'react'
 import Abstract from '../../../Core/BaseAbstract'
 import ListItemText from "@material-ui/core/ListItemText";
-import ExpandLess from "@material-ui/icons/ExpandLess";
 import ListItem from "@material-ui/core/ListItem";
 import List from "@material-ui/core/List";
+import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
 import Identify from "../../../../Helper/Identify";
 import Loading from '../../../../BaseComponent/Loading/ReactLoading'
-const configColor = Identify.getColorConfig()
+
+const configColor = Identify.getColorConfig();
+
 class SubCate extends Abstract{
     state = { open: false };
 
@@ -34,11 +30,10 @@ class SubCate extends Abstract{
         */
     };
 
-    handleMenuLocation = url => {
-        console.log(url)
+    handleMenuLocation = location => {
         const $ = window.$;
-        // this.pushLink(url)
-        $('.left-menu-tapita .overlay-sidebar').click()
+        this.pushLink(location)
+        $('.left-menu-base .overlay-sidebar').click()
     }
 
     shouldComponentUpdate(nextProps,nextState){
@@ -58,11 +53,13 @@ class SubCate extends Abstract{
                     let cate_name = <div className="menu-cate-name-item" >{Identify.__(item.name)}</div>;
                     let urlPath = (item.url_path && item.url_path!=='/') ? "/" + item.url_path : "/" + item.request_path || "/products?cat=" + item.entity_id
                     urlPath = !check_subcate ? urlPath : null;
+
                     Identify.setUrlMatchApi(
                         urlPath,'category',
                         {id: item.entity_id,
                         hasChild: !!item.has_children,
                         name: item.name})
+
                     return !check_subcate ? obj.renderMenuItem(cate_name,urlPath) : <SubCate key={key} item={item} cate_name={cate_name}/>;
                 });
                 sub_cate.unshift(all_products)

@@ -25,13 +25,13 @@ class SidebarItem extends BaseAbstract {
         let subtotal = price;
         if (parseInt(this.tax_cart_display_price) === 3) {
             subtotal = <div>
-                <div>{Identify.formatPrice(item.row_total_incl_tax)}</div>
-                <div>{Identify.formatPrice(item.row_total)}</div>
+                <div>{Identify.formatPrice(item.price_incl_tax * item.qty)}</div>
+                <div>{Identify.formatPrice(item.price * item.qty)}</div>
             </div>;
         } else if (parseInt(this.tax_cart_display_price) === 2) {
-            subtotal = <div>{Identify.formatPrice(item.row_total_incl_tax)}</div>;
+            subtotal = <div>{Identify.formatPrice(item.price_incl_tax * item.qty)}</div>;
         } else {
-            subtotal = <div>{Identify.formatPrice(item.row_total)}</div>;
+            subtotal = <div>{Identify.formatPrice(item.price * item.qty)}</div>;
         }
         let optionText = [];
         if (item.option) {

@@ -8,8 +8,9 @@ const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
 const withSass = require('@zeit/next-sass')
 const FilterWarningsPlugin = require('webpack-filter-warnings-plugin')
 const Dotenv = require('dotenv-webpack')
+const production = process.env.NODE_ENV === 'production'
 let config = {
-    distDir : process.env.NODE_ENV !== 'production' ? '.next' : 'build',
+    distDir : production ? 'build' : '.next',
     generateBuildId: async () => {
         // For example get the latest git commit hash here
         return 'simipwa';
@@ -88,8 +89,11 @@ let config = {
             analyzerMode: 'static',
             reportFilename: '../bundles/client.html'
         }
+    },
+    publicRuntimeConfig: {
+        // Will be available on both server and client
+        server_url: production ? process.env.SERVER_URL : process.env.LOCAL_URL
     }
-    // target: 'serverless'
 }
 config = withBundleAnalyzer(withCSS(withSass(withImages(config))))
 module.exports = config;

@@ -1,11 +1,14 @@
 import Connection from './Connection';
 import {SMCONFIGS} from '../../static/config'
+import getConfig from 'next/config';
+const {publicRuntimeConfig} = getConfig()
 class Model  {
 
     constructor(props) {
         this.isLoaded = false;
         this.data = null;
-        let url = process.env.NODE_ENV === 'production' ? process.env.SERVER_URL : process.env.LOCAL_URL
+        let url = publicRuntimeConfig.server_url
+        console.log(url)
         this.fullUrl = url+SMCONFIGS.api_path
         if (props && props.obj) {
             this.obj = props.obj;
