@@ -1,2 +1,3 @@
 import React from 'react'
-export default ()=><div>Basic Product List</div>
+import ProductList from '../../src/App/Basic/Products'
+export default ProductList

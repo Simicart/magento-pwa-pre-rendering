@@ -36,6 +36,21 @@ class ProductListAbstract extends Abstract{
         super(props);
         this.cateData = null;
         this.catePath = {};
+
+        const merchantConfig = Identify.getMerchantConfig()
+        let viewTypeDefault = 0
+        if (merchantConfig) {
+            viewTypeDefault = parseInt(merchantConfig.storeview.catalog.frontend.view_products_default, 10);
+        }
+        //show: 1-list, 0-grid
+        let show = 0;
+        if (Identify.isClient() && sessionStorage.getItem('itemsDisplayMode'))
+            show = parseInt(sessionStorage.getItem('itemsDisplayMode'),10)
+        else 
+            show = this.props.show ? this.props.show : viewTypeDefault === 0 ? 1 : 0;
+
+        this.state.itemsDisplayMode = show
+
         //loadingMore: 0-no, 1-loading, 2-loaded
         this.loadingMore = 0
         this.limit = 12;
@@ -125,10 +140,37 @@ class ProductListAbstract extends Abstract{
     }
 
     getProducts(){
+        this.loadingMore = 0;
+        let params = this.ProductModel.params
+        this.ProductModel.setParams(params)
         this.ProductModel.getCollection()
     }
 
+    loadMoreProducts() {
+        if (this.loadingMore === 1) {
+            //loading, skip
+            return
+        }
+        let params = this.ProductModel.params
+        const newOffset = params.offset + params.limit
+        if (newOffset < this.total) {
+            this.offset = newOffset
+            params.offset = newOffset
+            this.ProductModel.setParams(params)
+            this.ProductModel.getCollection()
+            this.loadingMore = 1
+        }
+    }
+
     processData(data){
+        this.total = data.total
+        if (this.loadingMore === 1) {
+            let oldData = this.state.data
+            if (oldData && oldData.products) {
+                data.products = oldData.products.concat(data.products)
+            }
+            this.loadingMore = 2
+        }
         this.setState({data})
     }
 
