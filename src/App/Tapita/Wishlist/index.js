@@ -69,6 +69,16 @@ class Wishlist extends Abstract {
     });
   }
 
+  handleCloseSideBar = ()=>{
+    const $ = window.$;
+    let sidebar = $('#wishlist-sidebar');
+    if(sidebar.css('display') !== 'none'){
+        sidebar.fadeToggle();
+        sidebar.children('.content-sidebar').removeClass('in');
+    }
+    $('body').removeClass('fixed-scroll')
+};
+
   handleOnClick = () => {
     let obj = this;
     $(".wishlist-icon-app-bar").click(function(){
@@ -88,13 +98,20 @@ class Wishlist extends Abstract {
       data = Identify.getDataFromStoreage(Identify.SESSION_STOREAGE, 'wishlistitems');
     let listItems = [];
     let renderShareAllWishlist = null;
+    const closeWishlist = (
+        <div className="close-wishlist-sidebar">
+            <IconButton style={{width : 30, height: 30, padding: 2}} onClick={this.handleCloseSideBar}>
+                <NavigationClose style={{width: 20}}/>
+            </IconButton>
+        </div>
+    )
     if (data === null || !data.hasOwnProperty('wishlistitems') || data.wishlistitems.length === 0) {
       listItems = <div className="empty-wishlist text-center"
         style={{ marginTop: 40, fontWeight: 300 }}>{Identify.__('You have no items in your wish list')}</div>
       return (
         <div className="wishlist-list-tapita">
-          {/* {this.state.isPhone ? null :
-            closeWishlist} */}
+          {this.state.isPhone ? null :
+            closeWishlist}
           {listItems}
         </div>
       )
@@ -176,7 +193,7 @@ class Wishlist extends Abstract {
 
     return (
       <div className="wishlist-list-tapita">
-        {/* {!this.state.isPhone ? closeWishlist : null} */}
+        {!this.state.isPhone ? closeWishlist : null}
         <div className="wishlist-sidebar-content">
           {this.state.isPhone ? null : <div className="wishlist-title">{Identify.__('Wishlist').toUpperCase()}</div>}
           <div className="wishlist-items-tablet ">
@@ -197,6 +214,7 @@ class Wishlist extends Abstract {
   }
 
   render() {
+    console.log(this);
     if (this.parent && !this.state.loaded) {
       return  <div>
                   <div className="btn-get-data" onClick={()=>this.getApiData()}></div>
