@@ -10,6 +10,7 @@ import {AppState} from "../../../Observer/AppState"
 import CheckoutPage from "./index";
 import Identify from "../../../Helper/Identify";
 import Layout from "../../../Layout";
+import { Dynamic } from '../../../BaseComponent/Async';
 export const CheckoutTapita = props => (
     <Layout header={{title : Identify.__('Checkout')}}>
         <SubscribeOne to={AppState} bind={['cart_data']}>
@@ -20,3 +21,5 @@ export const CheckoutTapita = props => (
     </Layout>
 
 )
+
+export const AddressFormHoc = props => <Dynamic {...props} component={()=>import(/* webpackChunkName: "CheckoutAddressForm"*/'./Address/AddressForm')} />

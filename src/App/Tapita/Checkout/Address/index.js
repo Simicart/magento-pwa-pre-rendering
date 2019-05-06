@@ -10,8 +10,9 @@ import Panel from '../../../../BaseComponent/Panel'
 import CheckoutAddress from '../../../Core/Checkout/CheckoutAddress'
 import LoadingImg from "../../../../BaseComponent/Loading/LoadingImg";
 import Customer from "../../../../Helper/Customer";
-class ShippingAddress extends CheckoutAddress{
+import { AddressFormHoc } from '../HoC';
 
+class ShippingAddress extends CheckoutAddress{
     constructor(props) {
         super(props);
         this.idFormAddress = 'shipping-checkout-address'
@@ -27,15 +28,15 @@ class ShippingAddress extends CheckoutAddress{
             json['s_address'] = {entity_id : params.entity_id}
         }
         this.CheckoutParent.OrderModel.updateOrder(json)
-        Analytics.analyticsTracking(
-            {
-                mixpanel : true,
-                ga : false
-            }, 
-            {
-                action: 'edit_shipping_address',
-            }
-        )
+        // Analytics.analyticsTracking(
+        //     {
+        //         mixpanel : true,
+        //         ga : false
+        //     }, 
+        //     {
+        //         action: 'edit_shipping_address',
+        //     }
+        // )
     };
 
     checkAddressSelected = id => {
@@ -49,13 +50,14 @@ class ShippingAddress extends CheckoutAddress{
         }
         const currentShipping = this.CheckoutParent.getStateOrder('shipping_address') || {};
         data = data && data.hasOwnProperty('addresses') ? data.addresses : [];
-        let addressComponent = data.length > 0 ? this.renderListAddress(data) : <Dynamic component={()=>import(/* webpackChunkName: "CheckoutAddressForm"*/'./AddressForm')}
-                                                                                               parent={this}
-                                                                                               className={`shipping-address-form`}
-                                                                                               id={this.idFormAddress}
-                                                                                               address={currentShipping}
-                                                                                               shipping={true}
-                                                                                               CheckoutParent={this.CheckoutParent}/>
+        let addressComponent = data.length > 0 
+            ? this.renderListAddress(data) 
+            : <AddressFormHoc   parent={this}
+                                className={`shipping-address-form`}
+                                id={this.idFormAddress}
+                                address={currentShipping}
+                                shipping={true}
+                                CheckoutParent={this.CheckoutParent}/>
         return (
             <div>
                 {addressComponent}
