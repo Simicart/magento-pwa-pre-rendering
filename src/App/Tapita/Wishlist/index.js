@@ -77,6 +77,12 @@ class Wishlist extends Abstract {
   }
 
   renderWishlist = () => {
+    if(!this.state.loaded){
+      this.getApiData()
+      return  <div>
+                  <div className="btn-get-data" onClick={()=>this.getApiData()}></div>
+              </div>
+    }
     let data = this.props.wishlist_data || {};
     if (!data.wishlistitems)
       data = Identify.getDataFromStoreage(Identify.SESSION_STOREAGE, 'wishlistitems');
@@ -185,23 +191,17 @@ class Wishlist extends Abstract {
   }
 
   componentDidMount(){
-    this.getApiData();
     if(this.props.sidebar){
       this.handleOnClick()
     }
   }
 
-  componentWillMount(){
-    // if(!this.parent){
-    //   return <div>Loading</div>
-    // }
-    if(typeof window !== 'undefined'){
-      console.log(this)
-    }
-    
-  }
-
   render() {
+    if (this.parent && !this.state.loaded) {
+      return  <div>
+                  <div className="btn-get-data" onClick={()=>this.getApiData()}></div>
+              </div>
+    }
      if(this.props.sidebar){
       return <div>{this.renderWishlist()}</div>
     }
