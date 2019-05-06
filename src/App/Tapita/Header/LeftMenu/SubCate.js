@@ -35,8 +35,9 @@ class SubCate extends Abstract{
     };
 
     handleMenuLocation = url => {
+        console.log(url)
         const $ = window.$;
-        this.pushLink(url)
+        // this.pushLink(url)
         $('.left-menu-tapita .overlay-sidebar').click()
     }
 

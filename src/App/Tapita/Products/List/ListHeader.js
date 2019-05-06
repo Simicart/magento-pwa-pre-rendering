@@ -43,7 +43,6 @@ class ListHeader extends Abstract{
 
     renderHeader(){
         const {page_type,currentCate,q_filter} = this.props
-        console.log(currentCate.list_title);
         let  headerStyle = {borderBottom: `1px solid ${configColor.line_color}`};
         if(page_type === 'category' && currentCate){
             let catePath = this.getCategoryPath().length > 1 ? this.getCategoryPath() : null

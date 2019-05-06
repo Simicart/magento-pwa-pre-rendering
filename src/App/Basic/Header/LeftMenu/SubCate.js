@@ -46,27 +46,21 @@ class SubCate extends Abstract{
             if(item.child_cats !== null){
                 let obj = this;
                 let url_path = (item.url_path && item.url_path!=='/') ? "/" + item.url_path : "/" + item.request_path || "/products?cat=" + item.entity_id
-                let url = {
-                    pathname: url_path,
-                    state: {
-                        cate_id: item.entity_id,
-                        hasChild: item.has_children,
-                        name: item.name
-                    }
-                };
-                let all_products = this.renderMenuItem(<div className="menu-cate-name-item" >{Identify.__('All Products')}</div>,url);
+                Identify.setUrlMatchApi(url_path,'category',{id:item.entity_id,hasChild:!!item.child_cats,name : item.name})
+                let all_products = this.renderMenuItem(<div className="menu-cate-name-item" >{Identify.__('All Products')}</div>,url_path);
                 sub_cate = item.child_cats.map(function (item,key) {
+                    let check_subcate = item.hasOwnProperty('child_cats') && item.child_cats !== null;
                     let cate_name = <div className="menu-cate-name-item" >{Identify.__(item.name)}</div>;
-                    let url_path = (item.url_path && item.url_path!=='/') ? "/" + item.url_path : "/" + item.request_path || "/products?cat=" + item.entity_id
-                    let location = item.child_cats === null ? {
-                        pathname: url_path,
-                        state: {
-                            cate_id: item.entity_id,
-                            hasChild: item.has_children,
-                            name: item.name
-                        }
-                    } : null;
-                    return item.child_cats === null ? obj.renderMenuItem(cate_name,location) : <SubCate key={key} item={item} cate_name={cate_name}/>;
+                    let urlPath = (item.url_path && item.url_path!=='/') ? "/" + item.url_path : "/" + item.request_path || "/products?cat=" + item.entity_id
+                    urlPath = !check_subcate ? urlPath : null;
+
+                    Identify.setUrlMatchApi(
+                        urlPath,'category',
+                        {id: item.entity_id,
+                        hasChild: !!item.has_children,
+                        name: item.name})
+
+                    return !check_subcate ? obj.renderMenuItem(cate_name,urlPath) : <SubCate key={key} item={item} cate_name={cate_name}/>;
                 });
                 sub_cate.unshift(all_products)
             }
