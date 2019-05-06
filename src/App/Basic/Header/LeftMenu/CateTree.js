@@ -82,20 +82,15 @@ class CateTree extends Abstract {
         if (data) {
             let obj =this;
             let categories = data.categorytrees.map(function (item,key) {
+                let check_subcate = item.hasOwnProperty('child_cats') && item.child_cats !== null;
                 let cate_name = <div className="root-menu" >{obj.renderTitleMenu(item.name)}</div>;
-                let location = {
-                    pathname: item.url_path !== undefined ? "/" + item.url_path : "/" + item.request_path || "/products?cat=" + item.entity_id,
-                    state: {
-                        cate_id: item.entity_id,
-                        hasChild: item.has_children,
-                        name: item.name
-                    }
-                };
-                location = !item.child_cats ? location : null;
-                return !item.child_cats  ?
-                    obj.renderMenuItem(cate_name, location) : <SubCate key={key}
-                                                                       cate_name={cate_name}
-                                                                       item={item} parent={this}/>;
+                let urlPath = item.url_path !== undefined ? "/" + item.url_path : "/" + item.request_path || "/products?cat=" + item.entity_id
+                urlPath = !check_subcate ? urlPath : null;
+                Identify.setUrlMatchApi(urlPath,'category',{id: item.entity_id,
+                                        hasChild: check_subcate,
+                                        name: item.name})
+
+                return obj.renderMenuItem(key,item,cate_name,urlPath)
             }, this);
             return (
                 <div style={{
@@ -112,11 +107,21 @@ class CateTree extends Abstract {
         return '';
     };
 
-    renderMenuItem = (cate_name,location) => {
-        return(
-            <ListItem key={Identify.makeid()} button style={{color:configColor.menu_text_color}} onClick={()=>this.handleMenuLocation(location)}>
-                <ListItemText primary={cate_name} primaryTypographyProps={{style:{color:configColor.menu_text_color}}}/>
-            </ListItem>
+    renderMenuItem = (key,item, cate_name, location) => {
+        if(location !== null){
+            return(
+                <ListItem key={key}
+                          onClick={()=>this.openLocation(location)}
+                          button style={{color:configColor.menu_text_color}}>
+                    <ListItemText primary={cate_name} primaryTypographyProps={{style:{color:configColor.menu_text_color}}}/>
+                </ListItem>
+            )
+        }
+        return (
+            <SubCate cate_name={cate_name}
+                     key={key}
+                     item={item}
+                     parent={this}/>
         )
     }
 
