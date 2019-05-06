@@ -61,7 +61,7 @@ const handler = routes.getRequestHandler(app, async ({req, res, route, query}) =
 
 app.prepare()
     .then(() => {
-        server.use(handler).listen(8080)
+        server.use(handler).listen(dev ? process.env.LOCAL_PORT : process.env.SERVER_PORT)
         console.log('Server is running')
     })
     .catch((ex) => {
