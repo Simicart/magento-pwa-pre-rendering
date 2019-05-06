@@ -1,0 +1,118 @@
+.app-header {
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    width: 100%;
+    -webkit-box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.02), 0px 4px 5px 0px rgba(0, 0, 0, 0.02), 0px 1px 10px 0px rgba(0, 0, 0, 0.02);
+    box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.02), 0px 4px 5px 0px rgba(0, 0, 0, 0.02), 0px 1px 10px 0px rgba(0, 0, 0, 0.02);
+}
+#app-bar {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    padding-left: 40px;
+    padding-right: 40px;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    position: relative;
+}
+#app-logo {
+    text-align: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    img {
+        max-height: 35px;
+        max-height: 35px;
+    }
+    &:hover {
+        cursor: pointer;
+    }
+}
+span.right-icon-item {
+    display: inline-block;
+    button {
+        padding: 0 !important;
+    }
+}
+.app-bar-item {
+    z-index: 2;
+    z-index: 2;
+    >div {
+        display: inline-block;
+        padding: 0;
+    }
+    .app-bar-back {
+        display: none;
+    }
+    button {
+        min-width: 35px !important;
+        min-height: 35px !important;
+    }
+}
+
+.list-menu-header {
+    overflow-y: auto;
+    
+    .menu-content,
+    .store-item {
+        display: flex;
+        align-items: center;
+    }
+
+    .menu-title {
+        font-size: 14px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .sub-cate-root{
+        .menu-cate-name-item{
+            font-size: 14px;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+    }
+    
+    .cms-menu-text{
+        font-size: 14px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .store-item{
+        font-size: 20px;
+        .selected{
+            width: 25px;
+            height: 30px;
+            padding-top: 4px;
+        }
+        .store-name{
+            margin-left: 10px;
+        }
+
+        .not-selected{
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 1px solid;
+            display: inline-block;
+        }
+    }
+}
+
+
+@media (max-width: 768px){
+    #app-bar {
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+
+    .list-menu-header {
+        .store-item{
+            font-size: 16px;
+        }
+    }
+}

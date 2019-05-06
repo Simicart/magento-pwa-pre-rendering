@@ -1,0 +1,27 @@
+.basic-product-list {
+	#filter-bottom {
+		text-align: center;
+		padding: 0px 10px;
+		background-color: rgb(238, 238, 238);
+		position: fixed;
+		bottom: 0px;
+		width: 100%;
+		z-index: 10;
+		opacity: 0.9;
+	}
+	.bottom-icon {
+		padding: 7px 20px 3px 20px;
+	}
+	.top-number-products {
+		display: inline-block;
+		margin-top: 7px;
+	}
+	.left-navigation {
+		margin-top: 20px;
+	}
+	.left-navigation-title {
+		font-size: 22px;
+		font-weight: 600;
+		margin: 0 15px;
+	}
+}
