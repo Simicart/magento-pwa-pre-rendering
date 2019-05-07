@@ -23,3 +23,9 @@ export const CheckoutTapita = props => (
 )
 
 export const AddressFormHoc = props => <Dynamic {...props} component={()=>import(/* webpackChunkName: "CheckoutAddressForm"*/'./Address/AddressForm')} />
+
+export const CheckoutSuccessHoc = props => (
+    <Layout>
+        <Dynamic {...props} component={()=>import(/* webpackChunkName: "CheckoutSuccess"*/'./Success')}/>
+    </Layout>
+)

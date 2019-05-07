@@ -29,6 +29,11 @@ const tapitaRoute = {
         page: 'Tapita/Checkout',
         pattern: '/checkout/onepage'
     },
+    checkout_success: {
+        name: 'checkout_success',
+        page: 'Tapita/CheckoutSuccess',
+        pattern: '/checkout/onepage/success'
+    },
     customer_login: {
         name: 'customer_login',
         page: 'Tapita/Login',
