@@ -52,14 +52,14 @@ class Wishlist extends Abstract {
     return <div></div>;
   }
 
-  renderConfirmBlock = (itemId) => {
+  renderConfirmBlock = (itemId, productId) => {
     confirmAlert({
       title: '',                        // Title dialog
       message: Identify.__('Are you sure you want to delete this product'),        // Message dialog
       buttons: [
         {
           label: Identify.__('Confirm'),
-          onClick: () => this.handleDelete(itemId)
+          onClick: () => this.handleDelete(itemId, productId)
         },
         {
           label: Identify.__('Cancel'),
@@ -177,7 +177,7 @@ class Wishlist extends Abstract {
                   {shareButton}
                 </div>
                 {!this.wishlist_code &&
-                  <div className="clear" onClick={(e) => this.renderConfirmBlock(item.wishlist_item_id)} style={{ height: 36 }}>
+                  <div className="clear" onClick={(e) => this.renderConfirmBlock(item.wishlist_item_id, item.product_id)} style={{ height: 36 }}>
                     <Deleteicon style={{ width: 22, height: 22 }} />
                   </div>
                 }

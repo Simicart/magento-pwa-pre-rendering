@@ -49,6 +49,7 @@ class WishListAbstract extends Base {
     }
 
     processData(data){
+        const $ = window.$;
         if (this.addCart || this.removeItem) {
             this.wishlistModel.getWishlist();
             if (this.addCart) {
@@ -58,6 +59,12 @@ class WishListAbstract extends Base {
             if (this.removeItem) {
                 Identify.showToastMessage(Identify.__('This wishlist item has been removed from your wishlist'));
                 // this.props.updateWishlist(data.wishlistitems);
+                const apiData = Identify.ApiDataStorage('product_detail_api')
+                if(apiData && apiData[this.productId]) {
+                    apiData[this.productId].product.wishlist_item_id = null;
+                    Identify.ApiDataStorage('product_detail_api', 'update', apiData);   
+                }
+                // $('.product-add-cart .wishlist-btn-icon svg').css({ fill: "rgb(224, 224, 224)" })
             }
             this.addCart = false;
             this.removeItem = false;
@@ -75,9 +82,10 @@ class WishListAbstract extends Base {
 
 
 
-    handleDelete = (id) => {
+    handleDelete = (id, productId) => {
         // showFogLoading()
         this.removeItem = true;
+        this.productId = productId;
         this.wishlistModel.removeItem(id);
     }
 

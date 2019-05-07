@@ -215,15 +215,15 @@ class CheckoutAbstract extends Base{
         this.place_order = true;
         this.OrderModel.placeOrder(this.params);
 
-        Analytics.analyticsTracking(
-            {
-                mixpanel : true,
-                ga : true
-            },
-            {
-                action: 'clicked_place_order_button'
-            }
-        )
+        // Analytics.analyticsTracking(
+        //     {
+        //         mixpanel : true,
+        //         ga : true
+        //     },
+        //     {
+        //         action: 'clicked_place_order_button'
+        //     }
+        // )
     };
 
     renderBtnPlaceOrder = () => {
