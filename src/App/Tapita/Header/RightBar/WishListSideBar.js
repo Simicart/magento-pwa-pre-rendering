@@ -31,7 +31,6 @@ class WishLishSideBar extends Abstract {
     
     componentDidMount(){
         this.setState({loaded: true});
-        console.log(this)
     }
 
     render(){

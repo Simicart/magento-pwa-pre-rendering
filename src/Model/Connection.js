@@ -13,11 +13,11 @@ class Connection {
             // 'Access-Control-Allow-Headers': 'X-Requested-With,content-type',
             // 'Access-Control-Allow-Credentials': true
         };
-        this._init = {cache: 'default', mode: 'cors',credentials: "same-origin"};
+        this._init = {cache: 'default', mode: 'cors',credentials: "include"};
     }
 
-    setHeader(key, value) {
-        this._headers.set(key, value);
+    setHeader(header= {}) {
+        this._headers = {...this._headers,...header};
     }
 
     setInitConfig(key, value) {
