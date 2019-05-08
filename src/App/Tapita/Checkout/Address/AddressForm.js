@@ -12,7 +12,7 @@ import loaddingImage from './loader-spin-min.gif';
 import Checkbox from '@material-ui/core/Checkbox'
 import ArrowDown from '../../../../BaseComponent/Icon/ArrowDown'
 import Button from '@material-ui/core/Button'
-const $ = window.$;
+
 const configColor = Identify.getColorConfig()
 class AddressForm extends AddressAbstract {
 
@@ -31,6 +31,7 @@ class AddressForm extends AddressAbstract {
     }
 
     setData(data){
+        const $ = window.$;
         if (data.errors) {
             let errors = data.errors;
             let text = "";
@@ -54,16 +55,11 @@ class AddressForm extends AddressAbstract {
                 }
                 $('.loading-check-email').hide();
                 Identify.hideLoading()
-
             }
             if (this.isLogin){
                 this.isLogin = false;
                 this.getCart =true;
-                CustomerHelper.setLogin(data.customer.email,
-                    this.password,
-                    data.customer.simi_hash, 
-                    data.customer.firstname);
-                Identify.storeDataToStoreage(Identify.SESSION_STOREAGE,'customer_data',data.customer);
+                CustomerHelper.setLogin(data.customer);
                 let defaultShipping = data.customer.default_shipping ? data.customer.default_shipping : null;
                 let defaultbilling = data.customer.default_shipping ? data.customer.default_shipping : null;
                 Identify.storeDataToStoreage(Identify.SESSION_STOREAGE, 'default_shipping_address', defaultShipping);
@@ -74,6 +70,7 @@ class AddressForm extends AddressAbstract {
                     Identify.showLoading()
                     this.parent.handleSaveAddress({entity_id :defaultbilling})
                 }
+                $('#sign-link').hide();
             }
         }
     }
@@ -125,6 +122,7 @@ class AddressForm extends AddressAbstract {
     };
 
     handleLoginCustomer = () => {
+        const $ = window.$;
         let email = $('#email').val();
         let password = $('#customer_password').val();
         let jQuery = {};
@@ -182,6 +180,7 @@ class AddressForm extends AddressAbstract {
     };
 
     checkExistEmail = () => {
+        const $ = window.$;
         let email = $('#email').val();
         if (email !== "" && Identify.validateEmail(email)) {
             $('.loading-check-email').show();

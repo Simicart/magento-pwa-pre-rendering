@@ -61,7 +61,14 @@ class ItemAction extends Abstract{
                 this.activeDisplay = 'block';
                 this.inactiveDisplay = 'none';
             }
-            this.props.updateWishlist(data)
+            this.props.updateWishlist(data);
+            const apiData = Identify.ApiDataStorage('product_detail_api');
+            const productId = data.wishlistitem.product_id;
+            if(apiData[productId]) {
+                apiData[productId].product.wishlist_item_id = data.wishlistitem.wishlist_item_id;
+                Identify.ApiDataStorage('product_detail_api', 'update', apiData); 
+            }
+            this.setState({ addWishlist: false});
         }
     }
 

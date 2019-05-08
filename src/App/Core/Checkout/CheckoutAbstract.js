@@ -93,13 +93,8 @@ class CheckoutAbstract extends Base{
             window.location.replace(order.url_action)
             return true
         } else {
-            let location = {
-                pathname: '/checkout/onepage/success',
-                state: {
-                    orderId: OrderId
-                }
-            };
-            this.handleLink(location)
+            Identify.storeDataToStoreage(Identify.SESSION_STOREAGE, 'order_success_id', OrderId);
+            this.pushLink('/checkout/onepage/success');
         }
     }
 
@@ -215,15 +210,15 @@ class CheckoutAbstract extends Base{
         this.place_order = true;
         this.OrderModel.placeOrder(this.params);
 
-        Analytics.analyticsTracking(
-            {
-                mixpanel : true,
-                ga : true
-            },
-            {
-                action: 'clicked_place_order_button'
-            }
-        )
+        // Analytics.analyticsTracking(
+        //     {
+        //         mixpanel : true,
+        //         ga : true
+        //     },
+        //     {
+        //         action: 'clicked_place_order_button'
+        //     }
+        // )
     };
 
     renderBtnPlaceOrder = () => {

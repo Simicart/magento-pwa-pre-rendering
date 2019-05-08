@@ -78,7 +78,7 @@
 .share-all-wishlist {
 	margin: 10px 60px 0 60px;
 }
-#wishlist-sidebar {
+#wishlist-sidebar, #cart-sidebar {
 	.content-sidebar.in {
 		-webkit-transform: translate3d(0px,0px,0px) !important;
 		-ms-transform: translate3d(0px,0px,0px) !important;
@@ -99,7 +99,7 @@
 		max-height: 760px;
 		overflow: auto;
 	}
-	#wishlist-sidebar {
+	#wishlist-sidebar, #cart-sidebar {
 		.content-sidebar {
 			width: 100% !important;
 			-webkit-transform: translateX(100%) !important;
@@ -109,7 +109,7 @@
 	}
 }
 @media (max-width: 767px) {
-	#wishlist-sidebar {
+	#wishlist-sidebar, #cart-sidebar {
 		.content-sidebar {
 			width: 100% !important;
 			-webkit-transform: translateX(100%) !important;

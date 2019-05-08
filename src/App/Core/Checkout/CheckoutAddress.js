@@ -31,7 +31,15 @@ class CheckoutAddress extends CheckoutSection{
                 this.Model.getAddressesCollection()
             }
         }
+        const $ = window.$;
+        $('.app-header').children().addClass('checkout-onepage');
     }
+
+    componentWillUnmount() {
+        const $ = window.$;
+        $('.app-header').children().removeClass('checkout-onepage');
+    }
+    
 
     processData(data){
         if(data instanceof Object && data.hasOwnProperty('addresses')){

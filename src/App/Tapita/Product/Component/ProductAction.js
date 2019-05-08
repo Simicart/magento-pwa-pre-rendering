@@ -36,6 +36,19 @@ class ProductAddToCart extends Base {
         }
     }
 
+    componentWillReceiveProps(nextProps) {
+        const wishListData = nextProps.wishListData;
+        if(nextProps.wishListData && nextProps.wishListData.hasOwnProperty('all_ids')) {
+            const wishlistId = wishListData.all_ids.filter(id => id === this.wishlist_id)
+            if(wishlistId.length === 0) {
+                this.isRemove = false;
+                this.iconColor = '#e0e0e0'
+                this.setState({});
+            }
+        }
+    }
+    
+
     processError(data){
         this.addCartBtn.hideLoading()
         this.addWishlistBtn.hideLoading()

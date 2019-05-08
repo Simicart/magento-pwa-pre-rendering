@@ -5,7 +5,6 @@ import SideBar from '../../../../BaseComponent/SideBar';
 import NavigationClose from '../../../../BaseComponent/Icon/Close';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import CustomerHelper from '../../../../Helper/Customer'
-import CartPage from '../../Cart';
 import {Dynamic} from "../../../../BaseComponent/Async";
 
 const CartHoC = props => <Dynamic component={() => import('../../Cart/index')}{...props}/>
@@ -28,7 +27,7 @@ class CartSideBar extends Abstract {
         return (
             <SideBar
                 ref={(cart) => this.cartSideBar = cart}
-                SideBarClass="wishlist-sidebar"
+                SideBarClass="cart-sidebar"
                 contentStyle={{ background: '#fff', opacity: 1 }}
                 renderView={<CartHoC parent={this} sideBar={true} handleCloseCart={this.props.handleCloseCart}/>}
                 showConfig='right'
